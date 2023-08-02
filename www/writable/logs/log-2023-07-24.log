@@ -1,0 +1,883 @@
+CRITICAL - 2023-07-24 12:21:30 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH/CodeIgniter.php on line 226.
+ 1 SYSTEMPATH/CodeIgniter.php(226): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('intl')
+ 2 SYSTEMPATH/CodeIgniter.php(190): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 FCPATH/index.php(55): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-07-24 12:26:02 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH/CodeIgniter.php on line 226.
+ 1 SYSTEMPATH/CodeIgniter.php(226): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('intl')
+ 2 SYSTEMPATH/CodeIgniter.php(190): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 FCPATH/index.php(55): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-07-24 12:55:42 --> Use of undefined constant MYSQLI_STORE_RESULT - assumed 'MYSQLI_STORE_RESULT' (this will throw an Error in a future version of PHP)
+in SYSTEMPATH/Database/Database.php on line 137.
+ 1 SYSTEMPATH/Database/Database.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant MYSQLI_STORE_RESULT - assumed \'MYSQLI_STORE_RESULT\' (this will throw an Error in a future version of PHP)', '/var/www/html/system/Database/Database.php', 137, [...])
+ 2 SYSTEMPATH/Database/Database.php(55): CodeIgniter\Database\Database->initDriver('MySQLi', 'Connection', [...])
+ 3 SYSTEMPATH/Database/Config.php(82): CodeIgniter\Database\Database->load([...], 'default')
+ 4 SYSTEMPATH/Model.php(155): CodeIgniter\Database\Config::connect('default')
+ 5 APPPATH/Controllers/DatatableController.php(9): CodeIgniter\Model->__construct()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-07-24 12:56:39 --> Use of undefined constant MYSQLI_STORE_RESULT - assumed 'MYSQLI_STORE_RESULT' (this will throw an Error in a future version of PHP)
+in SYSTEMPATH/Database/Database.php on line 137.
+ 1 SYSTEMPATH/Database/Database.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant MYSQLI_STORE_RESULT - assumed \'MYSQLI_STORE_RESULT\' (this will throw an Error in a future version of PHP)', '/var/www/html/system/Database/Database.php', 137, [...])
+ 2 SYSTEMPATH/Database/Database.php(55): CodeIgniter\Database\Database->initDriver('MySQLi', 'Connection', [...])
+ 3 SYSTEMPATH/Database/Config.php(82): CodeIgniter\Database\Database->load([...], 'default')
+ 4 SYSTEMPATH/Model.php(155): CodeIgniter\Database\Config::connect('default')
+ 5 APPPATH/Controllers/DatatableController.php(9): CodeIgniter\Model->__construct()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-07-24 12:56:58 --> Use of undefined constant MYSQLI_STORE_RESULT - assumed 'MYSQLI_STORE_RESULT' (this will throw an Error in a future version of PHP)
+in SYSTEMPATH/Database/Database.php on line 137.
+ 1 SYSTEMPATH/Database/Database.php(137): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant MYSQLI_STORE_RESULT - assumed \'MYSQLI_STORE_RESULT\' (this will throw an Error in a future version of PHP)', '/var/www/html/system/Database/Database.php', 137, [...])
+ 2 SYSTEMPATH/Database/Database.php(55): CodeIgniter\Database\Database->initDriver('MySQLi', 'Connection', [...])
+ 3 SYSTEMPATH/Database/Config.php(82): CodeIgniter\Database\Database->load([...], 'default')
+ 4 SYSTEMPATH/Model.php(155): CodeIgniter\Database\Config::connect('default')
+ 5 APPPATH/Controllers/DatatableController.php(9): CodeIgniter\Model->__construct()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 13:55:31 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('localhost', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(10): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(10): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 13:55:31 --> Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(10): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 13:58:38 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('localhost', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 13:58:38 --> Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:00:16 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('localhost', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:00:16 --> Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:02:17 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('localhost', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:02:17 --> Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:02:52 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:02:52 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:03:03 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:03:03 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:04:54 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:04:54 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:07:17 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:07:17 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:07:35 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:07:35 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:09:08 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('localhost', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:09:08 --> Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:09:12 --> Error connecting to the database: mysqli_sql_exception: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('localhost', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No such file or directory in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:09:12 --> Unable to connect to the database.
+Main connection [MySQLi]: No such file or directory
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:13:01 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:13:01 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:13:31 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'myusername', 'mypassword', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:13:31 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:23:58 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'myusername', 'mypassword', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:23:58 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:25:13 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'myusername', 'mypassword', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:25:13 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:26:07 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'myusername', 'mypassword', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:26:07 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 14:49:09 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('127.0.0.1', 'myusername', 'mypassword', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 14:49:09 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 15:50:59 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('mysql', 'myusername', 'mypassword', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 15:50:59 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 15:51:00 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('mysql', 'myusername', 'mypassword', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 15:51:00 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-07-24 15:51:24 --> Error connecting to the database: mysqli_sql_exception: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(174): mysqli->real_connect('mysql', 'root', 'root', 'mydatabase', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#7 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#8 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#9 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Connection refused in /var/www/html/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 /var/www/html/system/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#4 /var/www/html/system/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#5 /var/www/html/app/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+#6 /var/www/html/system/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+#7 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+#8 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-07-24 15:51:24 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(574): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+ORDER BY `id` DESC', [], false)
+ 3 SYSTEMPATH/Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH/Controllers/DatatableController.php(11): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

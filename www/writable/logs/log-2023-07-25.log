@@ -1,0 +1,29 @@
+CRITICAL - 2023-07-25 10:11:25 --> Invalid file: "userView.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 33.
+ 1 SYSTEMPATH/View/View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('userView.php')
+ 2 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('userView', [], true)
+ 3 APPPATH/Controllers/DatatableController.php(12): view('userView')
+ 4 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 6 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-07-25 10:35:59 --> Invalid file: "userView.php"
+in SYSTEMPATH/Exceptions/FrameworkException.php on line 33.
+ 1 SYSTEMPATH/View/View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('userView.php')
+ 2 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('userView', [], true)
+ 3 APPPATH/Controllers/DatatableController.php(17): view('userView')
+ 4 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 6 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-07-25 10:59:03 --> Argument 1 passed to CodeIgniter\Database\BaseConnection::getFieldData() must be of the type string, null given, called in /var/www/html/app/ThirdParty/CodeIgniter4-DataTables/src/DataTableColumnDefs.php on line 261
+in SYSTEMPATH/Database/BaseConnection.php on line 1521.
+ 1 APPPATH/ThirdParty/CodeIgniter4-DataTables/src/DataTableColumnDefs.php(261): CodeIgniter\Database\BaseConnection->getFieldData(null)
+ 2 APPPATH/ThirdParty/CodeIgniter4-DataTables/src/DataTableColumnDefs.php(17): Hermawan\DataTables\DataTableColumnDefs->initFromBuilder(Object(CodeIgniter\Database\MySQLi\Builder))
+ 3 APPPATH/ThirdParty/CodeIgniter4-DataTables/src/DataTable.php(35): Hermawan\DataTables\DataTableColumnDefs->__construct(Object(CodeIgniter\Database\MySQLi\Builder))
+ 4 APPPATH/ThirdParty/CodeIgniter4-DataTables/src/DataTable.php(46): Hermawan\DataTables\DataTable->__construct(Object(CodeIgniter\Database\MySQLi\Builder))
+ 5 APPPATH/Controllers/DatatableController.php(32): Hermawan\DataTables\DataTable::of(Object(CodeIgniter\Database\MySQLi\Builder))
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\DatatableController->ajaxDataTables()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DatatableController))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

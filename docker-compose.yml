@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  php:
+    build:
+          context: .
+          dockerfile: DockerFile
+    image: php:7.4-apache
+    ports:
+      - 8080:80
+    volumes:
+      - ./www:/var/www/html    
+    
+  mysql:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'secret'
+      MYSQL_USER: 'mukesh'
+      MYSQL_PASSWORD: 'chapagain'
+      MYSQL_DATABASE: 'blog'
+    volumes:
+      - ./data/db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    
+  phpmyadmin:
+      image: phpmyadmin
+      restart: always
+      ports:
+        - '8090:80'
+      links:
+        - mysql:db
+      environment:
+        - PMA_ARBITRARY=1

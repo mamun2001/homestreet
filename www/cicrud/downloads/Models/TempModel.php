@@ -1,0 +1,22 @@
+<?php
+// ADEL CODEIGNITER 4 CRUD GENERATOR
+
+namespace App\Models;
+use CodeIgniter\Model;
+
+class TempModel extends Model {
+    
+	protected $table = 'temp';
+	protected $primaryKey = 'id';
+	protected $returnType = 'object';
+	protected $useSoftDeletes = false;
+	protected $allowedFields = ['Ing_Code', 'Ing_Descr_E', 'Dry_Matter', 'Moisture', 'Crude_Protein', 'Crude_Lipids', 'Crude_Fibre', 'Ash', 'NFE', 'NDF', 'ADF', 'Total_CHO', 'Starch', 'Sugars', 'Gross_Energy_MJ', 'Gross_energy_Kcal', 'DE_Fish_Carni', 'DE_Fish_Omni', 'DE_Carp', 'DE_Shrimp', 'DE_Porcine', 'DE_Poultry', 'ME_Fish', 'ME_Guelph_Fish_Carni', 'ME_Guelph_Fish_Omni', 'ME_Guelph_Carp', 'ME_Guelph_Shrimp', 'ME_Poultry', 'ME_Porcine', 'Arginine', 'Histidine', 'Isoleucine', 'Leucine', 'Lysine', 'Methionine', 'Phenylalanine', 'Threonine', 'Tryptophan', 'Valine', 'Cystine', 'TSAA_Met_Cys', 'Tyrosine', 'Phe_Tyr', 'Glutamic', 'Aspartic', 'Glycine', 'Serine', 'Alanine', 'Sum_EAAs', 'Sum_NEAAs', 'Taurine', 'Arg_Coeff', 'His_Coeff', 'Ile_Coeff', 'Leu_Coeff', 'Lys_Coeff', 'Met_Coeff', 'Phe_Coeff', 'Thr_Coeff', 'Trp_Coeff', 'Val_Coeff', 'Dig_Arg_fish', 'Dig_His_fish', 'Dig_Ile_fish', 'Dig_Leu_fish', 'Dig_Lys_fish', 'Dig_Met_fish', 'Dig_Phe_fish', 'Dig_Thr_fish', 'Dig_Trp_fish', 'Dig_Val_fish', 'Dig_Cys_fish', 'Dig_TSAA_Met_Cys', 'Dig_Tyr_fish', 'Calcium', 'Phosphorus', 'Ca_Coeff', 'P_coeff', 'Phytate_P', 'Bone_P', 'Cellular_P', 'Monobasic_P', 'Dibasic_P', 'Tribasic_P', 'Dig_P_Carni', 'Dig_P_Omni', 'Dig_P_Carp', 'Dig_P_Shrimp', 'Sodium', 'Chlorine', 'Potassium', 'Magnesium', 'Sulfur', 'Copper', 'Iron', 'Manganese', 'Selenium', 'Zinc', 'Iodine', 'Cobalt', 'Biotin_B7', 'Folic_acid_B9', 'Niacin_B3', 'Pantothenic_Acid_B5', 'Pyridoxine_B6', 'Riboflavin_B2', 'Thiamin_B1', 'Vitamin_B12', 'Vitamin_C', 'Vitamin_A', 'Vitamin_D', 'Vitamin_E', 'Vitamin_K', 'Choline', 'Inositol', 'Beta_Carotene', 'Xanthophylls', 'Antioxidant', 'ADC_DM_fish', 'ADC_CP_fish', 'ADC_Lipid_fish', 'ADC_GE_fish', 'ADC_Total_CHO_fish', 'ADC_Starch_fish', 'ADC_Starch_Carni', 'ADC_Starch_Omni', 'Dig_DM_fish', 'Dig_CP_fish', 'Dig_Lipid_fish', 'Dig_GE_DE_fish_Kcal', 'Dig_Total_CHO_fish', 'Dig_Starch_fish', 'Dig_Starch_carni', 'Dig_Starch_Omni', 'ADC_Arg_fish', 'ADC_His_fish', 'ADC_Ile_fish', 'ADC_Leu_fish', 'ADC_Lys_fish', 'ADC_Met_fish', 'ADC_Phe_fish', 'ADC_Thr_fish', 'ADC_Trp_fish', 'ADC_Val_fish', 'ADC_Cys_fish', 'ADC_Tyr_fish', 'Palmitic_16_0', 'Stearic_18_0', 'Oleic_18_1_n_9', 'Linoleic_18_2_n_6', 'Linolenic_18_3_n_3', 'Arachidonic_20_4_n_6', 'EPA_20_5_n_3', 'DHA_22_6_n_3', 'EPA_DHA', 'SAFA', 'MUFA', 'PUFA', 'Sum_n_3', 'Sum_n_6', 'Phospholipids', 'Cholesterol', 'Plant_sterols', 'Coeff_18_2_n_6', 'Coeff_18_3_n_3', 'Coeff_20_4_n_6', 'Coeff_20_5_n_3', 'Coeff_22_6_n_3', 'Coeff_SAFA', 'Coeff_MUFA', 'Coeff_PUFA', 'Aflatoxin_B', 'Deoxynivalenol_DON', 'Zeralenone_ZON', 'Fumonicin_FUM', 'Anti_trypsic_factors', 'Gossypol', 'Phytic_Acid', 'Glucosinolates', 'Sinapine', 'Tannins', 'Lectins', 'Cyanogens', 'PCBs', 'Dioxins', 'Soyasaponins', 'Isoflavones', 'SIDC_DM_porcine', 'SIDC_CP_porcine', 'SIDC_Arg_porcine', 'SIDC_His_porcine', 'SIDC_Ile_porcine', 'SIDC_Leu_porcine', 'SIDC_Lys_porcine', 'SIDC_Met_porcine', 'SIDC_Phe_porcine', 'SIDC_Thr_porcine', 'SIDC_Trp_porcine', 'SIDC_Val_porcine', 'SIDC_Cys_porcine', 'SIDC_Tyr_porcine', 'SIDC_DM_poultry', 'SIDC_CP_poultry', 'SIDC_Arg_poultry', 'SIDC_His_poultry', 'SIDC_Ile_poultry', 'SIDC_Leu_poultry', 'SIDC_Lys_poultry', 'SIDC_Met_poultry', 'SIDC_Phe_poultry', 'SIDC_Thr_poultry', 'SIDC_Trp_poultry', 'SIDC_Val_poultry', 'SIDC_Cys_poultry', 'SIDC_Tyr_poultry', 'SID_Arg_porcine', 'SID_His_porcine', 'SID_Ile_porcine', 'SID_Leu_porcine', 'SID_Lys_porcine', 'SID_Met_porcine', 'SID_Phe_porcine', 'SID_Thr_porcine', 'SID_Trp_porcine', 'SID_Val_porcine', 'SID_Cys_porcine', 'SID_Tyr_porcine', 'SID_Arg_poultry', 'SID_His_poultry', 'SID_Ile_poultry', 'SID_Leu_poultry', 'SID_Lys_poultry', 'SID_Met_poultry', 'SID_Phe_poultry', 'SID_Thr_poultry', 'SID_Trp_poultry', 'SID_Val_poultry', 'SID_Cys_poultry', 'SID_Tyr_poultry', 'percent'];
+	protected $useTimestamps = false;
+	protected $createdField  = 'created_at';
+	protected $updatedField  = 'updated_at';
+	protected $deletedField  = 'deleted_at';
+	protected $validationRules    = [];
+	protected $validationMessages = [];
+	protected $skipValidation     = true;    
+	
+}
