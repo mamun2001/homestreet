@@ -36,6 +36,9 @@ $routes->setDefaultController('UsersController');
 //$routes->get('list', 'DatatableController::index');
 $routes->get('ajax-datatable', 'DatatableController::ajaxDataTables');
 //$routes->get('userlist', 'UsersController::index');
+$routes->get('admin/customers', 'Examples::customers_management');
+$routes->get('admin/customers/(:any)', 'Examples::customers_management/$1');
+$routes->post('admin/customers/(:any)', 'Examples::customers_management/$1');
 
 
 $routes->group('user', static function ($routes) {
