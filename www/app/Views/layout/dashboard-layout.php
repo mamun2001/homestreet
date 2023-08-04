@@ -30,7 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="<?= route_to('user.home'); ?>" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -180,18 +180,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                 </div>
 
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -206,6 +194,97 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="<?= route_to('districts'); ?>" class="nav-link <?= (current_url() == base_url('districts')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Districts
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= route_to('divisions'); ?>" class="nav-link <?= (current_url() == base_url('divisions')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Divisions
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= route_to('projects'); ?>" class="nav-link <?= (current_url() == base_url('projects')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Projects
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= route_to('projectsbill'); ?>" class="nav-link <?= (current_url() == base_url('projects')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Projects Bill
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= route_to('items'); ?>" class="nav-link <?= (current_url() == base_url('items')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Items
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= route_to('categories'); ?>" class="nav-link <?= (current_url() == base_url('categories')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Categories
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= route_to('units'); ?>" class="nav-link <?= (current_url() == base_url('units')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Units
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= route_to('brands'); ?>" class="nav-link <?= (current_url() == base_url('brands')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Brands
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= route_to('models'); ?>" class="nav-link <?= (current_url() == base_url('models')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Models
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= route_to('sizes'); ?>" class="nav-link <?= (current_url() == base_url('sizes')) ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Sizes
+                                </p>
+                            </a>
+                        </li>
+
+
+
+
+
+
 
                         <li class="nav-item">
                             <a href="<?= route_to('user.profile'); ?>" class="nav-link <?= (current_url() == base_url('user/profile')) ? 'active' : '' ?>">

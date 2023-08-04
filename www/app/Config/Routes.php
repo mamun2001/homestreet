@@ -19,7 +19,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-// $routes->setAutoRoute(false);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -48,8 +48,23 @@ $routes->group('user', static function ($routes) {
     $routes->get('ajaxUser', 'UsersController::ajaxUser', ['as' => 'user.ajaxUser']);
 });
 
-$routes->get('districts', 'Districts::index', ['as' => 'districts']);
-$routes->get('divisions', 'Divisions::index', ['as' => 'divisions']);
+$routes->get('districts', 'DistrictsController::index');
+$routes->get('districts/(:any)', 'DistrictsController::index/$1');
+$routes->post('districts/(:any)', 'DistrictsController::index/$1');
+
+$routes->get('divisions', 'DivisionsController::index');
+$routes->get('divisions/(:any)', 'DivisionsController::index/$1');
+$routes->post('divisions/(:any)', 'DivisionsController::index/$1');
+
+$routes->get('projects', 'ProjectsController::index');
+$routes->get('projects/(:any)', 'ProjectsController::index/$1');
+$routes->post('projects/(:any)', 'ProjectsController::index/$1');
+
+$routes->get('projectsbill', 'ProjectsBillController::index');
+$routes->get('projectsbill/(:any)', 'ProjectsBillController::index/$1');
+$routes->post('projectsbill/(:any)', 'ProjectsBillController::index/$1');
+// $routes->get('districts', 'Districts::index', ['as' => 'districts']);
+// $routes->get('divisions', 'Divisions::index', ['as' => 'divisions']);
 
 // $routes->group('districts', static function ($routes) {
 //     $routes->get('districts', 'Districts::index', ['as' => 'districts']);
