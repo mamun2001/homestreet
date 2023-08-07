@@ -98,8 +98,8 @@ class DistrictsController extends BaseController
     }
 
 
-    private function _exampleOutput($output = null) {
-        return view('districts', (array)$output);
+    private function _exampleOutput($output = null) {        
+        return view('output', (array)$output);
     }
 
 

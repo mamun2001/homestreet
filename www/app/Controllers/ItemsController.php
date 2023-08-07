@@ -98,6 +98,6 @@ class ItemsController extends BaseController
     }
 
     private function _exampleOutput($output = null) {
-        return view('projectsbill', (array)$output);
+        return view('output', (array)$output);
     }
 }

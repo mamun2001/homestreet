@@ -98,6 +98,6 @@ class DivisionsController extends BaseController
     }
 
     private function _exampleOutput($output = null) {
-        return view('divisions', (array)$output);
+        return view('output', (array)$output);
     }
 }

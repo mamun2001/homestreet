@@ -63,12 +63,30 @@ $routes->post('projects/(:any)', 'ProjectsController::index/$1');
 $routes->get('projectsbill', 'ProjectsBillController::index');
 $routes->get('projectsbill/(:any)', 'ProjectsBillController::index/$1');
 $routes->post('projectsbill/(:any)', 'ProjectsBillController::index/$1');
-// $routes->get('districts', 'Districts::index', ['as' => 'districts']);
-// $routes->get('divisions', 'Divisions::index', ['as' => 'divisions']);
 
-// $routes->group('districts', static function ($routes) {
-//     $routes->get('districts', 'Districts::index', ['as' => 'districts']);
-// });
+$routes->get('items', 'ItemsController::index');
+$routes->get('items/(:any)', 'ItemsController::index/$1');
+$routes->post('items/(:any)', 'ItemsController::index/$1');
+
+$routes->get('categories', 'CategoriesController::index');
+$routes->get('categories/(:any)', 'CategoriesController::index/$1');
+$routes->post('categories/(:any)', 'CategoriesController::index/$1');
+
+$routes->get('units', 'UnitsController::index');
+$routes->get('units/(:any)', 'UnitsController::index/$1');
+$routes->post('units/(:any)', 'UnitsController::index/$1');
+
+$routes->get('sizes', 'SizesController::index');
+$routes->get('sizes/(:any)', 'SizesController::index/$1');
+$routes->post('sizes/(:any)', 'SizesController::index/$1');
+
+$routes->get('brands', 'BrandsController::index');
+$routes->get('brands/(:any)', 'BrandsController::index/$1');
+$routes->post('brands/(:any)', 'BrandsController::index/$1');
+
+$routes->get('models', 'ModelsController::index');
+$routes->get('models/(:any)', 'ModelsController::index/$1');
+$routes->post('models/(:any)', 'ModelsController::index/$1');
 
 /*
  * --------------------------------------------------------------------
