@@ -1,0 +1,90 @@
+ERROR - 2023-08-08 19:42:06 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' CONCAT('',COALESCE(district, ''),'-',COALESCE(division, ''),'') as sbcbbb2f3...' at line 1 in /var/www/html/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(295): mysqli->query('SELECT vw_locat...', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT vw_locat...')
+#2 /var/www/html/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT vw_locat...')
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT vw_locat...', Array, false)
+#4 /var/www/html/app/Models/GroceryCrudModel.php(280): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/app/Libraries/GroceryCrud.php(652): App\Models\GroceryCrudModel->get_relation_array('project_locatio...', 'vw_location', '{district}-{div...', NULL, NULL, NULL)
+#6 /var/www/html/app/Libraries/GroceryCrud.php(2432): App\Libraries\grocery_CRUD_Model_Driver->get_relation_array(Array)
+#7 /var/www/html/app/Libraries/GroceryCrud.php(231): App\Libraries\grocery_CRUD_Layout->get_relation_input(Object(stdClass), '11')
+#8 /var/www/html/app/Libraries/GroceryCrud.php(2591): App\Libraries\grocery_CRUD_Field_Types->get_field_input(Object(stdClass), '11')
+#9 /var/www/html/app/Libraries/GroceryCrud.php(1832): App\Libraries\grocery_CRUD_Layout->get_edit_input_fields(Object(stdClass))
+#10 /var/www/html/app/Libraries/GroceryCrud.php(4532): App\Libraries\grocery_CRUD_Layout->showEditForm(Object(stdClass))
+#11 /var/www/html/app/Controllers/ProjectsController.php(18): App\Libraries\GroceryCrud->render()
+#12 /var/www/html/system/CodeIgniter.php(932): App\Controllers\ProjectsController->index('edit', '1')
+#13 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectsController))
+#14 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#15 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#16 {main}
+CRITICAL - 2023-08-08 19:42:06 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' CONCAT('',COALESCE(district, ''),'-',COALESCE(division, ''),'') as sbcbbb2f3...' at line 1
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`')
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`', [], false)
+ 5 APPPATH/Models/GroceryCrudModel.php(280): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Libraries/GroceryCrud.php(652): App\Models\GroceryCrudModel->get_relation_array('project_location', 'vw_location', '{district}-{division}', null, null, null)
+ 7 APPPATH/Libraries/GroceryCrud.php(2432): App\Libraries\grocery_CRUD_Model_Driver->get_relation_array([...])
+ 8 APPPATH/Libraries/GroceryCrud.php(231): App\Libraries\grocery_CRUD_Layout->get_relation_input(Object(stdClass), '11')
+ 9 APPPATH/Libraries/GroceryCrud.php(2591): App\Libraries\grocery_CRUD_Field_Types->get_field_input(Object(stdClass), '11')
+10 APPPATH/Libraries/GroceryCrud.php(1832): App\Libraries\grocery_CRUD_Layout->get_edit_input_fields(Object(stdClass))
+11 APPPATH/Libraries/GroceryCrud.php(4532): App\Libraries\grocery_CRUD_Layout->showEditForm(Object(stdClass))
+12 APPPATH/Controllers/ProjectsController.php(18): App\Libraries\GroceryCrud->render()
+13 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectsController->index('edit', '1')
+14 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectsController))
+15 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+16 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-08-08 19:43:54 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' CONCAT('',COALESCE(district, ''),'-',COALESCE(division, ''),'') as sbcbbb2f3...' at line 1 in /var/www/html/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(295): mysqli->query('SELECT vw_locat...', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT vw_locat...')
+#2 /var/www/html/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT vw_locat...')
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT vw_locat...', Array, false)
+#4 /var/www/html/app/Models/GroceryCrudModel.php(280): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/app/Libraries/GroceryCrud.php(652): App\Models\GroceryCrudModel->get_relation_array('project_locatio...', 'vw_location', '{district}-{div...', NULL, NULL, NULL)
+#6 /var/www/html/app/Libraries/GroceryCrud.php(2432): App\Libraries\grocery_CRUD_Model_Driver->get_relation_array(Array)
+#7 /var/www/html/app/Libraries/GroceryCrud.php(231): App\Libraries\grocery_CRUD_Layout->get_relation_input(Object(stdClass), '11')
+#8 /var/www/html/app/Libraries/GroceryCrud.php(2591): App\Libraries\grocery_CRUD_Field_Types->get_field_input(Object(stdClass), '11')
+#9 /var/www/html/app/Libraries/GroceryCrud.php(1832): App\Libraries\grocery_CRUD_Layout->get_edit_input_fields(Object(stdClass))
+#10 /var/www/html/app/Libraries/GroceryCrud.php(4532): App\Libraries\grocery_CRUD_Layout->showEditForm(Object(stdClass))
+#11 /var/www/html/app/Controllers/ProjectsController.php(18): App\Libraries\GroceryCrud->render()
+#12 /var/www/html/system/CodeIgniter.php(932): App\Controllers\ProjectsController->index('edit', '1')
+#13 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectsController))
+#14 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#15 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#16 {main}
+CRITICAL - 2023-08-08 19:43:54 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' CONCAT('',COALESCE(district, ''),'-',COALESCE(division, ''),'') as sbcbbb2f3...' at line 1
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`')
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT vw_location., CONCAT(\'\',COALESCE(district, \'\'),\'-\',COALESCE(division, \'\'),\'\') as sbcbbb2f3
+FROM `vw_location`
+ORDER BY `sbcbbb2f3`', [], false)
+ 5 APPPATH/Models/GroceryCrudModel.php(280): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Libraries/GroceryCrud.php(652): App\Models\GroceryCrudModel->get_relation_array('project_location', 'vw_location', '{district}-{division}', null, null, null)
+ 7 APPPATH/Libraries/GroceryCrud.php(2432): App\Libraries\grocery_CRUD_Model_Driver->get_relation_array([...])
+ 8 APPPATH/Libraries/GroceryCrud.php(231): App\Libraries\grocery_CRUD_Layout->get_relation_input(Object(stdClass), '11')
+ 9 APPPATH/Libraries/GroceryCrud.php(2591): App\Libraries\grocery_CRUD_Field_Types->get_field_input(Object(stdClass), '11')
+10 APPPATH/Libraries/GroceryCrud.php(1832): App\Libraries\grocery_CRUD_Layout->get_edit_input_fields(Object(stdClass))
+11 APPPATH/Libraries/GroceryCrud.php(4532): App\Libraries\grocery_CRUD_Layout->showEditForm(Object(stdClass))
+12 APPPATH/Controllers/ProjectsController.php(18): App\Libraries\GroceryCrud->render()
+13 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectsController->index('edit', '1')
+14 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectsController))
+15 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+16 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

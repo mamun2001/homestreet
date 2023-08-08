@@ -8,9 +8,10 @@ class ModelsController extends BaseController
 	{        
 	    $crud = new GroceryCrud();
         // $crud->setTheme('datatables');
-        $crud->setRelation('item_id','items','{item_name}');
 	    $crud->setTable('models');
         $crud->setSubject('Models');
+        $crud->displayAs('item_id','Item');
+        $crud->setRelation('item_id','items','{item_name}');
         // $crud->unsetDelete();
         // $crud->unsetEdit();
         // $crud->setRead();

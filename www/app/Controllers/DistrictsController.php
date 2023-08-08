@@ -10,7 +10,7 @@ class DistrictsController extends BaseController
         // $crud->setTheme('datatables');
         $crud->setRelation('division','divisions','{division}');
 	    $crud->setTable('districts');
-        $crud->setSubject('Districts');
+        $crud->setSubject('District');
         $crud->unsetDelete();
         $crud->unsetEdit();
         $crud->setRead();
