@@ -17,6 +17,7 @@ class DeedController extends BaseController
         // $crud->unsetDelete();
         // $crud->unsetEdit();
         // $crud->setRead();
+        
 	    $output = $crud->render();
 
 		return $this->_exampleOutput($output);
