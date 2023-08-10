@@ -29,6 +29,24 @@
         </li>
 
         <li class="nav-item">
+            <a href="<?= route_to('subcontractor'); ?>" class="nav-link <?= (current_url() == base_url('subcontractor')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Subcontractor
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="<?= route_to('deed'); ?>" class="nav-link <?= (current_url() == base_url('deed')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Subcontract Deed
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a href="<?= route_to('projects'); ?>" class="nav-link <?= (current_url() == base_url('projects')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>

@@ -88,6 +88,14 @@ $routes->get('models', 'ModelsController::index');
 $routes->get('models/(:any)', 'ModelsController::index/$1');
 $routes->post('models/(:any)', 'ModelsController::index/$1');
 
+$routes->get('subcontractor', 'SubcontractorController::index');
+$routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');
+$routes->post('subcontractor/(:any)', 'SubcontractorController::index/$1');
+
+$routes->get('deed', 'DeedController::index');
+$routes->get('deed/(:any)', 'DeedController::index/$1');
+$routes->post('deed/(:any)', 'DeedController::index/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
