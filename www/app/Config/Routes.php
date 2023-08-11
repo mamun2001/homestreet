@@ -29,7 +29,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'UsersController::index');
 
 //$routes->setDefaultController('DatatableController');
 $routes->setDefaultController('UsersController');
@@ -47,6 +47,8 @@ $routes->group('user', static function ($routes) {
     $routes->get('list', 'UsersController::list', ['as' => 'user.list']);
     $routes->get('ajaxUser', 'UsersController::ajaxUser', ['as' => 'user.ajaxUser']);
 });
+
+$routes->get('districts-adel', 'Districts::index');
 
 $routes->get('districts', 'DistrictsController::index');
 $routes->get('districts/(:any)', 'DistrictsController::index/$1');
@@ -92,9 +94,11 @@ $routes->get('subcontractor', 'SubcontractorController::index');
 $routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');
 $routes->post('subcontractor/(:any)', 'SubcontractorController::index/$1');
 
-$routes->get('deed', 'DeedController::index');
-$routes->get('deed/(:any)', 'DeedController::index/$1');
-$routes->post('deed/(:any)', 'DeedController::index/$1');
+$routes->get('deed', 'Deed::index');
+
+// $routes->get('deed', 'DeedController::index');
+// $routes->get('deed/(:any)', 'DeedController::index/$1');
+// $routes->post('deed/(:any)', 'DeedController::index/$1');
 
 /*
  * --------------------------------------------------------------------

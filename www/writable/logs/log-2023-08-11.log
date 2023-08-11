@@ -1,0 +1,94 @@
+CRITICAL - 2023-08-11 15:35:10 --> Undefined variable: css_files
+in APPPATH/Views/districts.php on line 5.
+ 1 APPPATH/Views/districts.php(5): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: css_files', '/var/www/html/app/Views/districts.php', 5, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/districts.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('districts', [], true)
+ 5 APPPATH/Controllers/Districts.php(30): view('districts', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Districts->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Districts))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 16:59:34 --> syntax error, unexpected '<', expecting end of file
+in APPPATH/Controllers/Deed.php on line 194.
+ 1 SYSTEMPATH/Router/Router.php(507): CodeIgniter\Router\AutoRouter->getRoute('/deed', 'get')
+ 2 SYSTEMPATH/Router/Router.php(206): CodeIgniter\Router\Router->autoRoute('/deed')
+ 3 SYSTEMPATH/CodeIgniter.php(813): CodeIgniter\Router\Router->handle('/deed')
+ 4 SYSTEMPATH/CodeIgniter.php(447): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:27:51 --> include(head-links.php): failed to open stream: No such file or directory
+in APPPATH/Views/deed.php on line 11.
+ 1 APPPATH/Views/deed.php(11): CodeIgniter\Debug\Exceptions->errorHandler(2, 'include(head-links.php): failed to open stream: No such file or directory', '/var/www/html/app/Views/deed.php', 11, [...])
+ 2 APPPATH/Views/deed.php(11): include()
+ 3 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 4 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 6 APPPATH/Controllers/Deed.php(31): view('deed', [...])
+ 7 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 9 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:38:37 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:38:43 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:38:44 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:38:48 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:38:57 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:39:01 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:40:20 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 18:40:24 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-11 19:43:05 --> Undefined property: App\Controllers\Deed::$sourcesModel
+in APPPATH/Controllers/Deed.php on line 71.
+ 1 APPPATH/Controllers/Deed.php(71): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$sourcesModel', '/var/www/html/app/Controllers/Deed.php', 71, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->getOne()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

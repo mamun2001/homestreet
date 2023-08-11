@@ -27,7 +27,7 @@ class Districts extends BaseController
 			'title'     		=> 'Districts'
 		];
 
-		return view('districts', $data);
+		return view('districts-adel', $data);
 	}
 
 	public function getAll()
