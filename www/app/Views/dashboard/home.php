@@ -1,4 +1,4 @@
-<?= $this->extend('layout/dashboard-layout'); ?>
+<?= $this->extend('layout/layout-a'); ?>
 <?= $this->section('content'); ?>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">

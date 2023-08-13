@@ -29,10 +29,10 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'UsersController::index');
+$routes->get('/', 'Home::index');
 
 //$routes->setDefaultController('DatatableController');
-$routes->setDefaultController('UsersController');
+//$routes->setDefaultController('UsersController');
 //$routes->get('list', 'DatatableController::index');
 $routes->get('ajax-datatable', 'DatatableController::ajaxDataTables');
 //$routes->get('userlist', 'UsersController::index');
@@ -42,7 +42,7 @@ $routes->post('admin/customers/(:any)', 'Examples::customers_management/$1');
 
 
 $routes->group('user', static function ($routes) {
-    $routes->get('home', 'UsersController::index', ['as' => 'user.home']);
+    //$routes->get('home', 'UsersController::index', ['as' => 'user.home']);
     $routes->get('profile', 'UsersController::profile', ['as' => 'user.profile']);
     $routes->get('list', 'UsersController::list', ['as' => 'user.list']);
     $routes->get('ajaxUser', 'UsersController::ajaxUser', ['as' => 'user.ajaxUser']);

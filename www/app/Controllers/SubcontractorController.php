@@ -6,8 +6,8 @@ class SubcontractorController extends BaseController
 {
 	public function index()
 	{        
-	    $crud = new GroceryCrud();
-        // $crud->setTheme('datatables');        
+	    $crud = new GroceryCrud();        
+		//$crud->setTheme('datatables');
 	    $crud->setTable('subcontact');
         $crud->setSubject('Subcontact');
         

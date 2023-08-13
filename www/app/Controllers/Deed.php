@@ -68,7 +68,7 @@ class Deed extends BaseController
 		
 		if ($this->validation->check($id, 'required|numeric')) {
 			
-			$data = $this->sourcesModel->where('id' ,$id)->first();
+			$data = $this->deedModel->where('id' ,$id)->first();
 
 			return $this->response->setJSON($data);	
 				
