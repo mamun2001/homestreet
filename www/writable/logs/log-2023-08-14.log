@@ -1,0 +1,296 @@
+INFO - 2023-08-14 17:56:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-08-14 17:56:47 --> Undefined variable: session
+in APPPATH/Views/deed.php on line 45.
+ 1 APPPATH/Views/deed.php(45): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/deed.php', 45, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(32): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:29:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-08-14 18:29:52 --> Undefined variable: session
+in APPPATH/Views/deed.php on line 45.
+ 1 APPPATH/Views/deed.php(45): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/deed.php', 45, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(32): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-08-14 18:31:01 --> Undefined property: App\Controllers\Deed::$session
+in APPPATH/Controllers/Deed.php on line 18.
+ 1 APPPATH/Controllers/Deed.php(18): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$session', '/var/www/html/app/Controllers/Deed.php', 18, [])
+ 2 SYSTEMPATH/CodeIgniter.php(904): App\Controllers\Deed->__construct()
+ 3 SYSTEMPATH/CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:31:41 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:31:41 --> Undefined variable: session
+in APPPATH/Views/deed.php on line 45.
+ 1 APPPATH/Views/deed.php(45): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/deed.php', 45, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(33): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:33:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:33:04 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:33:04 --> Cannot use object of type stdClass as array
+in APPPATH/Views/deed.php on line 108.
+ 1 SYSTEMPATH/View/View.php(224): include()
+ 2 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 4 APPPATH/Controllers/Deed.php(33): view('deed', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:39:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:39:25 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:39:25 --> Cannot use object of type stdClass as array
+in APPPATH/Views/deed.php on line 108.
+ 1 SYSTEMPATH/View/View.php(224): include()
+ 2 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 4 APPPATH/Controllers/Deed.php(33): view('deed', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:42:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:42:18 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 18:48:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:48:28 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:48:28 --> Undefined variable: controller
+in APPPATH/Views/deed.php on line 231.
+ 1 APPPATH/Views/deed.php(231): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: controller', '/var/www/html/app/Views/deed.php', 231, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(34): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:50:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:50:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:50:02 --> Undefined variable: controller
+in APPPATH/Views/deed.php on line 231.
+ 1 APPPATH/Views/deed.php(231): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: controller', '/var/www/html/app/Views/deed.php', 231, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:50:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:50:26 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:50:26 --> Undefined variable: controller
+in APPPATH/Views/deed.php on line 231.
+ 1 APPPATH/Views/deed.php(231): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: controller', '/var/www/html/app/Views/deed.php', 231, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:50:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:50:52 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:50:52 --> Undefined variable: session
+in APPPATH/Views/deed.php on line 45.
+ 1 APPPATH/Views/deed.php(45): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/deed.php', 45, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:52:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:52:13 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:52:14 --> Undefined index: uploads
+in APPPATH/Views/deed.php on line 97.
+ 1 APPPATH/Views/deed.php(97): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: uploads', '/var/www/html/app/Views/deed.php', 97, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:52:45 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:52:45 --> Undefined variable: data
+in APPPATH/Views/deed.php on line 97.
+ 1 APPPATH/Views/deed.php(97): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: data', '/var/www/html/app/Views/deed.php', 97, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:52:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:52:59 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:52:59 --> Undefined variable: data
+in APPPATH/Views/deed.php on line 97.
+ 1 APPPATH/Views/deed.php(97): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: data', '/var/www/html/app/Views/deed.php', 97, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:53:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:53:43 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 18:54:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:54:17 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:54:17 --> Undefined variable: uploads
+in APPPATH/Views/deed.php on line 97.
+ 1 APPPATH/Views/deed.php(97): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: uploads', '/var/www/html/app/Views/deed.php', 97, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:54:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:54:35 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:54:35 --> Undefined variable: uploads
+in APPPATH/Views/deed.php on line 97.
+ 1 APPPATH/Views/deed.php(97): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: uploads', '/var/www/html/app/Views/deed.php', 97, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(37): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:56:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:56:57 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:56:57 --> Undefined variable: uploads
+in APPPATH/Views/deed.php on line 97.
+ 1 APPPATH/Views/deed.php(97): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: uploads', '/var/www/html/app/Views/deed.php', 97, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(38): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 18:59:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 18:59:09 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 18:59:09 --> Undefined variable: uploads
+in APPPATH/Views/deed.php on line 97.
+ 1 APPPATH/Views/deed.php(97): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: uploads', '/var/www/html/app/Views/deed.php', 97, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(38): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 19:00:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:00:13 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 19:00:13 --> Undefined property: App\Controllers\Deed::$data
+in APPPATH/Controllers/Deed.php on line 37.
+ 1 APPPATH/Controllers/Deed.php(37): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Deed::$data', '/var/www/html/app/Controllers/Deed.php', 37, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 19:00:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:00:34 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:01:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:01:14 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:01:55 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:02:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:02:47 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 19:04:17 --> syntax error, unexpected ';', expecting ']'
+in APPPATH/Controllers/Deed.php on line 32.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('/var/www/html/app/Controllers/Deed.php')
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Deed')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Deed')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Deed')
+ 5 SYSTEMPATH/CodeIgniter.php(890): class_exists('\\App\\Controllers\\Deed', true)
+ 6 SYSTEMPATH/CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 19:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:04:49 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:08:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:08:34 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:09:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:09:35 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:12:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:12:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 19:12:06 --> Cannot use object of type stdClass as array
+in APPPATH/Views/deed.php on line 99.
+ 1 SYSTEMPATH/View/View.php(224): include()
+ 2 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 4 APPPATH/Controllers/Deed.php(39): view('deed', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 19:12:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:12:23 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 19:12:24 --> Object of class stdClass could not be converted to string
+in APPPATH/Views/deed.php on line 99.
+ 1 SYSTEMPATH/View/View.php(224): include()
+ 2 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 4 APPPATH/Controllers/Deed.php(39): view('deed', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 19:13:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:13:04 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-14 19:13:05 --> Object of class stdClass could not be converted to string
+in APPPATH/Views/deed.php on line 99.
+ 1 SYSTEMPATH/View/View.php(224): include()
+ 2 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 4 APPPATH/Controllers/Deed.php(39): view('deed', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-14 19:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:13:42 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:14:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:14:05 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:14:54 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:15:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:15:11 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:15:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:15:23 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-14 19:21:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-14 19:21:51 --> Session: Sessions is enabled, and one exists. Please don't $session->start();

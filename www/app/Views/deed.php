@@ -1,409 +1,496 @@
 <?= $this->extend('layout/layout-a'); ?>
 <?= $this->section('content'); ?>
 
- <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <div class="row">
-			  	<div class="col-md-8 mt-2">
-				  <h3 class="card-title">Deed</h3>
-			  	</div>
-				<div class="col-md-4">
-				  <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"> <i class="fa fa-plus"></i> Add</button>
+<section class="content">
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-md-8 mt-2">
+							<h3 class="card-title">Deed</h3>
+						</div>
+						<div class="col-md-4">
+							<button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"> <i class="fa fa-plus"></i> Add</button>
+						</div>
+					</div>
 				</div>
-			  </div>			  
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="data_table" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-					<th>Id</th>
-					<th>Subcontractor id</th>
-					<th>Project id</th>
-					<th>File</th>
+				<!-- /.card-header -->
+				<div class="card-body">
+					<table id="data_table" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Subcontractor id</th>
+								<th>Project id</th>
+								<th>File</th>
 
-					<th></th>
-                </tr>
-                </thead>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-	<!-- Add modal content -->
-	<div id="add-modal" class="modal fade" tabindex="-1" role="dialog"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-				<div class="text-center bg-info p-3">
-					<h4 class="modal-title text-white" id="info-header-modalLabel">Add</h4>
+								<th></th>
+							</tr>
+						</thead>
+					</table>
 				</div>
-				<div class="modal-body">
-					<form id="add-form" class="pl-3 pr-3">								
-                        <div class="row">
- 							<input type="hidden" id="id" name="id" class="form-control" placeholder="Id" maxlength="11" required>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="subcontractorId"> Subcontractor id: <span class="text-danger">*</span> </label>
-									<input type="number" id="subcontractorId" name="subcontractorId" class="form-control" placeholder="Subcontractor id" maxlength="11" number="true" required>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="projectId"> Project id: <span class="text-danger">*</span> </label>
-									<input type="number" id="projectId" name="projectId" class="form-control" placeholder="Project id" maxlength="11" number="true" required>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="file"> File: <span class="text-danger">*</span> </label>
-									<input type="text" id="file" name="file" class="form-control" placeholder="File" maxlength="250" required>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-						</div>
-																				
-						<div class="form-group text-center">
-							<div class="btn-group">
-								<button type="submit" class="btn btn-success" id="add-form-btn">Add</button>
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->	
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
+</section>
 
-	<!-- Add modal content -->				
-	<div id="edit-modal" class="modal fade" tabindex="-1" role="dialog"
-		aria-hidden="true">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-				<div class="text-center bg-info p-3">
-					<h4 class="modal-title text-white" id="info-header-modalLabel">Update</h4>
+<div class="container py-4">
+	<h1 class="text-center fw-bold">File Uploading in CodeIgniter 4</h1>
+	<hr>
+	
+	<div class="clear-fix py-2"></div>
+	<div class="row">
+		<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+			<div class="card rounded-0 shadow">
+				<div class="card-header">
+					<div class="card-title h4 mb-0 fw-bold">Upload File Form</div>
 				</div>
-				<div class="modal-body">
-					<form id="edit-form" class="pl-3 pr-3">
-                        <div class="row">
- 							<input type="hidden" id="id" name="id" class="form-control" placeholder="Id" maxlength="11" required>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="subcontractorId"> Subcontractor id: <span class="text-danger">*</span> </label>
-									<input type="number" id="subcontractorId" name="subcontractorId" class="form-control" placeholder="Subcontractor id" maxlength="11" number="true" required>
-								</div>
+				<div class="card-body">
+					<div class="container-fluid">
+						<form action="<?= base_url('file/upload') ?>" method="POST" id="file-upload" enctype="multipart/form-data">
+							<div class="mb-3">
+								<label for="label" class="control-label">File Label</label>
+								<input type="text" name="label" id="label" class="form-control rounded-0">
 							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="projectId"> Project id: <span class="text-danger">*</span> </label>
-									<input type="number" id="projectId" name="projectId" class="form-control" placeholder="Project id" maxlength="11" number="true" required>
-								</div>
+							<div class="mb-3">
+								<label for="formFile" class="form-label">File</label>
+								<input class="form-control rounded-0" name="file" type="file" id="formFile">
 							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="file"> File: <span class="text-danger">*</span> </label>
-									<input type="text" id="file" name="file" class="form-control" placeholder="File" maxlength="250" required>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-						</div>
-											
-						<div class="form-group text-center">
-							<div class="btn-group">
-								<button type="submit" class="btn btn-success" id="edit-form-btn">Update</button>
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
+				</div>
+				<div class="card-footer text-center">
+					<button class="btn btn-primary btn-sm bg-gradient rounded-0" form="file-upload"><i class="fa fa-save"></i> Save File</button>
+					<button class="btn btn-light border btn-sm bg-gradient rounded-0" type="reset" form="file-upload"><i class="fa fa-times"></i> Reset</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+			<div class="card rounded-0 shadow">
+				<div class="card-header">
+					<div class="card-title h4 mb-0 fw-bolder">Uploaded Files</div>
+				</div>
+				<div class="card-body">
+					<div class="container-fluid">
+						<table class="table table-striped table-bordered">
+							<colgroup>
+								<col width="10%">
+								<col width="20%">
+								<col width="50%">
+								<col width="20%">
+							</colgroup>
+							<thead>
+								<tr class="bg-primary bg-gradient text-light">
+									<th class="p-1 text-center">#</th>
+									<th class="p-1 text-center">Label</th>
+									<th class="p-1 text-center">Path</th>
+									<th class="p-1 text-center"></th>
+								</tr>
+							</thead>
+							<tbody>
+                                        <?php 
+                                        $i = 1;                                        
+							  foreach ($uploads as $key => $value){
+                                        ?>
+                                        <tr>
+                                            <td class="px-2 py-1 align-middle text-center"><?= number_format($i++) ?></td>
+                                            <td class="px-2 py-1 align-middle"><?= $value->id ?></td>
+                                            <td class="px-2 py-1 align-middle"><p class="m-0 text-truncate" title="<?= $value->subcontractor_id ?>"><?= $value->subcontractor_id ?></p></td>
+                                            <td class="px-2 py-1 align-middle text-center">
+                                                <a href="<?= $value->project_id ?>"><?= $value->project_id ?>" class="text-muted text-decoration-none mx-2" target="_blank" title="View File"><i class="fa fa-external-link"></i></a>
+                                                <a href="<?= base_url($value->file) ?>" class="text-primary fw-bolder text-decoration-none mx-2" target="_blank" title="Download File" download="<?= $value->file ?>"><i class="fa fa-download"></i></a>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                            <tr>
+                                                <th colspan="4" class="p-1 text-center">No records found</th>
+                                            </tr>                                       
+                                    </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->			
-    <!-- /.content -->
+
+
+
+<!-- Add modal content -->
+<div id="add-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="text-center bg-info p-3">
+				<h4 class="modal-title text-white" id="info-header-modalLabel">Add</h4>
+			</div>
+			<div class="modal-body">
+				<form id="add-form" class="pl-3 pr-3">
+					<div class="row">
+						<input type="hidden" id="id" name="id" class="form-control" placeholder="Id" maxlength="11" required>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="subcontractorId"> Subcontractor id: <span class="text-danger">*</span> </label>
+								<input type="number" id="subcontractorId" name="subcontractorId" class="form-control" placeholder="Subcontractor id" maxlength="11" number="true" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="projectId"> Project id: <span class="text-danger">*</span> </label>
+								<input type="number" id="projectId" name="projectId" class="form-control" placeholder="Project id" maxlength="11" number="true" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="file"> File: <span class="text-danger">*</span> </label>
+								<input type="text" id="file" name="file" class="form-control" placeholder="File" maxlength="250" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					</div>
+
+					<div class="form-group text-center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-success" id="add-form-btn">Add</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div> <!-- /.modal -->	
+
+<!-- Add modal content -->				
+<div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="text-center bg-info p-3">
+				<h4 class="modal-title text-white" id="info-header-modalLabel">Update</h4>
+			</div>
+			<div class="modal-body">
+				<form id="edit-form" class="pl-3 pr-3">
+					<div class="row">
+						<input type="hidden" id="id" name="id" class="form-control" placeholder="Id" maxlength="11" required>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="subcontractorId"> Subcontractor id: <span class="text-danger">*</span> </label>
+								<input type="number" id="subcontractorId" name="subcontractorId" class="form-control" placeholder="Subcontractor id" maxlength="11" number="true" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="projectId"> Project id: <span class="text-danger">*</span> </label>
+								<input type="number" id="projectId" name="projectId" class="form-control" placeholder="Project id" maxlength="11" number="true" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="file"> File: <span class="text-danger">*</span> </label>
+								<input type="text" id="file" name="file" class="form-control" placeholder="File" maxlength="250" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					</div>
+
+					<div class="form-group text-center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-success" id="edit-form-btn">Update</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div> <!-- /.modal -->			
+<!-- /.content -->
 
 <script>
-$(function () {
-	$('#data_table').DataTable({
-		"paging": true,
-		"lengthChange": false,
-		"searching": true,
-		"ordering": true,
-		"info": true,
-		"autoWidth": false,
-		"responsive": true,
-		"ajax": {
-			"url": '<?php echo base_url($controller.'/getAll') ?>',			
-			"type": "POST",
-			"dataType": "json",
-			async: "true"
-		}	  
-	});
-});
-function add() {
-	// reset the form 
-	$("#add-form")[0].reset();
-	$(".form-control").removeClass('is-invalid').removeClass('is-valid');		
-	$('#add-modal').modal('show');
-	// submit the add from 
-	$.validator.setDefaults({
-		highlight: function(element) {
-			$(element).addClass('is-invalid').removeClass('is-valid');
-		},
-		unhighlight: function(element) {
-			$(element).removeClass('is-invalid').addClass('is-valid');
-		},
-		errorElement: 'div ',
-		errorClass: 'invalid-feedback',
-		errorPlacement: function(error, element) {
-			if (element.parent('.input-group').length) {
-				error.insertAfter(element.parent());
-			} else if ($(element).is('.select')) {
-				element.next().after(error);
-			} else if (element.hasClass('select2')) {
-				//error.insertAfter(element);
-				error.insertAfter(element.next());
-			} else if (element.hasClass('selectpicker')) {
-				error.insertAfter(element.next());
-			} else {
-				error.insertAfter(element);
+	$( function () {
+		$( '#data_table' ).DataTable( {
+			"paging": true,
+			"lengthChange": false,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"ajax": {
+				"url": '<?php echo base_url($controller.' / getAll ') ?>',
+				"type": "POST",
+				"dataType": "json",
+				async: "true"
 			}
-		},
+		} );
+	} );
 
-		submitHandler: function(form) {
-			
-			var form = $('#add-form');
-			// remove the text-danger
-			$(".text-danger").remove();
+	function add() {
+		// reset the form 
+		$( "#add-form" )[ 0 ].reset();
+		$( ".form-control" ).removeClass( 'is-invalid' ).removeClass( 'is-valid' );
+		$( '#add-modal' ).modal( 'show' );
+		// submit the add from 
+		$.validator.setDefaults( {
+			highlight: function ( element ) {
+				$( element ).addClass( 'is-invalid' ).removeClass( 'is-valid' );
+			},
+			unhighlight: function ( element ) {
+				$( element ).removeClass( 'is-invalid' ).addClass( 'is-valid' );
+			},
+			errorElement: 'div ',
+			errorClass: 'invalid-feedback',
+			errorPlacement: function ( error, element ) {
+				if ( element.parent( '.input-group' ).length ) {
+					error.insertAfter( element.parent() );
+				} else if ( $( element ).is( '.select' ) ) {
+					element.next().after( error );
+				} else if ( element.hasClass( 'select2' ) ) {
+					//error.insertAfter(element);
+					error.insertAfter( element.next() );
+				} else if ( element.hasClass( 'selectpicker' ) ) {
+					error.insertAfter( element.next() );
+				} else {
+					error.insertAfter( element );
+				}
+			},
 
-			$.ajax({
-				url: '<?php echo base_url($controller.'/add') ?>',						
-				type: 'post',
-				data: form.serialize(), // /converting the form data into array and sending it to server
-				dataType: 'json',
-				beforeSend: function() {
-					$('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-				},					
-				success: function(response) {
+			submitHandler: function ( form ) {
 
-					if (response.success === true) {
+				var form = $( '#add-form' );
+				// remove the text-danger
+				$( ".text-danger" ).remove();
 
-						Swal.fire({
-							position: 'bottom-end',
-							icon: 'success',
-							title: response.messages,
-							showConfirmButton: false,
-							timer: 1500
-						}).then(function() {
-							$('#data_table').DataTable().ajax.reload(null, false).draw(false);
-							$('#add-modal').modal('hide');
-						})
+				$.ajax( {
+					url: '<?php echo base_url($controller.' / add ') ?>',
+					type: 'post',
+					data: form.serialize(), // /converting the form data into array and sending it to server
+					dataType: 'json',
+					beforeSend: function () {
+						$( '#add-form-btn' ).html( '<i class="fa fa-spinner fa-spin"></i>' );
+					},
+					success: function ( response ) {
 
-					} else {
+						if ( response.success === true ) {
 
-						if (response.messages instanceof Object) {
-							$.each(response.messages, function(index, value) {
-								var id = $("#" + index);
-
-								id.closest('.form-control')
-									.removeClass('is-invalid')
-									.removeClass('is-valid')
-									.addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
-								id.after(value);
-
-							});
-						} else {
-							Swal.fire({
+							Swal.fire( {
 								position: 'bottom-end',
-								icon: 'error',
+								icon: 'success',
 								title: response.messages,
 								showConfirmButton: false,
 								timer: 1500
-							})
+							} ).then( function () {
+								$( '#data_table' ).DataTable().ajax.reload( null, false ).draw( false );
+								$( '#add-modal' ).modal( 'hide' );
+							} )
 
-						}
-					}
-					$('#add-form-btn').html('Add');
-				}
-			});
+						} else {
 
-			return false;
-		}
-	});
-	$('#add-form').validate();
-}
+							if ( response.messages instanceof Object ) {
+								$.each( response.messages, function ( index, value ) {
+									var id = $( "#" + index );
 
-function edit(id) {
-	$.ajax({
-		url: '<?php echo base_url($controller.'/getOne') ?>',
-		type: 'post',
-		data: {
-			id: id
-		},
-		dataType: 'json',
-		success: function(response) {
-			// reset the form 
-			$("#edit-form")[0].reset();
-			$(".form-control").removeClass('is-invalid').removeClass('is-valid');				
-			$('#edit-modal').modal('show');	
+									id.closest( '.form-control' )
+										.removeClass( 'is-invalid' )
+										.removeClass( 'is-valid' )
+										.addClass( value.length > 0 ? 'is-invalid' : 'is-valid' );
 
-			$("#edit-form #id").val(response.id);
-			$("#edit-form #subcontractorId").val(response.subcontractor_id);
-			$("#edit-form #projectId").val(response.project_id);
-			$("#edit-form #file").val(response.file);
+									id.after( value );
 
-			// submit the edit from 
-			$.validator.setDefaults({
-				highlight: function(element) {
-					$(element).addClass('is-invalid').removeClass('is-valid');
-				},
-				unhighlight: function(element) {
-					$(element).removeClass('is-invalid').addClass('is-valid');
-				},
-				errorElement: 'div ',
-				errorClass: 'invalid-feedback',
-				errorPlacement: function(error, element) {
-					if (element.parent('.input-group').length) {
-						error.insertAfter(element.parent());
-					} else if ($(element).is('.select')) {
-						element.next().after(error);
-					} else if (element.hasClass('select2')) {
-						//error.insertAfter(element);
-						error.insertAfter(element.next());
-					} else if (element.hasClass('selectpicker')) {
-						error.insertAfter(element.next());
-					} else {
-						error.insertAfter(element);
-					}
-				},
-
-				submitHandler: function(form) {
-					var form = $('#edit-form');
-					$(".text-danger").remove();
-					$.ajax({
-						url: '<?php echo base_url($controller.'/edit') ?>' ,						
-						type: 'post',
-						data: form.serialize(), 
-						dataType: 'json',
-						beforeSend: function() {
-							$('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-						},								
-						success: function(response) {
-
-							if (response.success === true) {
-
-								Swal.fire({
+								} );
+							} else {
+								Swal.fire( {
 									position: 'bottom-end',
-									icon: 'success',
+									icon: 'error',
 									title: response.messages,
 									showConfirmButton: false,
 									timer: 1500
-								}).then(function() {
-									$('#data_table').DataTable().ajax.reload(null, false).draw(false);
-									$('#edit-modal').modal('hide');
-								})
-								
-							} else {
+								} )
 
-								if (response.messages instanceof Object) {
-									$.each(response.messages, function(index, value) {
-										var id = $("#" + index);
-
-										id.closest('.form-control')
-											.removeClass('is-invalid')
-											.removeClass('is-valid')
-											.addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
-										id.after(value);
-
-									});
-								} else {
-									Swal.fire({
-										position: 'bottom-end',
-										icon: 'error',
-										title: response.messages,
-										showConfirmButton: false,
-										timer: 1500
-									})
-
-								}
 							}
-							$('#edit-form-btn').html('Update');
 						}
-					});
+						$( '#add-form-btn' ).html( 'Add' );
+					}
+				} );
 
-					return false;
-				}
-			});
-			$('#edit-form').validate();
+				return false;
+			}
+		} );
+		$( '#add-form' ).validate();
+	}
 
-		}
-	});
-}	
-
-function remove(id) {	
-	Swal.fire({
-	  title: 'Are you sure of the deleting process?',
-	  text: "You cannot back after confirmation",
-	  icon: 'warning',
-	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: '#d33',
-	  confirmButtonText: 'Confirm',
-	  cancelButtonText: 'Cancel'		  
-	}).then((result) => {		
-
-	  if (result.value) {
-		$.ajax({
-			url: '<?php echo base_url($controller.'/remove') ?>',
+	function edit( id ) {
+		$.ajax( {
+			url: '<?php echo base_url($controller.' / getOne ') ?>',
 			type: 'post',
 			data: {
 				id: id
 			},
 			dataType: 'json',
-			success: function(response) {
+			success: function ( response ) {
+				// reset the form 
+				$( "#edit-form" )[ 0 ].reset();
+				$( ".form-control" ).removeClass( 'is-invalid' ).removeClass( 'is-valid' );
+				$( '#edit-modal' ).modal( 'show' );
 
-				if (response.success === true) {
-					Swal.fire({
-						position: 'bottom-end',
-						icon: 'success',
-						title: response.messages,
-						showConfirmButton: false,
-						timer: 1500
-					}).then(function() {
-						$('#data_table').DataTable().ajax.reload(null, false).draw(false);								
-					})
-				} else {
-					Swal.fire({
-						position: 'bottom-end',
-						icon: 'error',
-						title: response.messages,
-						showConfirmButton: false,
-						timer: 1500
-					})
+				$( "#edit-form #id" ).val( response.id );
+				$( "#edit-form #subcontractorId" ).val( response.subcontractor_id );
+				$( "#edit-form #projectId" ).val( response.project_id );
+				$( "#edit-form #file" ).val( response.file );
 
-					
-				}
+				// submit the edit from 
+				$.validator.setDefaults( {
+					highlight: function ( element ) {
+						$( element ).addClass( 'is-invalid' ).removeClass( 'is-valid' );
+					},
+					unhighlight: function ( element ) {
+						$( element ).removeClass( 'is-invalid' ).addClass( 'is-valid' );
+					},
+					errorElement: 'div ',
+					errorClass: 'invalid-feedback',
+					errorPlacement: function ( error, element ) {
+						if ( element.parent( '.input-group' ).length ) {
+							error.insertAfter( element.parent() );
+						} else if ( $( element ).is( '.select' ) ) {
+							element.next().after( error );
+						} else if ( element.hasClass( 'select2' ) ) {
+							//error.insertAfter(element);
+							error.insertAfter( element.next() );
+						} else if ( element.hasClass( 'selectpicker' ) ) {
+							error.insertAfter( element.next() );
+						} else {
+							error.insertAfter( element );
+						}
+					},
+
+					submitHandler: function ( form ) {
+						var form = $( '#edit-form' );
+						$( ".text-danger" ).remove();
+						$.ajax( {
+							url: '<?php echo base_url($controller.' / edit ') ?>',
+							type: 'post',
+							data: form.serialize(),
+							dataType: 'json',
+							beforeSend: function () {
+								$( '#edit-form-btn' ).html( '<i class="fa fa-spinner fa-spin"></i>' );
+							},
+							success: function ( response ) {
+
+								if ( response.success === true ) {
+
+									Swal.fire( {
+										position: 'bottom-end',
+										icon: 'success',
+										title: response.messages,
+										showConfirmButton: false,
+										timer: 1500
+									} ).then( function () {
+										$( '#data_table' ).DataTable().ajax.reload( null, false ).draw( false );
+										$( '#edit-modal' ).modal( 'hide' );
+									} )
+
+								} else {
+
+									if ( response.messages instanceof Object ) {
+										$.each( response.messages, function ( index, value ) {
+											var id = $( "#" + index );
+
+											id.closest( '.form-control' )
+												.removeClass( 'is-invalid' )
+												.removeClass( 'is-valid' )
+												.addClass( value.length > 0 ? 'is-invalid' : 'is-valid' );
+
+											id.after( value );
+
+										} );
+									} else {
+										Swal.fire( {
+											position: 'bottom-end',
+											icon: 'error',
+											title: response.messages,
+											showConfirmButton: false,
+											timer: 1500
+										} )
+
+									}
+								}
+								$( '#edit-form-btn' ).html( 'Update' );
+							}
+						} );
+
+						return false;
+					}
+				} );
+				$( '#edit-form' ).validate();
+
 			}
-		});
-	  }
-	})		
-}  
+		} );
+	}
+
+	function remove( id ) {
+		Swal.fire( {
+			title: 'Are you sure of the deleting process?',
+			text: "You cannot back after confirmation",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Confirm',
+			cancelButtonText: 'Cancel'
+		} ).then( ( result ) => {
+
+			if ( result.value ) {
+				$.ajax( {
+					url: '<?php echo base_url($controller.' / remove ') ?>',
+					type: 'post',
+					data: {
+						id: id
+					},
+					dataType: 'json',
+					success: function ( response ) {
+
+						if ( response.success === true ) {
+							Swal.fire( {
+								position: 'bottom-end',
+								icon: 'success',
+								title: response.messages,
+								showConfirmButton: false,
+								timer: 1500
+							} ).then( function () {
+								$( '#data_table' ).DataTable().ajax.reload( null, false ).draw( false );
+							} )
+						} else {
+							Swal.fire( {
+								position: 'bottom-end',
+								icon: 'error',
+								title: response.messages,
+								showConfirmButton: false,
+								timer: 1500
+							} )
+
+
+						}
+					}
+				} );
+			}
+		} )
+	}
 </script>
 
 <?= $this->endSection(); ?>
