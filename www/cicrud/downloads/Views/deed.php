@@ -747,7 +747,9 @@
 					<th>Id</th>
 					<th>Subcontractor id</th>
 					<th>Project id</th>
-					<th>File</th>
+					<th>Title</th>
+					<th>File path</th>
+					<th>File type</th>
 
 					<th></th>
                 </tr>
@@ -790,12 +792,24 @@
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<label for="file"> File: <span class="text-danger">*</span> </label>
-									<input type="text" id="file" name="file" class="form-control" placeholder="File" maxlength="250" required>
+									<label for="title"> Title: </label>
+									<input type="text" id="title" name="title" class="form-control" placeholder="Title" maxlength="100" >
 								</div>
 							</div>
 						</div>
 						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="filePath"> File path: <span class="text-danger">*</span> </label>
+									<input type="text" id="filePath" name="filePath" class="form-control" placeholder="File path" maxlength="250" required>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="fileType"> File type: </label>
+									<input type="text" id="fileType" name="fileType" class="form-control" placeholder="File type" maxlength="50" >
+								</div>
+							</div>
 						</div>
 																				
 						<div class="form-group text-center">
@@ -838,12 +852,24 @@
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
-									<label for="file"> File: <span class="text-danger">*</span> </label>
-									<input type="text" id="file" name="file" class="form-control" placeholder="File" maxlength="250" required>
+									<label for="title"> Title: </label>
+									<input type="text" id="title" name="title" class="form-control" placeholder="Title" maxlength="100" >
 								</div>
 							</div>
 						</div>
 						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="filePath"> File path: <span class="text-danger">*</span> </label>
+									<input type="text" id="filePath" name="filePath" class="form-control" placeholder="File path" maxlength="250" required>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="fileType"> File type: </label>
+									<input type="text" id="fileType" name="fileType" class="form-control" placeholder="File type" maxlength="50" >
+								</div>
+							</div>
 						</div>
 											
 						<div class="form-group text-center">
@@ -1025,7 +1051,9 @@ function edit(id) {
 			$("#edit-form #id").val(response.id);
 			$("#edit-form #subcontractorId").val(response.subcontractor_id);
 			$("#edit-form #projectId").val(response.project_id);
-			$("#edit-form #file").val(response.file);
+			$("#edit-form #title").val(response.title);
+			$("#edit-form #filePath").val(response.file_path);
+			$("#edit-form #fileType").val(response.file_type);
 
 			// submit the edit from 
 			$.validator.setDefaults({

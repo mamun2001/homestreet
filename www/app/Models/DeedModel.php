@@ -10,7 +10,7 @@ class DeedModel extends Model {
 	protected $primaryKey = 'id';
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
-	protected $allowedFields = ['subcontractor_id', 'project_id', 'file'];
+	protected $allowedFields = ['subcontractor_id', 'project_id', 'title', 'file_path', 'file_type'];
 	protected $useTimestamps = false;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';

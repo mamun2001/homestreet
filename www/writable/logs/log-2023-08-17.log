@@ -1,0 +1,28 @@
+INFO - 2023-08-17 18:24:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-17 18:24:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-17 18:24:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-17 18:24:37 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-17 18:24:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-17 18:24:56 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-17 18:25:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-17 18:25:24 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-17 18:29:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-17 18:29:22 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-17 18:38:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-17 18:38:26 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+CRITICAL - 2023-08-17 18:38:26 --> Undefined property: stdClass::$file
+in APPPATH/Views/deed.php on line 106.
+ 1 APPPATH/Views/deed.php(106): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$file', '/var/www/html/app/Views/deed.php', 106, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/deed.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('deed', [], true)
+ 5 APPPATH/Controllers/Deed.php(39): view('deed', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Deed->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Deed))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-17 18:39:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-17 18:39:14 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-17 18:44:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-08-17 18:44:56 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-08-17 18:46:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

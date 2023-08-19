@@ -8,10 +8,12 @@ class SubcontractorController extends BaseController
 	{        
 	    $crud = new GroceryCrud();        
 		//$crud->setTheme('datatables');
-	    $crud->setTable('subcontact');
-        $crud->setSubject('Subcontact');
+	    $crud->setTable('subcontactors');
+        $crud->setSubject('Subcontactor');
         
         $crud->setRelation('time','time','{time}');
+		$crud->setRelation('project_id','projects','{project_name}');		
+		$crud->displayAs('project_id','Project');
         // $crud->setRelationNtoN('project_location','districts','divisions','id');
         // $crud->unsetDelete();
         // $crud->unsetEdit();

@@ -38,7 +38,7 @@ class Deed extends BaseController
 		
 	    $data['data'] = array();
  
-		$result = $this->deedModel->select('id, subcontractor_id, project_id, file')->findAll();
+		$result = $this->deedModel->select('id, subcontractor_id, project_id, title, file_path, file_type')->findAll();
 		
 		foreach ($result as $key => $value) {
 							
@@ -51,7 +51,9 @@ class Deed extends BaseController
 				$value->id,
 				$value->subcontractor_id,
 				$value->project_id,
-				$value->file,
+				$value->title,
+				$value->file_path,
+				$value->file_type,
 
 				$ops,
 			);
@@ -88,13 +90,17 @@ class Deed extends BaseController
         $fields['id'] = $this->request->getPost('id');
         $fields['subcontractor_id'] = $this->request->getPost('subcontractorId');
         $fields['project_id'] = $this->request->getPost('projectId');
-        $fields['file'] = $this->request->getPost('file');
+        $fields['title'] = $this->request->getPost('title');
+        $fields['file_path'] = $this->request->getPost('filePath');
+        $fields['file_type'] = $this->request->getPost('fileType');
 
 
         $this->validation->setRules([
             'subcontractor_id' => ['label' => 'Subcontractor id', 'rules' => 'required|numeric|max_length[11]'],
             'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
-            'file' => ['label' => 'File', 'rules' => 'required|max_length[250]'],
+            'title' => ['label' => 'Title', 'rules' => 'permit_empty|max_length[100]'],
+            'file_path' => ['label' => 'File path', 'rules' => 'required|max_length[250]'],
+            'file_type' => ['label' => 'File type', 'rules' => 'permit_empty|max_length[50]'],
 
         ]);
 
@@ -129,13 +135,17 @@ class Deed extends BaseController
         $fields['id'] = $this->request->getPost('id');
         $fields['subcontractor_id'] = $this->request->getPost('subcontractorId');
         $fields['project_id'] = $this->request->getPost('projectId');
-        $fields['file'] = $this->request->getPost('file');
+        $fields['title'] = $this->request->getPost('title');
+        $fields['file_path'] = $this->request->getPost('filePath');
+        $fields['file_type'] = $this->request->getPost('fileType');
 
 
         $this->validation->setRules([
             'subcontractor_id' => ['label' => 'Subcontractor id', 'rules' => 'required|numeric|max_length[11]'],
             'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
-            'file' => ['label' => 'File', 'rules' => 'required|max_length[250]'],
+            'title' => ['label' => 'Title', 'rules' => 'permit_empty|max_length[100]'],
+            'file_path' => ['label' => 'File path', 'rules' => 'required|max_length[250]'],
+            'file_type' => ['label' => 'File type', 'rules' => 'permit_empty|max_length[50]'],
 
         ]);
 
