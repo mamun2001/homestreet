@@ -1,7 +1,7 @@
 <?php
 // ADEL CODEIGNITER 4 CRUD GENERATOR
 
-namespace App\ Controllers;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
@@ -15,18 +15,14 @@ class Deed extends BaseController {
 	public	function __construct() {
 		$this->deedModel = new DeedModel();
 		$this->validation = \Config\Services::validation();
-
 	}
 
 	public	function index() {
-
 		$data = [
 			'controller' => 'deed',
 			'title' => 'Deed'
 		];
-
 		return view( 'deed', $data );
-
 	}
 
 	public	function getAll() {
@@ -71,10 +67,8 @@ class Deed extends BaseController {
 
 		} else {
 
-			throw new\ CodeIgniter\ Exceptions\ PageNotFoundException();
-
+			throw new\CodeIgniter\Exceptions\PageNotFoundException();
 		}
-
 	}
 
 	public	function add() {
@@ -83,23 +77,23 @@ class Deed extends BaseController {
 
 		$response = array();
 
-		$fields[ 'id' ] = $this->request->getPost( 'id' );
-		$fields[ 'subcontractor_id' ] = $this->request->getPost( 'subcontractorId' );
-		$fields[ 'project_id' ] = $this->request->getPost( 'projectId' );
-		$fields[ 'title' ] = $this->request->getPost( 'title' );
+		$fields['id'] = $this->request->getPost('id');
+		$fields['subcontractor_id'] = $this->request->getPost('subcontractorId');
+		$fields['project_id'] = $this->request->getPost('projectId');
+		$fields['title'] = $this->request->getPost('title');
 
-		//print_r($fields);
+		// echo $fields;
+		print_r($fields);
 		//$fields['file_path'] = $this->request->getPost('filePath');
 		//$fields['file_type'] = $this->request->getPost('fileType');
 
+		$this->validation->setRules([
+			'subcontractor_id' => ['label' => 'Subcontractor id', 'rules' => 'required|numeric|max_length[11]'],
+			'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
+			'title' => ['label' => 'Title', 'rules' => 'permit_empty|max_length[100]'],
+		]);
 
-		$this->validation->setRules( [
-			'subcontractor_id' => [ 'label' => 'Subcontractor id', 'rules' => 'required|numeric|max_length[11]' ],
-			'project_id' => [ 'label' => 'Project id', 'rules' => 'required|numeric|max_length[11]' ],
-			'title' => [ 'label' => 'Title', 'rules' => 'permit_empty|max_length[100]' ],
-		] );
-
-		if ( $this->validation->run( $fields ) == FALSE ) {
+		if ($this->validation->run($fields) == FALSE ) {
 
 			$response[ 'success' ] = false;
 			$response[ 'messages' ] = $this->validation->listErrors();
@@ -131,7 +125,7 @@ class Deed extends BaseController {
 			$fields['file_path'] = $filepath;
 			$fields['file_type'] = $avatar->getClientMimeType();
 			
-			//print_r($fields);
+			// print_r($fields);
 			
 			if ($this->deedModel->insert($fields)) {			
 				$response[ 'success' ] = true;

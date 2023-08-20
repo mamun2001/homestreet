@@ -48,7 +48,7 @@
 				<h4 class="modal-title text-white" id="info-header-modalLabel">Add</h4>
 			</div>
 			<div class="modal-body">
-				<form id="add-form" class="pl-3 pr-3" method="post" action="<?=base_url($controller.'/add')?>" enctype="multipart/form-data">					
+				<form id="add-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data">					
 					<div class="row">
 						<input type="hidden" id="id" name="id" class="form-control" placeholder="Id" maxlength="11" required>
 					</div>
@@ -209,22 +209,30 @@ function add() {
 		submitHandler: function(form) {
 			
 			var form = $('#add-form');
+			// Get the selected file
+			var files = $('#filePath')[0].files;
+			var fd = new FormData(this);
+			fd = form.serialize();
+
+			if(files.length > 0){				
+				// Append data 
+				fd.append('filePath',files[0]);
+			}
+
 			// remove the text-danger
 			$(".text-danger").remove();
 
 			$.ajax({
-				url: '<?php echo base_url($controller.'/add') ?>',	
-				
+				url: '<?php echo base_url($controller.'/add') ?>',					
 				method: 'POST',
-                data: new FormData(this),
+                data: fd,
                 processData: false,
                 contentType: false,
                 cache: false,
-                dataType: 'json',
-				
-				type: 'post',								
-//				data: form.serialize(),
-//				dataType: 'json',
+                dataType: 'json',				
+				// type: 'post',								
+				//data: form.serialize(),				
+				// dataType: 'json',
 				
 				beforeSend: function() {
 					$('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
