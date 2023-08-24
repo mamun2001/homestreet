@@ -4,7 +4,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-
 use App\Models\DeedModel;
 
 class Deed extends BaseController {
@@ -83,63 +82,57 @@ class Deed extends BaseController {
 		$fields['title'] = $this->request->getPost('title');
 
 		// echo $fields;
-		print_r($fields);
-		//$fields['file_path'] = $this->request->getPost('filePath');
-		//$fields['file_type'] = $this->request->getPost('fileType');
+		// print_r($_POST);
+		// print_r($_FILES);
+		//print_r($fields);	
 
-		$this->validation->setRules([
-			'subcontractor_id' => ['label' => 'Subcontractor id', 'rules' => 'required|numeric|max_length[11]'],
-			'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
-			'title' => ['label' => 'Title', 'rules' => 'permit_empty|max_length[100]'],
-		]);
+		$file = $this->request->getFile('filePath');
+		//$avatar->move(WRITEPATH . 'uploads');
+		
+		// Get file name and extension
+		$name = $file->getName();
+		//$ext = $file->getClientExtension();
 
-		if ($this->validation->run($fields) == FALSE ) {
+		// Get random file name
+		$newName = $file->getRandomName();
 
-			$response[ 'success' ] = false;
-			$response[ 'messages' ] = $this->validation->listErrors();
+		// Store file in public/uploads/ folder
+		$file->move('../public/uploads', $newName);
+
+		// File path to display preview
+		$filepath = base_url()."uploads/".$newName;
+		
+		$fields['file_path'] = $filepath;
+		$fields['file_type'] = $file->getClientMimeType();
+		
+		// print_r($fields);
+		
+		if ($this->deedModel->insert($fields)) {			
+			$response[ 'success' ] = true;
+			$response[ 'messages' ] = 'Data has been inserted successfully';
 
 		} else {
-			
-			$avatar = $this->request->getFile('filePath');
-            //$avatar->move(WRITEPATH . 'uploads');
-			
-			// Get file name and extension
-			 $name = $avatar->getName();
-			 $ext = $avatar->getClientExtension();
-
-			 // Get random file name
-			 $newName = $avatar->getRandomName();
-
-			 // Store file in public/uploads/ folder
-			 $avatar->move('../public/uploads', $newName);
-
-			 // File path to display preview
-			 $filepath = base_url()."uploads/".$newName;
- 
-			  $data = [
-
-				'name' =>  $avatar->getClientName(),
-				'type'  => $avatar->getClientMimeType()
-			  ];
-			
-			$fields['file_path'] = $filepath;
-			$fields['file_type'] = $avatar->getClientMimeType();
-			
-			// print_r($fields);
-			
-			if ($this->deedModel->insert($fields)) {			
-				$response[ 'success' ] = true;
-				$response[ 'messages' ] = 'Data has been inserted successfully';
-
-			} else {
-
-				$response[ 'success' ] = false;
-				$response[ 'messages' ] = 'Insertion error!';
-
-			}
+			$response[ 'success' ] = false;
+			$response[ 'messages' ] = 'Insertion error!';
 		}
+		
+		// $this->validation->setRules([
+		// 	'subcontractor_id' => ['label' => 'Subcontractor id', 'rules' => 'required|numeric|max_length[11]'],
+		// 	'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
+		// 	'title' => ['label' => 'Title', 'rules' => 'permit_empty|max_length[100]'],
+		// ]);
 
-		return $this->response->setJSON( $response );
+		// if ($this->validation->run($fields) == FALSE ) {
+
+		// 	$response[ 'success' ] = false;
+		// 	$response[ 'messages' ] = $this->validation->listErrors();
+
+		// } else {
+			
+			
+		// }
+
+		// return $this->response->setJSON( $response );
 	}
 
 	public	function edit() {

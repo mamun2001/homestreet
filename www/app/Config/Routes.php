@@ -101,6 +101,12 @@ $routes->post('deed/add', 'Deed::add');
 // $routes->get('deed/(:any)', 'DeedController::index/$1');
 // $routes->post('deed/(:any)', 'DeedController::index/$1');
 
+$routes->get('file-upload', 'FileUpload::index');
+$routes->post('multiple-file-upload', 'FileUpload::multipleUpload');
+
+$routes->get('upload', 'Upload::index');
+$routes->post('doupload', 'Upload::doupload');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

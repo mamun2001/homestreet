@@ -177,114 +177,103 @@ $(function () {
 	});
 });
 function add() {
-	// reset the form 
-	$("#add-form")[0].reset();
-	$(".form-control").removeClass('is-invalid').removeClass('is-valid');		
-	$('#add-modal').modal('show');
-	// submit the add from 
-	$.validator.setDefaults({
-		highlight: function(element) {
-			$(element).addClass('is-invalid').removeClass('is-valid');
-		},
-		unhighlight: function(element) {
-			$(element).removeClass('is-invalid').addClass('is-valid');
-		},
-		errorElement: 'div ',
-		errorClass: 'invalid-feedback',
-		errorPlacement: function(error, element) {
-			if (element.parent('.input-group').length) {
-				error.insertAfter(element.parent());
-			} else if ($(element).is('.select')) {
-				element.next().after(error);
-			} else if (element.hasClass('select2')) {
-				//error.insertAfter(element);
-				error.insertAfter(element.next());
-			} else if (element.hasClass('selectpicker')) {
-				error.insertAfter(element.next());
-			} else {
-				error.insertAfter(element);
-			}
-		},
 
-		submitHandler: function(form) {
-			
-			var form = $('#add-form');
-			// Get the selected file
-			var files = $('#filePath')[0].files;
-			var fd = new FormData(this);
-			fd = form.serialize();
+      // reset the form 
+      $("#add-form")[0].reset();
+      $(".form-control").removeClass('is-invalid').removeClass('is-valid');
+      $('#add-modal').modal('show');
+      // submit the add from 
+      $.validator.setDefaults({
+        highlight: function(element) {
+          $(element).addClass('is-invalid').removeClass('is-valid');
+        },
+        unhighlight: function(element) {
+          $(element).removeClass('is-invalid').addClass('is-valid');
+        },
+        errorElement: 'div ',
+        errorClass: 'invalid-feedback',
+        errorPlacement: function(error, element) {
+          if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+          } else if ($(element).is('.select')) {
+            element.next().after(error);
+          } else if (element.hasClass('select2')) {
+            //error.insertAfter(element);
+            error.insertAfter(element.next());
+          } else if (element.hasClass('selectpicker')) {
+            error.insertAfter(element.next());
+          } else {
+            error.insertAfter(element);
+          }
+        },
 
-			if(files.length > 0){				
-				// Append data 
-				fd.append('filePath',files[0]);
-			}
+        submitHandler: function(form) {
 
-			// remove the text-danger
-			$(".text-danger").remove();
+          var form = $('#add-form');
+		  var formData = new FormData(form);
 
-			$.ajax({
-				url: '<?php echo base_url($controller.'/add') ?>',					
-				method: 'POST',
-                data: fd,
-                processData: false,
-                contentType: false,
-                cache: false,
-                dataType: 'json',				
-				// type: 'post',								
-				//data: form.serialize(),				
-				// dataType: 'json',
-				
-				beforeSend: function() {
-					$('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-				},					
-				success: function(response) {
 
-					if (response.success === true) {
+          // remove the text-danger
+          $(".text-danger").remove();
 
-						Swal.fire({
-							position: 'bottom-end',
-							icon: 'success',
-							title: response.messages,
-							showConfirmButton: false,
-							timer: 1500
-						}).then(function() {
-							$('#data_table').DataTable().ajax.reload(null, false).draw(false);
-							$('#add-modal').modal('hide');
-						})
+          $.ajax({
+            url: '<?php echo base_url($controller . '/add') ?>',
+			method: 'post',
+            type: 'post',
+            //data: form.serialize(), // /converting the form data into array and sending it to server
+			data: formData,
+            dataType: 'json',
+            beforeSend: function() {
+              $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+            },
+            success: function(response) {
 
-					} else {
+              if (response.success === true) {
 
-						if (response.messages instanceof Object) {
-							$.each(response.messages, function(index, value) {
-								var id = $("#" + index);
+                Swal.fire({
+                  position: 'bottom-end',
+                  icon: 'success',
+                  title: response.messages,
+                  showConfirmButton: false,
+                  timer: 1500
+                }).then(function() {
+                  $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                  $('#add-modal').modal('hide');
+                })
 
-								id.closest('.form-control')
-									.removeClass('is-invalid')
-									.removeClass('is-valid')
-									.addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
+              } else {
 
-								id.after(value);
+                if (response.messages instanceof Object) {
+                  $.each(response.messages, function(index, value) {
+                    var id = $("#" + index);
 
-							});
-						} else {
-							Swal.fire({
-								position: 'bottom-end',
-								icon: 'error',
-								title: response.messages,
-								showConfirmButton: false,
-								timer: 1500
-							})
+                    id.closest('.form-control')
+                      .removeClass('is-invalid')
+                      .removeClass('is-valid')
+                      .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
 
-						}
-					}
-					$('#add-form-btn').html('Add');
-				}
-			});
+                    id.after(value);
 
-			return false;
-		}
-	});
-	$('#add-form').validate();
+                  });
+                } else {
+                  Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'error',
+                    title: response.messages,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+
+                }
+              }
+              $('#add-form-btn').html('Add');
+            }
+          });
+
+          return false;
+        }
+      });
+      $('#add-form').validate();
 }
 
 function edit(id) {
