@@ -109,6 +109,8 @@ $routes->get('file-upload', 'FileUpload::index');
 $routes->post('multiple-file-upload', 'FileUpload::multipleUpload');
 
 $routes->get('upload', 'Upload::index');
+$routes->post('upload', 'Upload::index');
+$routes->get('upload/(:any)', 'Upload::index/$1');
 $routes->post('doupload', 'Upload::doupload');
 
 /*
