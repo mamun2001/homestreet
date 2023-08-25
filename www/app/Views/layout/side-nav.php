@@ -9,7 +9,6 @@
                     Home
                 </p>
             </a>
-		
 		</li>
 		<li class="nav-item has-treeview">
 			<a href="#" class="nav-link">
@@ -18,8 +17,8 @@
                 Setup
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
-		
+            </a>		
+
 			<ul class="nav nav-treeview">
 				<li class="nav-item">
 					<a href="<?= route_to('districts'); ?>" class="nav-link <?= (current_url() == base_url('districts')) ? 'active' : '' ?>">
@@ -28,8 +27,6 @@
                     Districts
                 </p>
             </a>
-				
-
 				</li>
 
 				<li class="nav-item">
@@ -38,9 +35,7 @@
                 <p>
                     Divisions
                 </p>
-            </a>
-				
-				</li>
+            </a></li>
 
 				<li class="nav-item">
 					<a href="<?= route_to('subcontractor'); ?>" class="nav-link <?= (current_url() == base_url('subcontractor')) ? 'active' : '' ?>">
@@ -48,12 +43,7 @@
                 <p>
                     Subcontractor
                 </p>
-            </a>
-				
-
-
-
-				</li>
+            </a></li>
 
 				<li class="nav-item">
 					<a href="<?= route_to('deed'); ?>" class="nav-link <?= (current_url() == base_url('deed')) ? 'active' : '' ?>">
@@ -61,12 +51,7 @@
                 <p>
                     Subcontract Deed
                 </p>
-            </a>
-				
-
-
-
-				</li>
+            </a></li>
 
 				<li class="nav-item">
 					<a href="<?= route_to('projects'); ?>" class="nav-link <?= (current_url() == base_url('projects')) ? 'active' : '' ?>">
@@ -74,12 +59,15 @@
                 <p>
                     Projects
                 </p>
-            </a>
+            </a></li>
 				
-
-
-
-				</li>
+				<li class="nav-item">
+					<a href="<?= route_to('subcontract'); ?>" class="nav-link <?= (current_url() == base_url('subcontract')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Project Subcontracts
+                </p>
+            </a></li>
 
 				<li class="nav-item">
 					<a href="<?= route_to('projectsbill'); ?>" class="nav-link <?= (current_url() == base_url('projectsbill')) ? 'active' : '' ?>">
@@ -87,12 +75,7 @@
                 <p>
                     Projects Bill
                 </p>
-            </a>
-				
-
-
-
-				</li>
+            </a></li>
 
 				<li class="nav-item">
 					<a href="<?= route_to('items'); ?>" class="nav-link <?= (current_url() == base_url('items')) ? 'active' : '' ?>">
@@ -100,74 +83,49 @@
                 <p>
                     Items
                 </p>
-            </a>
+            </a></li>
 				
-
-
-
-				</li>
 				<li class="nav-item">
 					<a href="<?= route_to('categories'); ?>" class="nav-link <?= (current_url() == base_url('categories')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Categories
                 </p>
-            </a>
+            </a></li>
 				
-
-
-
-				</li>
 				<li class="nav-item">
 					<a href="<?= route_to('units'); ?>" class="nav-link <?= (current_url() == base_url('units')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Units
                 </p>
-            </a>
+            </a></li>
 				
-
-
-
-				</li>
 				<li class="nav-item">
 					<a href="<?= route_to('brands'); ?>" class="nav-link <?= (current_url() == base_url('brands')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Brands
                 </p>
-            </a>
+            </a></li>
 				
-
-
-
-				</li>
 				<li class="nav-item">
 					<a href="<?= route_to('models'); ?>" class="nav-link <?= (current_url() == base_url('models')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Models
                 </p>
-            </a>
-				
-
-
-
-				</li>
+            </a></li>
 				<li class="nav-item">
 					<a href="<?= route_to('sizes'); ?>" class="nav-link <?= (current_url() == base_url('sizes')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Sizes
                 </p>
-            </a>
-				
-
-
-
-				</li>
+            </a></li>
 			</ul>
 		</li>
+		
 		<li class="nav-item">
 			<a href="<?= route_to('user.profile'); ?>" class="nav-link <?= (current_url() == base_url('user/profile')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
@@ -176,6 +134,7 @@
                 </p>
             </a>
 		
+
 
 
 		</li>

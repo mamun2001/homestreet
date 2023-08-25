@@ -1,0 +1,81 @@
+INFO - 2023-08-25 14:37:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 14:39:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 14:39:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 14:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 14:39:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 15:57:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 15:57:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:06:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-08-25 16:06:19 --> mysqli_sql_exception: Unknown column 'subcontactors.time' in 'on clause' in /var/www/html/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(295): mysqli->query('SELECT `subcont...', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `subcont...')
+#2 /var/www/html/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `subcont...')
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `subcont...', Array, false)
+#4 /var/www/html/app/Models/GroceryCrudModel.php(89): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/app/Libraries/GroceryCrud.php(1383): App\Models\GroceryCrudModel->get_list()
+#6 /var/www/html/app/Libraries/GroceryCrud.php(1503): App\Libraries\grocery_CRUD_Model_Driver->get_list()
+#7 /var/www/html/app/Libraries/GroceryCrud.php(4496): App\Libraries\grocery_CRUD_Layout->showList(false, Object(stdClass))
+#8 /var/www/html/app/Controllers/SubcontractorController.php(21): App\Libraries\GroceryCrud->render()
+#9 /var/www/html/system/CodeIgniter.php(932): App\Controllers\SubcontractorController->index()
+#10 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubcontractorController))
+#11 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /var/www/html/index.php(67): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-08-25 16:06:19 --> Unknown column 'subcontactors.time' in 'on clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query('SELECT `subcontactors`.*, CONCAT(\'\',COALESCE(j07cc694b.time, \'\'),\'\') as s07cc694b, CONCAT(\'\',COALESCE(jb098ad43.project_name, \'\'),\'\') as sb098ad43
+FROM `subcontactors`
+LEFT JOIN `time` as `j07cc694b` ON `j07cc694b`.`id` = `subcontactors`.`time`
+LEFT JOIN `projects` as `jb098ad43` ON `jb098ad43`.`id` = `subcontactors`.`project_id`
+ LIMIT 10', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `subcontactors`.*, CONCAT(\'\',COALESCE(j07cc694b.time, \'\'),\'\') as s07cc694b, CONCAT(\'\',COALESCE(jb098ad43.project_name, \'\'),\'\') as sb098ad43
+FROM `subcontactors`
+LEFT JOIN `time` as `j07cc694b` ON `j07cc694b`.`id` = `subcontactors`.`time`
+LEFT JOIN `projects` as `jb098ad43` ON `jb098ad43`.`id` = `subcontactors`.`project_id`
+ LIMIT 10')
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `subcontactors`.*, CONCAT(\'\',COALESCE(j07cc694b.time, \'\'),\'\') as s07cc694b, CONCAT(\'\',COALESCE(jb098ad43.project_name, \'\'),\'\') as sb098ad43
+FROM `subcontactors`
+LEFT JOIN `time` as `j07cc694b` ON `j07cc694b`.`id` = `subcontactors`.`time`
+LEFT JOIN `projects` as `jb098ad43` ON `jb098ad43`.`id` = `subcontactors`.`project_id`
+ LIMIT 10')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `subcontactors`.*, CONCAT(\'\',COALESCE(j07cc694b.time, \'\'),\'\') as s07cc694b, CONCAT(\'\',COALESCE(jb098ad43.project_name, \'\'),\'\') as sb098ad43
+FROM `subcontactors`
+LEFT JOIN `time` as `j07cc694b` ON `j07cc694b`.`id` = `subcontactors`.`time`
+LEFT JOIN `projects` as `jb098ad43` ON `jb098ad43`.`id` = `subcontactors`.`project_id`
+ LIMIT 10', [], false)
+ 5 APPPATH/Models/GroceryCrudModel.php(89): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Libraries/GroceryCrud.php(1383): App\Models\GroceryCrudModel->get_list()
+ 7 APPPATH/Libraries/GroceryCrud.php(1503): App\Libraries\grocery_CRUD_Model_Driver->get_list()
+ 8 APPPATH/Libraries/GroceryCrud.php(4496): App\Libraries\grocery_CRUD_Layout->showList(false, Object(stdClass))
+ 9 APPPATH/Controllers/SubcontractorController.php(21): App\Libraries\GroceryCrud->render()
+10 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\SubcontractorController->index()
+11 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubcontractorController))
+12 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-08-25 16:15:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:15:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:15:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:24:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:24:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:25:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:28:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:29:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:31:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:31:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:32:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:32:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:35:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:35:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:35:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:35:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:35:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:36:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:36:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:36:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:36:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:36:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-08-25 16:36:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

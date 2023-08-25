@@ -94,6 +94,10 @@ $routes->get('subcontractor', 'SubcontractorController::index');
 $routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');
 $routes->post('subcontractor/(:any)', 'SubcontractorController::index/$1');
 
+$routes->get('subcontract', 'ProjectSubcontractsController::index');
+$routes->get('subcontract/(:any)', 'ProjectSubcontractsController::index/$1');
+$routes->post('subcontract/(:any)', 'ProjectSubcontractsController::index/$1');
+
 $routes->get('deed', 'Deed::index');
 $routes->post('deed/add', 'Deed::add');
 
