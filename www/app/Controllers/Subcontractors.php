@@ -40,6 +40,7 @@ class Subcontractors extends BaseController
 							
 			$ops = '<div class="btn-group">';
 			$ops .= '	<a class="btn btn-sm btn-warning" href="'. base_url("upload/".$value->id) .'" onclick="files('. $value->id .')"><i class="fa fa-file"></i></a>';
+			
 			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit('. $value->id .')"><i class="fa fa-edit"></i></button>';
 			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove('. $value->id .')"><i class="fa fa-trash"></i></button>';
 			$ops .= '</div>';

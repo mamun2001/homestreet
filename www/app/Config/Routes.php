@@ -90,9 +90,11 @@ $routes->get('models', 'ModelsController::index');
 $routes->get('models/(:any)', 'ModelsController::index/$1');
 $routes->post('models/(:any)', 'ModelsController::index/$1');
 
-$routes->get('subcontractor', 'SubcontractorController::index');
-$routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');
-$routes->post('subcontractor/(:any)', 'SubcontractorController::index/$1');
+//$routes->get('subcontractor', 'SubcontractorController::index');
+//$routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');
+//$routes->post('subcontractor/(:any)', 'SubcontractorController::index/$1');
+
+$routes->get('subcontractor', 'Subcontractors::index');
 
 $routes->get('subcontract', 'ProjectSubcontractsController::index');
 $routes->get('subcontract/(:any)', 'ProjectSubcontractsController::index/$1');
@@ -112,6 +114,7 @@ $routes->get('upload', 'Upload::index');
 $routes->post('upload', 'Upload::index');
 $routes->get('upload/(:any)', 'Upload::index/$1');
 $routes->post('doupload', 'Upload::doupload');
+$routes->post('upload/getOne', 'Upload::getOne');
 
 /*
  * --------------------------------------------------------------------

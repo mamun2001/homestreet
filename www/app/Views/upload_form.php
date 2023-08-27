@@ -8,30 +8,14 @@
 				<div class="col-md-8 mt-2">
 					<h3 class="card-title">Subcontractor Files</h3>
 				</div>
+				<div class="col-md-4">
+				  <a class="btn btn-block btn-success" href="<?= route_to('subcontractor'); ?>" title="Go Back To List">Go Back To List</a>
+				</div>
 			</div>
 		</div>
-		<!--    <div><p id="message"></p></div>-->
+		
 		<div class="card-body">
-			<?php if (session()->getFlashdata('success')) : ?>
-			<div class="alert alert-success">
-				<b>
-					<?php echo session()->getFlashdata('success') ?>
-				</b>
-			</div>
-			<?php endif ?>
-			<?php if (session()->getFlashdata('error')) : ?>
-			<div class="alert alert-danger">
-				<b>
-					<?php echo session()->getFlashdata('error') ?>
-				</b>
-			</div>
-			<?php endif ?>
-
-			<?php 
-				print_r($files); 				
-			?>
-
-			<table class="table table-bordered">
+			<table class="table table-bordered col-md-5">				
 				<tr>
 					<th width="150">Name</th>
 					<td>
@@ -52,73 +36,60 @@
 				</tr>
 			</table>
 
-			<form class="row mt-3">
-				<input type="hidden" name="subcontractorid" id="subcontractorid" value="<?= $data->id ?>" >
-				<div class="row">
-					<input type="text" name="title" id="title" class="form-control" >
-				</div>
-				<div class="col-auto">
-					<input type="file" id="files" name="files[]" class="form-control" multiple="multiple">
-				</div>
-				<div class="col-auto">
-					<button class="btn btn-primary mb-3" id="upload_btn" type="button">Upload</button>
-				</div>
-			</form>
+			<div class="container border mt-3 mb-3">
+				<form id="upload-form" class="row mt-3">
+					<input type="hidden" name="subcontractorid" id="subcontractorid" value="<?= $data->id ?>">
 
-			<table class="table table-bordered mt-3">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Filepath</th>
-						<th>File Type</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php //foreach ($fileUploads as $fileUpload):?>
-					<tr>
-						<td>
-							<?//= $fileUpload->filename ?>
-						</td>
-						<td>
-							<?//= $fileUpload->filepath ?>
-						</td>
-						<td>
-							<?//= $fileUpload->type ?>
-						</td>
-					</tr>
-					<?php //endforeach;?>
-				</tbody>
+					<div class="col-md-4">
+						<input type="text" id="title" name="title" class="form-control" placeholder="Title" maxlength="250" required>
+					</div>
 
-			</table>
+					<div class="col-md-4">
+						<input type="file" id="files" name="files[]" class="form-control" multiple="multiple">
+					</div>
+
+					<div class="form-group text-center mb-3">
+						<button class="btn btn-success" id="upload_btn" type="button">Upload</button>
+					</div>
+				</form>
+			</div>
+			
+			<table id="data_table" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+					<th>Title</th>
+					<th>File Path</th>
+					<th>File Type</th>
+					<th></th>
+                </tr>
+                </thead>
+              </table>			
 		</div>
 	</div>
-
 </div>
 
-
-<!-- <main style="width:500px;margin:0 auto;">
-<form class="form-signin">
-
-	<div id="message"></div>
-	<div class="text-center mb-4">
-
-		<h1 class="h3 mb-3 font-weight-normal">Upload Multiple Files</h1>
-		<p>This form capable of upload multiple images at once.</p>
-	</div>
-
-	<div class="form-label-group">
-		<input type="file" id="files" name="files[]" multiple="multiple">
-		<label for="inputEmail">Files</label>
-	</div>
-
-
-	<button class="btn btn-lg btn-primary btn-block" id="upload_btn" type="button">Upload</button>
-	<p class="mt-5 mb-3 text-muted text-center">© 2017-2020</p>
-</form>
-</main> -->
-
-
 <script type="text/javascript">
+	$( function () {
+		$( '#data_table' ).DataTable( {
+			"paging": true,
+			"lengthChange": false,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"ajax": {
+				"url": '<?php echo base_url('Subcontractorfiles/getAll') ?>',
+				"type": "POST",
+				"data": {
+					"id": $( '#subcontractorid' ).val()
+				},
+				"dataType": "json",
+				async: "true"
+			}
+		} );
+	} );
+
 	$( document ).ready( function ( e ) {
 		$( '#upload_btn' ).on( 'click', function () {
 			var formData = new FormData();
@@ -126,8 +97,8 @@
 			for ( var i = 0; i < totalFilesLen; i++ ) {
 				formData.append( "files[]", document.getElementById( 'files' ).files[ i ] );
 			}
-			formData.append( "id", $('#subcontractorid').val());
-			formData.append( "title", $('#title').val());
+			formData.append( "id", $( '#subcontractorid' ).val() );
+			formData.append( "title", $( '#title' ).val() );
 			$.ajax( {
 				url: '<?php echo base_url('upload/doupload'); ?>',
 				dataType: 'text',
@@ -137,14 +108,16 @@
 				data: formData,
 				type: 'post',
 				success: function ( response ) {
-					Swal.fire({
-							position: 'bottom-end',
-							icon: 'success',
-							title: response.messages,
-							showConfirmButton: false,
-							timer: 1500
-						})
-					//$( '#message' ).html( response );
+					$( "#upload-form" )[ 0 ].reset();
+					Swal.fire( {
+						position: 'bottom-end',
+						icon: 'success',
+						title: response,
+						showConfirmButton: false,
+						timer: 1500
+					} ).then( function () {
+						$( '#data_table' ).DataTable().ajax.reload( null, false ).draw( false );
+					} )
 				},
 				error: function ( response ) {
 					$( '#message' ).html( response );
@@ -152,6 +125,51 @@
 			} );
 		} );
 	} );
+
+	function remove( id ) {
+		Swal.fire( {
+			title: 'Are you sure of the deleting process?',
+			text: "You cannot back after confirmation",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Confirm',
+			cancelButtonText: 'Cancel'
+		} ).then( ( result ) => {
+			if ( result.value ) {
+				$.ajax( {
+					url: '<?php echo base_url('Subcontractorfiles/remove') ?>',
+					type: 'post',
+					data: {
+						id: id
+					},
+					dataType: 'json',
+					success: function ( response ) {
+						if ( response.success === true ) {
+							Swal.fire( {
+								position: 'bottom-end',
+								icon: 'success',
+								title: response.messages,
+								showConfirmButton: false,
+								timer: 1500
+							} ).then( function () {
+								$( '#data_table' ).DataTable().ajax.reload( null, false ).draw( false );
+							} )
+						} else {
+							Swal.fire( {
+								position: 'bottom-end',
+								icon: 'error',
+								title: response.messages,
+								showConfirmButton: false,
+								timer: 1500
+							} )
+						}
+					}
+				} );
+			}
+		} )
+	}
 </script>
 
 <?= $this->endSection(); ?>

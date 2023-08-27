@@ -3,7 +3,7 @@
 		<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 		<li class="nav-item">
-			<a href="<?= route_to('user.home'); ?>" class="nav-link <?= (current_url() == base_url('user/home')) ? 'active' : '' ?>">
+			<a href="<?= route_to('/'); ?>" class="nav-link <?= (current_url() == base_url('user/home')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-home"></i>
                 <p>
                     Home
@@ -45,12 +45,14 @@
                 </p>
             </a></li>
 
+<!--
 				<li class="nav-item">
 					<a href="<?= route_to('deed'); ?>" class="nav-link <?= (current_url() == base_url('deed')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                     Subcontract Deed
                 </p>
+-->
             </a></li>
 
 				<li class="nav-item">

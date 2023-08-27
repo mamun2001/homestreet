@@ -179,6 +179,7 @@ $(function () {
 		}	  
 	});
 });
+	
 function add() {
 	// reset the form 
 	$("#add-form")[0].reset();
