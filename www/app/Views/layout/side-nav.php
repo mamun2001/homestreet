@@ -86,6 +86,14 @@
                     Items
                 </p>
             </a></li>
+
+            <li class="nav-item">
+					<a href="<?= route_to('expenseheads'); ?>" class="nav-link <?= (current_url() == base_url('expenseheads')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                Expense Heads
+                </p>
+            </a></li>
 				
 				<li class="nav-item">
 					<a href="<?= route_to('categories'); ?>" class="nav-link <?= (current_url() == base_url('categories')) ? 'active' : '' ?>">
