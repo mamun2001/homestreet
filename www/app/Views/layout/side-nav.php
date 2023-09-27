@@ -10,6 +10,16 @@
                 </p>
             </a>
 		</li>
+
+        <li class="nav-item">
+			<a href="<?= route_to('requisition'); ?>" class="nav-link <?= (current_url() == base_url('requisition')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                    Requisition
+                </p>
+            </a>
+		</li>
+
 		<li class="nav-item has-treeview">
 			<a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>

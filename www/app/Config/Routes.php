@@ -100,6 +100,8 @@ $routes->post('expenseheads/(:any)', 'ExpenseHeadsController::index/$1');
 
 $routes->get('subcontractor', 'Subcontractors::index');
 
+$routes->get('requisition', 'Requisition::index');
+
 $routes->get('subcontract', 'ProjectSubcontractsController::index');
 $routes->get('subcontract/(:any)', 'ProjectSubcontractsController::index/$1');
 $routes->post('subcontract/(:any)', 'ProjectSubcontractsController::index/$1');
