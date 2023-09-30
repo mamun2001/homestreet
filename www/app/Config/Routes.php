@@ -94,6 +94,10 @@ $routes->get('expenseheads', 'ExpenseHeadsController::index');
 $routes->get('expenseheads/(:any)', 'ExpenseHeadsController::index/$1');
 $routes->post('expenseheads/(:any)', 'ExpenseHeadsController::index/$1');
 
+$routes->get('user', 'UserController::index');
+$routes->get('user/(:any)', 'UserController::index/$1');
+$routes->post('user/(:any)', 'UserController::index/$1');
+
 //$routes->get('subcontractor', 'SubcontractorController::index');
 //$routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');
 //$routes->post('subcontractor/(:any)', 'SubcontractorController::index/$1');

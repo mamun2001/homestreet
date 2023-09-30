@@ -29,7 +29,7 @@ class FileUpload extends BaseController
  
                 if ($file->isValid() && ! $file->hasMoved())
                 {
-                    $newName = $file->getRandomName();
+                    $newName = $file->getRandomName();                    
                     $file->move(WRITEPATH.'uploads', $newName);
                     $data = [
                         'filename' => $file->getClientName(),
