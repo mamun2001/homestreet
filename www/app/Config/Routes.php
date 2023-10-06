@@ -29,7 +29,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/home', 'Home::index');
 
 //$routes->setDefaultController('DatatableController');
 //$routes->setDefaultController('UsersController');
@@ -125,6 +125,12 @@ $routes->post('upload', 'Upload::index');
 $routes->get('upload/(:any)', 'Upload::index/$1');
 $routes->post('doupload', 'Upload::doupload');
 $routes->post('upload/getOne', 'Upload::getOne');
+
+$routes->get('/', 'Login::index');
+$routes->post('save', 'Login::save');
+$routes->get('login', 'Login::login');
+$routes->post('postLogin', 'Login::auth');
+$routes->get('logout', 'Login::logout');
 
 /*
  * --------------------------------------------------------------------

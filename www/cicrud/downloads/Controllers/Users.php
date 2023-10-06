@@ -38,7 +38,7 @@ class Users extends BaseController
 		
 	    $data['data'] = array();
  
-		$result = $this->usersModel->get('id, last_name, first_name, email, birthdate');        
+		$result = $this->usersModel->select('id, full_name, email, login, password, user_type, active')->findAll();
 		
 		foreach ($result as $key => $value) {
 							
@@ -49,10 +49,12 @@ class Users extends BaseController
 			
 			$data['data'][$key] = array(
 				$value->id,
-				$value->last_name,
-				$value->first_name,
+				$value->full_name,
 				$value->email,
-				$value->birthdate,
+				$value->login,
+				$value->password,
+				$value->user_type,
+				$value->active,
 
 				$ops,
 			);
@@ -69,13 +71,13 @@ class Users extends BaseController
 		
 		if ($this->validation->check($id, 'required|numeric')) {
 			
-			$data = $this->usersModel->get('*', ['id' => $id]);
+			$data = $this->sourcesModel->where('id' ,$id)->first();
 
 			return $this->response->setJSON($data);	
 				
 		} else {
 			
-			throw new \CodeIgniter\Router\Exceptions\RedirectException($route, 301);
+			throw new \CodeIgniter\Exceptions\PageNotFoundException();
 
 		}	
 		
@@ -87,17 +89,21 @@ class Users extends BaseController
         $response = array();
 
         $fields['id'] = $this->request->getPost('id');
-        $fields['last_name'] = $this->request->getPost('lastName');
-        $fields['first_name'] = $this->request->getPost('firstName');
+        $fields['full_name'] = $this->request->getPost('fullName');
         $fields['email'] = $this->request->getPost('email');
-        $fields['birthdate'] = $this->request->getPost('birthdate');
+        $fields['login'] = $this->request->getPost('login');
+        $fields['password'] = $this->request->getPost('password');
+        $fields['user_type'] = $this->request->getPost('userType');
+        $fields['active'] = $this->request->getPost('active');
 
 
         $this->validation->setRules([
-            'last_name' => ['label' => 'Surname', 'rules' => 'required|max_length[50]'],
-            'first_name' => ['label' => 'name', 'rules' => 'required|max_length[50]'],
-            'email' => ['label' => 'Email', 'rules' => 'permit_empty|max_length[100]'],
-            'birthdate' => ['label' => 'Birth Date', 'rules' => 'required|valid_date'],
+            'full_name' => ['label' => 'Full name', 'rules' => 'required|max_length[500]'],
+            'email' => ['label' => 'Email', 'rules' => 'required|max_length[250]'],
+            'login' => ['label' => 'Login', 'rules' => 'required|max_length[100]'],
+            'password' => ['label' => 'Password', 'rules' => 'required|max_length[250]'],
+            'user_type' => ['label' => 'User type', 'rules' => 'required|max_length[50]'],
+            'active' => ['label' => 'Active', 'rules' => 'required|max_length[20]'],
 
         ]);
 
@@ -108,7 +114,7 @@ class Users extends BaseController
 			
         } else {
 
-            if ($this->usersModel->add($fields)) {
+            if ($this->usersModel->insert($fields)) {
 												
                 $response['success'] = true;
                 $response['messages'] = 'Data has been inserted successfully';	
@@ -130,17 +136,21 @@ class Users extends BaseController
         $response = array();
 		
         $fields['id'] = $this->request->getPost('id');
-        $fields['last_name'] = $this->request->getPost('lastName');
-        $fields['first_name'] = $this->request->getPost('firstName');
+        $fields['full_name'] = $this->request->getPost('fullName');
         $fields['email'] = $this->request->getPost('email');
-        $fields['birthdate'] = $this->request->getPost('birthdate');
+        $fields['login'] = $this->request->getPost('login');
+        $fields['password'] = $this->request->getPost('password');
+        $fields['user_type'] = $this->request->getPost('userType');
+        $fields['active'] = $this->request->getPost('active');
 
 
         $this->validation->setRules([
-            'last_name' => ['label' => 'Surname', 'rules' => 'required|max_length[50]'],
-            'first_name' => ['label' => 'name', 'rules' => 'required|max_length[50]'],
-            'email' => ['label' => 'Email', 'rules' => 'permit_empty|max_length[100]'],
-            'birthdate' => ['label' => 'Birth Date', 'rules' => 'required|valid_date'],
+            'full_name' => ['label' => 'Full name', 'rules' => 'required|max_length[500]'],
+            'email' => ['label' => 'Email', 'rules' => 'required|max_length[250]'],
+            'login' => ['label' => 'Login', 'rules' => 'required|max_length[100]'],
+            'password' => ['label' => 'Password', 'rules' => 'required|max_length[250]'],
+            'user_type' => ['label' => 'User type', 'rules' => 'required|max_length[50]'],
+            'active' => ['label' => 'Active', 'rules' => 'required|max_length[20]'],
 
         ]);
 
@@ -151,7 +161,7 @@ class Users extends BaseController
 			
         } else {
 
-            if ($this->usersModel->edit($fields['id'], $fields)) {
+            if ($this->usersModel->update($fields['id'], $fields)) {
 				
                 $response['success'] = true;
                 $response['messages'] = 'Successfully updated';	
@@ -176,11 +186,11 @@ class Users extends BaseController
 		
 		if (!$this->validation->check($id, 'required|numeric')) {
 
-			throw new \CodeIgniter\Router\Exceptions\RedirectException($route, 301);
+			throw new \CodeIgniter\Exceptions\PageNotFoundException();
 			
 		} else {	
 		
-			if ($this->usersModel->remove($id)) {
+			if ($this->usersModel->where('id', $id)->delete()) {
 								
 				$response['success'] = true;
 				$response['messages'] = 'Deletion succeeded';	

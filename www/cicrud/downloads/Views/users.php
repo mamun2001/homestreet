@@ -8,16 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">  
+  <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">  
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -31,7 +31,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="https://adminlte.io/themes/v3/index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -62,7 +62,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -78,7 +78,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -94,7 +94,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -149,8 +149,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png"
+    <a href="https://adminlte.io/themes/v3/index3.html" class="brand-link">
+      <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
@@ -162,7 +162,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -184,19 +184,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
+                <a href="https://adminlte.io/themes/v3/index.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
+                <a href="https://adminlte.io/themes/v3/index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="https://adminlte.io/themes/v3/index3.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>
@@ -600,7 +600,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../starter.html" class="nav-link">
+                <a href="https://adminlte.io/themes/v3/starter.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Starter Page</p>
                 </a>
@@ -745,10 +745,12 @@
                 <thead>
                 <tr>
 					<th>Id</th>
-					<th>Surname</th>
-					<th>name</th>
+					<th>Full name</th>
 					<th>Email</th>
-					<th>Birth Date</th>
+					<th>Login</th>
+					<th>Password</th>
+					<th>User type</th>
+					<th>Active</th>
 
 					<th></th>
                 </tr>
@@ -778,31 +780,45 @@
 						</div>
 						<div class="row">
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="lastName"> Surname: <span class="text-danger">*</span> </label>
-								<input type="text" id="lastName" name="lastName" class="form-control" placeholder="Surname" maxlength="50" required>
+								<div class="form-group">
+									<label for="fullName"> Full name: <span class="text-danger">*</span> </label>
+									<input type="text" id="fullName" name="fullName" class="form-control" placeholder="Full name" maxlength="500" required>
+								</div>
 							</div>
-						</div>
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="firstName"> name: <span class="text-danger">*</span> </label>
-								<input type="text" id="firstName" name="firstName" class="form-control" placeholder="name" maxlength="50" required>
+								<div class="form-group">
+									<label for="email"> Email: <span class="text-danger">*</span> </label>
+									<input type="text" id="email" name="email" class="form-control" placeholder="Email" maxlength="250" required>
+								</div>
 							</div>
-						</div>
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="email"> Email: </label>
-								<input type="text" id="email" name="email" class="form-control" placeholder="Email" maxlength="100" >
+								<div class="form-group">
+									<label for="login"> Login: <span class="text-danger">*</span> </label>
+									<input type="text" id="login" name="login" class="form-control" placeholder="Login" maxlength="100" required>
+								</div>
 							</div>
-						</div>
 						</div>
 						<div class="row">
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="birthdate"> Birth Date: <span class="text-danger">*</span> </label>
-								<input type="date" id="birthdate" name="birthdate" class="form-control" dateISO="true" required>
+								<div class="form-group">
+									<label for="password"> Password: <span class="text-danger">*</span> </label>
+									<input type="password" id="password" name="password" class="form-control" placeholder="Password" maxlength="250" required>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="userType"> User type: <span class="text-danger">*</span> </label>
+									<input type="text" id="userType" name="userType" class="form-control" placeholder="User type" maxlength="50" required>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="active"> Active: <span class="text-danger">*</span> </label>
+									<input type="text" id="active" name="active" class="form-control" placeholder="Active" maxlength="20" required>
+								</div>
 							</div>
 						</div>
+						<div class="row">
 						</div>
 																				
 						<div class="form-group text-center">
@@ -832,31 +848,45 @@
 						</div>
 						<div class="row">
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="lastName"> Surname: <span class="text-danger">*</span> </label>
-								<input type="text" id="lastName" name="lastName" class="form-control" placeholder="Surname" maxlength="50" required>
+								<div class="form-group">
+									<label for="fullName"> Full name: <span class="text-danger">*</span> </label>
+									<input type="text" id="fullName" name="fullName" class="form-control" placeholder="Full name" maxlength="500" required>
+								</div>
 							</div>
-						</div>
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="firstName"> name: <span class="text-danger">*</span> </label>
-								<input type="text" id="firstName" name="firstName" class="form-control" placeholder="name" maxlength="50" required>
+								<div class="form-group">
+									<label for="email"> Email: <span class="text-danger">*</span> </label>
+									<input type="text" id="email" name="email" class="form-control" placeholder="Email" maxlength="250" required>
+								</div>
 							</div>
-						</div>
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="email"> Email: </label>
-								<input type="text" id="email" name="email" class="form-control" placeholder="Email" maxlength="100" >
+								<div class="form-group">
+									<label for="login"> Login: <span class="text-danger">*</span> </label>
+									<input type="text" id="login" name="login" class="form-control" placeholder="Login" maxlength="100" required>
+								</div>
 							</div>
-						</div>
 						</div>
 						<div class="row">
 							<div class="col-md-4">
-							<div class="form-group">
-								<label for="birthdate"> Birth Date: <span class="text-danger">*</span> </label>
-								<input type="date" id="birthdate" name="birthdate" class="form-control" dateISO="true" required>
+								<div class="form-group">
+									<label for="password"> Password: <span class="text-danger">*</span> </label>
+									<input type="password" id="password" name="password" class="form-control" placeholder="Password" maxlength="250" required>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="userType"> User type: <span class="text-danger">*</span> </label>
+									<input type="text" id="userType" name="userType" class="form-control" placeholder="User type" maxlength="50" required>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="active"> Active: <span class="text-danger">*</span> </label>
+									<input type="text" id="active" name="active" class="form-control" placeholder="Active" maxlength="20" required>
+								</div>
 							</div>
 						</div>
+						<div class="row">
 						</div>
 											
 						<div class="form-group text-center">
@@ -891,23 +921,23 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- jquery-validation -->
-<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- DataTables -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- SweetAlert2 -->
-<script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+<script src="https://adminlte.io/themes/v3/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
 $(function () {
@@ -973,10 +1003,7 @@ function add() {
 				},					
 				success: function(response) {
 
-					$('#data_table').DataTable().ajax.reload(null, false).draw(false);
-
 					if (response.success === true) {
-
 
 						Swal.fire({
 							position: 'bottom-end',
@@ -984,12 +1011,10 @@ function add() {
 							title: response.messages,
 							showConfirmButton: false,
 							timer: 1500
-						})
-						// Set a timeout to hide the modal
-						setTimeout(function() {
+						}).then(function() {
+							$('#data_table').DataTable().ajax.reload(null, false).draw(false);
 							$('#add-modal').modal('hide');
-						}, 1500);
-						$('#confirm-btn').prop("disabled", false);
+						})
 
 					} else {
 
@@ -1041,10 +1066,12 @@ function edit(id) {
 			$('#edit-modal').modal('show');	
 
 			$("#edit-form #id").val(response.id);
-			$("#edit-form #lastName").val(response.last_name);
-			$("#edit-form #firstName").val(response.first_name);
+			$("#edit-form #fullName").val(response.full_name);
 			$("#edit-form #email").val(response.email);
-			$("#edit-form #birthdate").val(response.birthdate);
+			$("#edit-form #login").val(response.login);
+			$("#edit-form #password").val(response.password);
+			$("#edit-form #userType").val(response.user_type);
+			$("#edit-form #active").val(response.active);
 
 			// submit the edit from 
 			$.validator.setDefaults({
@@ -1084,8 +1111,6 @@ function edit(id) {
 						},								
 						success: function(response) {
 
-							$('#data_table').DataTable().ajax.reload(null, false).draw(false);
-
 							if (response.success === true) {
 
 								Swal.fire({
@@ -1094,12 +1119,10 @@ function edit(id) {
 									title: response.messages,
 									showConfirmButton: false,
 									timer: 1500
-								})
-								// Set a timeout to hide the modal
-								setTimeout(function() {
+								}).then(function() {
+									$('#data_table').DataTable().ajax.reload(null, false).draw(false);
 									$('#edit-modal').modal('hide');
-								}, 1500);
-								$('#confirm-btn').prop("disabled", false);
+								})
 								
 							} else {
 
@@ -1161,7 +1184,6 @@ function remove(id) {
 			dataType: 'json',
 			success: function(response) {
 
-				$('#data_table').DataTable().ajax.reload(null, false).draw(false);
 				if (response.success === true) {
 					Swal.fire({
 						position: 'bottom-end',
@@ -1169,6 +1191,8 @@ function remove(id) {
 						title: response.messages,
 						showConfirmButton: false,
 						timer: 1500
+					}).then(function() {
+						$('#data_table').DataTable().ajax.reload(null, false).draw(false);								
 					})
 				} else {
 					Swal.fire({
