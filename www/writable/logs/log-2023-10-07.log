@@ -1,0 +1,96 @@
+INFO - 2023-10-07 18:28:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:28:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:28:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:29:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:29:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:29:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:38:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:38:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:39:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:39:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:39:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:40:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:42:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:42:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 18:42:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-07 18:42:26 --> Undefined variable: session
+in APPPATH/Views/dashboard/home.php on line 3.
+ 1 APPPATH/Views/dashboard/home.php(3): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/dashboard/home.php', 3, [])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/dashboard/home.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('dashboard/home', [], true)
+ 5 APPPATH/Controllers/Home.php(9): view('dashboard/home')
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Home->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-07 18:43:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-07 18:43:22 --> Undefined variable: session
+in APPPATH/Views/dashboard/home.php on line 3.
+ 1 APPPATH/Views/dashboard/home.php(3): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/dashboard/home.php', 3, [])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/dashboard/home.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('dashboard/home', [], true)
+ 5 APPPATH/Controllers/Home.php(10): view('dashboard/home')
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Home->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-07 19:17:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-07 19:17:10 --> Undefined variable: session
+in APPPATH/Views/dashboard/home.php on line 4.
+ 1 APPPATH/Views/dashboard/home.php(4): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/dashboard/home.php', 4, [])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/dashboard/home.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('dashboard/home', [], true)
+ 5 APPPATH/Controllers/Home.php(9): view('dashboard/home')
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Home->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-07 19:17:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-07 19:17:33 --> Undefined variable: session
+in APPPATH/Views/dashboard/home.php on line 4.
+ 1 APPPATH/Views/dashboard/home.php(4): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/dashboard/home.php', 4, [])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/dashboard/home.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('dashboard/home', [], true)
+ 5 APPPATH/Controllers/Home.php(10): view('dashboard/home')
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Home->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-07 19:20:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-07 19:20:18 --> Undefined variable: session
+in APPPATH/Views/dashboard/home.php on line 6.
+ 1 APPPATH/Views/dashboard/home.php(6): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/dashboard/home.php', 6, [])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/dashboard/home.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('dashboard/home', [], true)
+ 5 APPPATH/Controllers/Home.php(10): view('dashboard/home')
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Home->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-07 19:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-07 19:20:30 --> Undefined variable: session
+in APPPATH/Views/dashboard/home.php on line 6.
+ 1 APPPATH/Views/dashboard/home.php(6): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: session', '/var/www/html/app/Views/dashboard/home.php', 6, [])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/dashboard/home.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('dashboard/home', [], true)
+ 5 APPPATH/Controllers/Home.php(10): view('dashboard/home')
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Home->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-07 19:20:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 19:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-07 19:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

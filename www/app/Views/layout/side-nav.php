@@ -204,10 +204,16 @@
                 Profile
             </p>
         </a>
+    </li>
 
-
-
-
+    <li class="nav-item">
+        <a href="<?= route_to('logout'); ?>"
+            class="nav-link <?= (current_url() == base_url('user/profile')) ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+                Logout
+            </p>
+        </a>
     </li>
 
     </ul>

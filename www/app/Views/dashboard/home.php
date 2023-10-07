@@ -1,5 +1,12 @@
 <?= $this->extend('layout/layout-a'); ?>
 <?= $this->section('content'); ?>
+<? 
+// $userData = $session->get();
+// print_r($userData);
+// $name = $session()->get('user_name');
+// echo $name;
+
+?>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
