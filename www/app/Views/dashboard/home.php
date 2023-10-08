@@ -1,11 +1,9 @@
 <?= $this->extend('layout/layout-a'); ?>
 <?= $this->section('content'); ?>
-<? 
-// $userData = $session->get();
-// print_r($userData);
-// $name = $session()->get('user_name');
-// echo $name;
-
+<?
+// print session()->get('logged_in');
+// print session()->get('user_name');
+// print session()->get('user_email');
 ?>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -28,7 +26,7 @@
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#user-table').DataTable({
             processing: true,
             serverSide: true,

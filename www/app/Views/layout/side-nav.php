@@ -22,6 +22,16 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="<?= route_to('voucher'); ?>"
+                class="nav-link <?= (current_url() == base_url('voucher')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                    Upload Voucher
+                </p>
+            </a>
+        </li>
+
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
