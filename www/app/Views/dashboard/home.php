@@ -1,9 +1,11 @@
 <?= $this->extend('layout/layout-a'); ?>
 <?= $this->section('content'); ?>
 <?
-// print session()->get('logged_in');
-// print session()->get('user_name');
-// print session()->get('user_email');
+// echo session()->get('logged_in');
+// echo "<br>";
+// echo session()->get('user_name');
+// echo "<br>";
+// echo session()->get('user_email');
 ?>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
