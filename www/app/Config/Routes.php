@@ -29,7 +29,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/home', 'Home::index',['filter' => 'authGuard']);
+$routes->get('/home', 'Home::index', ['filter' => 'authGuard']);
 
 //$routes->setDefaultController('DatatableController');
 //$routes->setDefaultController('UsersController');
@@ -97,6 +97,10 @@ $routes->post('expenseheads/(:any)', 'ExpenseHeadsController::index/$1');
 $routes->get('user', 'UserController::index');
 $routes->get('user/(:any)', 'UserController::index/$1');
 $routes->post('user/(:any)', 'UserController::index/$1');
+
+$routes->get('userprojects', 'UserProjectsController::index');
+$routes->get('userprojects/(:any)', 'UserProjectsController::index/$1');
+$routes->post('userprojects/(:any)', 'UserProjectsController::index/$1');
 
 //$routes->get('subcontractor', 'SubcontractorController::index');
 //$routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');

@@ -204,6 +204,18 @@
                 </a>
             </li>
         </ul>
+
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="<?= route_to('userprojects'); ?>"
+                    class="nav-link <?= (current_url() == base_url('userprojects')) ? 'active' : '' ?>">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                        User Projects
+                    </p>
+                </a>
+            </li>
+        </ul>
     </li>
 
     <li class="nav-item">
