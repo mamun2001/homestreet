@@ -81,9 +81,9 @@ class Requisition extends BaseController
 
         $data = $this->userProjectsModel->where('userid', session()->get('user_id'))->first();
 
-        $fields['id'] = $this->request->getPost('id');
+        //$fields['id'] = $this->request->getPost('id');
         $fields['project_id'] = $data['projectid'];
-        $fields['user_id'] = $data['userid'];
+        $fields['user_id'] = session()->get('user_id');
         $fields['requested_amount'] = $this->request->getPost('requestedAmount');
         $fields['submit_date_time'] = $this->request->getPost('submitDateTime');
         $fields['recieved_amount'] = $this->request->getPost('recievedAmount');

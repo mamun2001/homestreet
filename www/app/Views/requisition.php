@@ -165,7 +165,7 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- Add modal content -->
+<!-- Edit modal content -->
 <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
@@ -297,6 +297,38 @@
 			}
 		});
 	});
+
+	$(document).ready(function (e) {
+		$('#upload_btn').on('click', function () {
+			var formData = new FormData();						
+			formData.append("requestedAmount", $('#req_amount').val());
+			$.ajax({
+				url: '<?php echo base_url('requisition/add'); ?>',
+				dataType: 'text',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: formData,
+				type: 'post',
+				success: function (response) {
+					$("#upload-form")[0].reset();
+					Swal.fire({
+						position: 'bottom-end',
+						icon: 'success',
+						title: response,
+						showConfirmButton: false,
+						timer: 1500
+					}).then(function () {
+						$('#data_table').DataTable().ajax.reload(null, false).draw(false);
+					})
+				},
+				error: function (response) {
+					$('#message').html(response);
+				}
+			});
+		});
+	});
+
 	function add() {
 		// reset the form 
 		$("#add-form")[0].reset();
