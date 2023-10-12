@@ -1,0 +1,154 @@
+INFO - 2023-10-12 17:47:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:47:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:48:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:48:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:48:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:48:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:53:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:53:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:54:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:54:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:54:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 17:54:49 --> date() expects at least 1 parameter, 0 given
+in APPPATH/Controllers/Requisition.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'date() expects at least 1 parameter, 0 given', '/var/www/html/app/Controllers/Requisition.php', 88, [...])
+ 2 APPPATH/Controllers/Requisition.php(88): date()
+ 3 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->add()
+ 4 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 17:56:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:56:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:56:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 17:56:28 --> date() expects at least 1 parameter, 0 given
+in APPPATH/Controllers/Requisition.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'date() expects at least 1 parameter, 0 given', '/var/www/html/app/Controllers/Requisition.php', 88, [...])
+ 2 APPPATH/Controllers/Requisition.php(88): date()
+ 3 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->add()
+ 4 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 17:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 17:56:30 --> date() expects at least 1 parameter, 0 given
+in APPPATH/Controllers/Requisition.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'date() expects at least 1 parameter, 0 given', '/var/www/html/app/Controllers/Requisition.php', 88, [...])
+ 2 APPPATH/Controllers/Requisition.php(88): date()
+ 3 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->add()
+ 4 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 17:57:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:57:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:57:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:57:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 17:57:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 17:57:30 --> date() expects at least 1 parameter, 0 given
+in APPPATH/Controllers/Requisition.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'date() expects at least 1 parameter, 0 given', '/var/www/html/app/Controllers/Requisition.php', 88, [...])
+ 2 APPPATH/Controllers/Requisition.php(88): date()
+ 3 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->add()
+ 4 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 18:01:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:01:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:01:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 18:01:42 --> date() expects at least 1 parameter, 0 given
+in APPPATH/Controllers/Requisition.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'date() expects at least 1 parameter, 0 given', '/var/www/html/app/Controllers/Requisition.php', 88, [...])
+ 2 APPPATH/Controllers/Requisition.php(88): date()
+ 3 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->add()
+ 4 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 18:01:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 18:01:49 --> date() expects at least 1 parameter, 0 given
+in APPPATH/Controllers/Requisition.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'date() expects at least 1 parameter, 0 given', '/var/www/html/app/Controllers/Requisition.php', 88, [...])
+ 2 APPPATH/Controllers/Requisition.php(88): date()
+ 3 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->add()
+ 4 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 18:05:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:05:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:06:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:06:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:06:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:06:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:07:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 18:07:03 --> date() expects at least 1 parameter, 0 given
+in APPPATH/Controllers/Requisition.php on line 88.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'date() expects at least 1 parameter, 0 given', '/var/www/html/app/Controllers/Requisition.php', 88, [...])
+ 2 APPPATH/Controllers/Requisition.php(88): date()
+ 3 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->add()
+ 4 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 5 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 18:48:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:48:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:48:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:48:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 18:48:17 --> Undefined property: stdClass::$user_id
+in APPPATH/Controllers/Requisition.php on line 50.
+ 1 APPPATH/Controllers/Requisition.php(50): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$user_id', '/var/www/html/app/Controllers/Requisition.php', 50, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 18:50:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 18:50:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 18:50:12 --> Undefined property: stdClass::$user_id
+in APPPATH/Controllers/Requisition.php on line 50.
+ 1 APPPATH/Controllers/Requisition.php(50): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$user_id', '/var/www/html/app/Controllers/Requisition.php', 50, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 19:12:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:12:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 19:12:28 --> Undefined property: stdClass::$user_id
+in APPPATH/Controllers/Requisition.php on line 50.
+ 1 APPPATH/Controllers/Requisition.php(50): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$user_id', '/var/www/html/app/Controllers/Requisition.php', 50, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 19:13:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:13:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:13:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:13:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:13:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:13:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 19:13:47 --> Undefined property: stdClass::$user_id
+in APPPATH/Controllers/Requisition.php on line 50.
+ 1 APPPATH/Controllers/Requisition.php(50): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$user_id', '/var/www/html/app/Controllers/Requisition.php', 50, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 19:15:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-12 19:15:05 --> Undefined property: stdClass::$user_id
+in APPPATH/Controllers/Requisition.php on line 50.
+ 1 APPPATH/Controllers/Requisition.php(50): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$user_id', '/var/www/html/app/Controllers/Requisition.php', 50, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-12 19:16:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:16:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:17:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:17:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-12 19:40:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

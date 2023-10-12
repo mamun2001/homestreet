@@ -110,6 +110,8 @@ $routes->post('userprojects/(:any)', 'UserProjectsController::index/$1', ['filte
 $routes->get('subcontractor', 'Subcontractors::index', ['filter' => 'authGuard']);
 
 $routes->get('requisition', 'Requisition::index', ['filter' => 'authGuard']);
+$routes->post('requisition/add', 'Requisition::add', ['filter' => 'authGuard']);
+$routes->get('requisition/getall', 'Requisition::getAll', ['filter' => 'authGuard']);
 
 $routes->get('subcontract', 'ProjectSubcontractsController::index', ['filter' => 'authGuard']);
 $routes->get('subcontract/(:any)', 'ProjectSubcontractsController::index/$1', ['filter' => 'authGuard']);

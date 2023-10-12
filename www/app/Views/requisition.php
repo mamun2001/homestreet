@@ -290,7 +290,7 @@
 			"autoWidth": false,
 			"responsive": true,
 			"ajax": {
-				"url": '<?php echo base_url($controller . '/getAll') ?>',
+				"url": '<?php echo base_url('requisition/getAll') ?>',
 				"type": "POST",
 				"dataType": "json",
 				async: "true"
@@ -298,8 +298,8 @@
 		});
 	});
 
-	$(document).ready(function (e) {
-		$('#upload_btn').on('click', function () {
+	$(function () {		
+		$('#upload_btn').on('click', function () {			
 			var formData = new FormData();						
 			formData.append("requestedAmount", $('#req_amount').val());
 			$.ajax({

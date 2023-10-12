@@ -46,13 +46,11 @@ class Requisition extends BaseController
 
             $data['data'][$key] = array(
                 $value->id,
-                $value->project_id,
-                $value->user_id,
+                $value->project_id,                
                 $value->requested_amount,
                 $value->submit_date_time,
                 $value->recieved_amount,
-                $value->recieve_date_time,
-                $value->recieved_by,
+                $value->recieve_date_time,                
                 $value->status,
                 $value->comment,
                 $ops,
@@ -85,47 +83,34 @@ class Requisition extends BaseController
         $fields['project_id'] = $data['projectid'];
         $fields['user_id'] = session()->get('user_id');
         $fields['requested_amount'] = $this->request->getPost('requestedAmount');
-        $fields['submit_date_time'] = $this->request->getPost('submitDateTime');
-        $fields['recieved_amount'] = $this->request->getPost('recievedAmount');
-        $fields['recieve_date_time'] = $this->request->getPost('recieveDateTime');
-        $fields['recieved_by'] = $this->request->getPost('recievedBy');
-        $fields['status'] = $this->request->getPost('status');
-        $fields['comment'] = $this->request->getPost('comment');
+        $fields['submit_date_time'] = date("Y-m-d H:i:s");
+        // $fields['recieved_amount'] = $this->request->getPost('recievedAmount');
+        // $fields['recieve_date_time'] = $this->request->getPost('recieveDateTime');
+        // $fields['recieved_by'] = $this->request->getPost('recievedBy');
+        $fields['status'] = "Pending";
+        // $fields['comment'] = $this->request->getPost('comment');
 
-        $this->validation->setRules([
-            'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
-            'user_id' => ['label' => 'User id', 'rules' => 'required|numeric|max_length[11]'],
+        $this->validation->setRules([                        
             'requested_amount' => ['label' => 'Requested amount', 'rules' => 'required|numeric|max_length[11]'],
-            'submit_date_time' => ['label' => 'Submit date time', 'rules' => 'required|valid_date'],
-            'recieved_amount' => ['label' => 'Recieved amount', 'rules' => 'required|numeric|max_length[11]'],
-            'recieve_date_time' => ['label' => 'Recieve date time', 'rules' => 'required|valid_date'],
-            'recieved_by' => ['label' => 'Recieved by', 'rules' => 'required|numeric|max_length[11]'],
-            'status' => ['label' => 'Status', 'rules' => 'required|max_length[150]'],
-            'comment' => ['label' => 'Comment', 'rules' => 'required|max_length[500]'],
-
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
-
-            $response['success'] = false;
-            $response['messages'] = $this->validation->listErrors();
-
+            // $response['success'] = false;
+            // $response['messages'] = $this->validation->listErrors();
+            print $this->validation->listErrors(); 
         } else {
-
             if ($this->requisitionModel->insert($fields)) {
-
-                $response['success'] = true;
-                $response['messages'] = 'Data has been inserted successfully';
-
+                // $response['success'] = true;
+                // $response['messages'] = 'Data has been inserted successfully';
+                print "Data has been inserted successfully";     
             } else {
-
-                $response['success'] = false;
-                $response['messages'] = 'Insertion error!';
-
+                // $response['success'] = false;
+                // $response['messages'] = 'Insertion error!';
+                print "Insertion error!";     
             }
         }
 
-        return $this->response->setJSON($response);
+        // return $this->response->setJSON($response);
     }
 
     public function edit()
