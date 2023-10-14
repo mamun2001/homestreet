@@ -36,9 +36,8 @@ class Requisition extends BaseController
     {
         $response = array();
         $data['data'] = array();
-        $result = $this->requisitionModel->select('id, project_id, requested_amount, submit_date_time, recieved_amount, recieve_date_time, status, comment')->orderBy('id', 'DESC')->findAll();
-        //$builder = $this->requisitionModel->builder();
-
+        $result = $this->requisitionModel->select('id, project_id, requested_amount, submit_date_time, recieved_amount, recieve_date_time, status, comment')->orderBy('id', 'desc')->findAll();
+    
         foreach ($result as $key => $value) {
             $ops = '<div class="btn-group">';
             $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
