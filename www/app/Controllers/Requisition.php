@@ -29,6 +29,14 @@ class Requisition extends BaseController
             'title' => 'Requisition'
         ];
 
+        // $db      = \Config\Database::connect();        
+        // $builder = $db->table('requisition');        
+        // $builder->select('requisition.*,projects.*');
+        // $builder->join('projects', 'projects.id = requisition.project_id','inner');
+        // $result = $builder->get()->getResult();
+        //print_r($db->getLastQuery());
+        // print_r($result);
+
         return view('requisition', $data);
     }
 
@@ -36,8 +44,15 @@ class Requisition extends BaseController
     {
         $response = array();
         $data['data'] = array();
-        $result = $this->requisitionModel->select('id, project_id, requested_amount, submit_date_time, recieved_amount, recieve_date_time, status, comment')->orderBy('id', 'desc')->findAll();
-    
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('requisition');
+        $builder->select('requisition.*,projects.*');
+        $builder->join('projects', 'projects.id = requisition.project_id', 'inner');        
+        $result = $builder->orderBy('requisition.id', 'desc')->get()->getResult();
+
+        //$result = $this->requisitionModel->select('id, project_id, requested_amount, submit_date_time, recieved_amount, recieve_date_time, status, comment')->orderBy('id', 'desc')->findAll();
+
         foreach ($result as $key => $value) {
             $ops = '<div class="btn-group">';
             $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
@@ -46,13 +61,14 @@ class Requisition extends BaseController
 
             $data['data'][$key] = array(
                 $value->id,
-                $value->project_id,                
+                $value->project_name,
                 $value->requested_amount,
                 $value->submit_date_time,
                 $value->recieved_amount,
-                $value->recieve_date_time,                
+                $value->recieve_date_time,
                 $value->status,
                 $value->comment,
+
                 $ops,
             );
         }
@@ -90,23 +106,23 @@ class Requisition extends BaseController
         $fields['status'] = "Pending";
         // $fields['comment'] = $this->request->getPost('comment');
 
-        $this->validation->setRules([                        
+        $this->validation->setRules([
             'requested_amount' => ['label' => 'Requested amount', 'rules' => 'required|numeric|max_length[11]'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
             // $response['success'] = false;
             // $response['messages'] = $this->validation->listErrors();
-            print $this->validation->listErrors(); 
+            print $this->validation->listErrors();
         } else {
             if ($this->requisitionModel->insert($fields)) {
                 // $response['success'] = true;
                 // $response['messages'] = 'Data has been inserted successfully';
-                print "Data has been inserted successfully";     
+                print "Data has been inserted successfully";
             } else {
                 // $response['success'] = false;
                 // $response['messages'] = 'Insertion error!';
-                print "Insertion error!";     
+                print "Insertion error!";
             }
         }
 

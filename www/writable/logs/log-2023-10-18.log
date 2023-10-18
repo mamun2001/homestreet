@@ -1,0 +1,278 @@
+INFO - 2023-10-18 10:44:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:44:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:44:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:44:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:44:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:44:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:44:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:58:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 10:58:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 10:58:33 --> Trying to get property 'id' of non-object
+in APPPATH/Controllers/Requisition.php on line 47.
+ 1 APPPATH/Controllers/Requisition.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'id\' of non-object', '/var/www/html/app/Controllers/Requisition.php', 47, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:00:44 --> Trying to get property 'id' of non-object
+in APPPATH/Controllers/Requisition.php on line 47.
+ 1 APPPATH/Controllers/Requisition.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'id\' of non-object', '/var/www/html/app/Controllers/Requisition.php', 47, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:02:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:02:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:02:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:02:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:02:58 --> Trying to get property 'id' of non-object
+in APPPATH/Controllers/Requisition.php on line 47.
+ 1 APPPATH/Controllers/Requisition.php(47): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'id\' of non-object', '/var/www/html/app/Controllers/Requisition.php', 47, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:05:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:05:19 --> syntax error, unexpected '->' (T_OBJECT_OPERATOR)
+in APPPATH/Controllers/Requisition.php on line 47.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('/var/www/html/app/Controllers/Requisition.php')
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Requisition')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Requisition')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Requisition')
+ 5 SYSTEMPATH/CodeIgniter.php(890): class_exists('\\App\\Controllers\\Requisition', true)
+ 6 SYSTEMPATH/CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:05:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:05:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:05:41 --> Undefined variable: db
+in APPPATH/Controllers/Requisition.php on line 40.
+ 1 APPPATH/Controllers/Requisition.php(40): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: db', '/var/www/html/app/Controllers/Requisition.php', 40, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:11:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:11:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:11:11 --> Undefined property: mysqli::$id
+in APPPATH/Controllers/Requisition.php on line 55.
+ 1 APPPATH/Controllers/Requisition.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: mysqli::$id', '/var/www/html/app/Controllers/Requisition.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:12:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:12:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:12:23 --> Undefined property: mysqli::$id
+in APPPATH/Controllers/Requisition.php on line 55.
+ 1 APPPATH/Controllers/Requisition.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: mysqli::$id', '/var/www/html/app/Controllers/Requisition.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:13:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:13:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:13:13 --> Undefined property: mysqli::$id
+in APPPATH/Controllers/Requisition.php on line 55.
+ 1 APPPATH/Controllers/Requisition.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: mysqli::$id', '/var/www/html/app/Controllers/Requisition.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:13:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:13:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:13:46 --> Undefined property: mysqli::$id
+in APPPATH/Controllers/Requisition.php on line 55.
+ 1 APPPATH/Controllers/Requisition.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: mysqli::$id', '/var/www/html/app/Controllers/Requisition.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:14:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:14:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:14:46 --> Undefined property: mysqli::$id
+in APPPATH/Controllers/Requisition.php on line 55.
+ 1 APPPATH/Controllers/Requisition.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: mysqli::$id', '/var/www/html/app/Controllers/Requisition.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:16:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:16:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:16:04 --> Undefined property: mysqli::$id
+in APPPATH/Controllers/Requisition.php on line 55.
+ 1 APPPATH/Controllers/Requisition.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: mysqli::$id', '/var/www/html/app/Controllers/Requisition.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:16:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:16:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:16:17 --> Undefined property: mysqli::$id
+in APPPATH/Controllers/Requisition.php on line 55.
+ 1 APPPATH/Controllers/Requisition.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: mysqli::$id', '/var/www/html/app/Controllers/Requisition.php', 55, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:18:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:18:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:21:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:21:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:22:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:22:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:22:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:24:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-10-18 11:24:51 --> mysqli_sql_exception: Column 'id' in field list is ambiguous in /var/www/html/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 /var/www/html/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...', Array, false)
+#4 /var/www/html/app/Controllers/Requisition.php(36): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/CodeIgniter.php(932): App\Controllers\Requisition->index()
+#6 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+#7 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /var/www/html/index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-10-18 11:24:51 --> Column 'id' in field list is ambiguous
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query('SELECT `id`, `project_id`, `requested_amount`, `submit_date_time`, `recieved_amount`, `recieve_date_time`, `status`, `comment`, `projects`.`project_name`
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `project_id`, `requested_amount`, `submit_date_time`, `recieved_amount`, `recieve_date_time`, `status`, `comment`, `projects`.`project_name`
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`')
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `project_id`, `requested_amount`, `submit_date_time`, `recieved_amount`, `recieve_date_time`, `status`, `comment`, `projects`.`project_name`
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `project_id`, `requested_amount`, `submit_date_time`, `recieved_amount`, `recieve_date_time`, `status`, `comment`, `projects`.`project_name`
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`', [], false)
+ 5 APPPATH/Controllers/Requisition.php(36): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:26:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:26:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:28:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:28:30 --> Undefined variable: builder
+in APPPATH/Controllers/Requisition.php on line 33.
+ 1 APPPATH/Controllers/Requisition.php(33): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: builder', '/var/www/html/app/Controllers/Requisition.php', 33, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->index()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:29:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:29:32 --> Undefined variable: result
+in APPPATH/Controllers/Requisition.php on line 42.
+ 1 APPPATH/Controllers/Requisition.php(42): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: result', '/var/www/html/app/Controllers/Requisition.php', 42, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->index()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:29:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:29:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:30:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:30:53 --> Object of class CodeIgniter\Database\MySQLi\Result could not be converted to string
+in APPPATH/Controllers/Requisition.php on line 42.
+ 1 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->index()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 3 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:31:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:31:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:31:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:33:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:33:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:35:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:36:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:36:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:36:50 --> Object of class CodeIgniter\Database\MySQLi\Result could not be converted to string
+in APPPATH/Controllers/Requisition.php on line 43.
+ 1 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->index()
+ 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 3 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:37:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:38:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:39:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:39:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:55:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:55:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:56:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:57:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:57:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:57:52 --> syntax error, unexpected '$result' (T_VARIABLE)
+in APPPATH/Controllers/Requisition.php on line 53.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('/var/www/html/app/Controllers/Requisition.php')
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Requisition')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Requisition')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Requisition')
+ 5 SYSTEMPATH/CodeIgniter.php(890): class_exists('\\App\\Controllers\\Requisition', true)
+ 6 SYSTEMPATH/CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:58:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-10-18 11:58:15 --> syntax error, unexpected '$result' (T_VARIABLE)
+in APPPATH/Controllers/Requisition.php on line 53.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('/var/www/html/app/Controllers/Requisition.php')
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Requisition')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Requisition')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Requisition')
+ 5 SYSTEMPATH/CodeIgniter.php(890): class_exists('\\App\\Controllers\\Requisition', true)
+ 6 SYSTEMPATH/CodeIgniter.php(484): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-10-18 11:58:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 11:58:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 12:01:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 12:01:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 12:01:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-10-18 12:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-10-18 12:01:50 --> mysqli_sql_exception: Column 'id' in order clause is ambiguous in /var/www/html/system/Database/MySQLi/Connection.php:295
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(295): mysqli->query('SELECT `requisi...', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `requisi...')
+#2 /var/www/html/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `requisi...')
+#3 /var/www/html/system/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `requisi...', Array, false)
+#4 /var/www/html/app/Controllers/Requisition.php(53): CodeIgniter\Database\BaseBuilder->get()
+#5 /var/www/html/system/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+#6 /var/www/html/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+#7 /var/www/html/system/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /var/www/html/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-10-18 12:01:50 --> Column 'id' in order clause is ambiguous
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 295.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(295): mysqli->query('SELECT `requisition`.*, `projects`.*
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`
+ORDER BY `id` DESC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `requisition`.*, `projects`.*
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`
+ORDER BY `id` DESC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `requisition`.*, `projects`.*
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`
+ORDER BY `id` DESC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT `requisition`.*, `projects`.*
+FROM `requisition`
+INNER JOIN `projects` ON `projects`.`id` = `requisition`.`project_id`
+ORDER BY `id` DESC', [], false)
+ 5 APPPATH/Controllers/Requisition.php(53): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\Requisition->getAll()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Requisition))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

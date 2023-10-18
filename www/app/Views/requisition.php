@@ -43,14 +43,13 @@
 						<thead>
 							<tr>
 								<th>Id</th>
-								<th>Project id</th>
+								<th>Project Name</th>
 								<th>Requested amount</th>
 								<th>Submit date time</th>
 								<th>Recieved amount</th>
 								<th>Recieve date time</th>
 								<th>Status</th>
-								<th>Comment</th>
-
+								<th>Comment</th>								
 								<th></th>
 							</tr>
 						</thead>
