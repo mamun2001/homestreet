@@ -1,105 +1,119 @@
-<?php 
+<?php
 namespace App\Controllers;
+
 use App\Models\SummaryentryModel;
 use App\Models\UserprojectsModel;
 use App\Models\VouchersModel;
 
 class UploadVoucher extends BaseController
 {
-	public function index($id=0)
+	public function index($id = 0)
 	{
-		// $data['data'] = array();		
-		// $subcontractorsModel = new SubcontractorsModel();
-		// $subcontractorfilesModel = new subcontractorfilesModel();				
-		// $data['data'] = $subcontractorsModel->where('id' ,$id)->first();
-		// $data['files'] = $subcontractorfilesModel->where('id' ,$id)->first();
-		// return view('upload_form', $data);
+		// $db = \Config\Database::connect();
+		// $builder = $db->table('daily_expense_summary d');
+		// $builder->select('d.id,p.project_name,u.full_name,d.amount,d.date_time,d.comment');
+		// $builder->join('projects p', 'p.id = d.project_id', 'inner');
+		// $builder->join('tbl_user u', 'u.id = d.user_id', 'inner');
+		// $result = $builder->orderBy('d.id', 'desc')->get()->getResult();
+		// print_r($result);
+
 		return view('summary_entry');
 	}
 
 	public function doupload()
 	{
-        $filesUploaded = 0;
-		//$subcontractorid = $this->request->getPost('id');
+		$filesUploaded = 0;		
 		$userProjectsModel = new userProjectsModel();
 		$data = $userProjectsModel->where('userid', session()->get('user_id'))->first();
 		$amount = $this->request->getPost('amount');
-		
-		if($files = $this->request->getFiles())
-		{
+
+		if ($files = $this->request->getFiles()) {
 			$data = [
-				'project_id' =>  $data['projectid'],
+				'project_id' => $data['projectid'],
 				'user_id' => session()->get('user_id'),
 				'amount' => $amount,
 				'date_time' => date("Y-m-d H:i:s"),
 				'comment' => ""
 			];
 
-			 $fileUploadModel = new SummaryentryModel();
-			 $fileUploadModel->save($data);
-			 $summery_id = $fileUploadModel->insertID; 
+			$fileUploadModel = new SummaryentryModel();
+			$fileUploadModel->save($data);
+			$summery_id = $fileUploadModel->insertID;
 
-			foreach($files['files'] as $file)
-			{
-				if ($file->isValid() && ! $file->hasMoved())
-				{
+			foreach ($files['files'] as $file) {
+				if ($file->isValid() && !$file->hasMoved()) {
 					$newName = $file->getRandomName();
-					$file->move('../public/uploads/voucher', $newName);    
+					$file->move('../public/uploads/voucher', $newName);
 					$data1 = [
-						'summery_id' =>  $summery_id,						
-						'file_path' => "uploads/voucher/".$newName					
+						'summery_id' => $summery_id,
+						'file_path' => "uploads/voucher/" . $newName
 					];
 
 					$VouchersModel = new VouchersModel();
 					$VouchersModel->save($data1);
-                    $filesUploaded++;
+					$filesUploaded++;
 				}
 			}
-            
-			print $filesUploaded." Voucher(s) Uploaded";            
+			$response['success'] = true;
+            $response['messages'] = $filesUploaded . " Voucher(s) Uploaded";
+
+			//print $filesUploaded . " Voucher(s) Uploaded";
+
+		} else {
+			 $response['success'] = false;
+             $response['messages'] = "There is no file selected";
+
+			//print "There is no file selected";
 		}
-		else {
-			print "There is no file selected";            
-		}
+
+		return $this->response->setJSON($response);
 	}
-	
+
 	public function getOne()
 	{
- 		$response = array();
+		$response = array();
 		$subcontractorfilesModel = new subcontractorfilesModel();
 		$id = $this->request->getPost('id');
-		
-		if ($this->validation->check($id, 'required|numeric')) {			
-			$data = $subcontractorfilesModel->where('subcontractorid' ,$id)->findAll();			
-			return $this->response->setJSON($data);					
-		} else {			
+
+		if ($this->validation->check($id, 'required|numeric')) {
+			$data = $subcontractorfilesModel->where('subcontractorid', $id)->findAll();
+			return $this->response->setJSON($data);
+		} else {
 			throw new \CodeIgniter\Exceptions\PageNotFoundException();
-		}			
-	}	
-	
+		}
+	}
+
 	public function getAll()
 	{
- 		$response = array();			
-	    $data['data'] = array(); 
-		$result = $this->subcontractorfilesModel->select('id, subcontractorid, title, filepath, filetype')->findAll();
-		
-		foreach ($result as $key => $value) {							
+		$response = array();
+		$data['data'] = array();
+
+		$db = \Config\Database::connect();
+		$builder = $db->table('daily_expense_summary d');
+		$builder->select('d.id,p.project_name,u.full_name,d.amount,d.date_time,d.comment');
+		$builder->join('projects p', 'p.id = d.project_id', 'inner');
+		$builder->join('tbl_user u', 'u.id = d.user_id', 'inner');
+		$result = $builder->orderBy('d.id', 'desc')->get()->getResult();
+
+
+		foreach ($result as $key => $value) {
 			$ops = '<div class="btn-group">';
-			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit('. $value->id .')"><i class="fa fa-edit"></i></button>';
-			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove('. $value->id .')"><i class="fa fa-trash"></i></button>';
+			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
 			$ops .= '</div>';
-			
+
 			$data['data'][$key] = array(
 				$value->id,
-				$value->subcontractorid,
-				$value->title,
-				$value->filepath,
-				$value->filetype,
+				$value->project_name,
+				$value->full_name,
+				$value->amount,
+				$value->date_time,
+				$value->comment,
 
 				$ops,
 			);
-		} 
+		}
 
-		return $this->response->setJSON($data);		
+		return $this->response->setJSON($data);
 	}
 }

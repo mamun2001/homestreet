@@ -3,8 +3,9 @@
     "",
     "\\www",
     "\\www\\app",
-    "\\www\\app\\Controllers"
+    "\\www\\app\\Controllers",
+    "\\www\\app\\Views"
   ],
-  "SelectedNode": "\\www\\app\\Controllers\\Deed.php",
+  "SelectedNode": "\\www\\app\\Views\\requisition.php",
   "PreviewInSolutionExplorer": false
 }

@@ -16,40 +16,15 @@
 		</div>
 
 		<div class="card-body">
-			<!-- <table class="table table-bordered col-md-5">
-				<tr>
-					<th width="150">Name</th>
-					<td>
-						<?//= //$data->name ?>
-					</td>
-				</tr>
-				<tr>
-					<th>Mobile</th>
-					<td>
-						<?//= $data->mobile ?>
-					</td>
-				</tr>
-				<tr>
-					<th>Address</th>
-					<td>
-						<?//= $data->address ?>
-					</td>
-				</tr>
-			</table> -->
-
 			<div class="container border mt-3 mb-3">
 				<form id="upload-form" class="row mt-3">
-					<!-- <input type="hidden" name="subcontractorid" id="subcontractorid" value="<?//= $data->id ?>"> -->
-
 					<div class="col-md-4">
 						<input type="text" id="amount" name="amount" class="form-control" placeholder="Amount"
 							maxlength="250" required>
 					</div>
-
 					<div class="col-md-4">
 						<input type="file" id="files" name="files[]" class="form-control" multiple="multiple">
 					</div>
-
 					<div class="form-group text-center mb-3">
 						<button class="btn btn-success" id="upload_btn" type="button">Upload</button>
 					</div>
@@ -59,9 +34,12 @@
 			<table id="data_table" class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>Title</th>
-						<th>File Path</th>
-						<th>File Type</th>
+						<th>ID</th>
+						<th>Project</th>
+						<th>User Name</th>
+						<th>Amount</th>
+						<th>Date</th>
+						<th>Comment</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -76,12 +54,12 @@
 			"paging": true,
 			"lengthChange": false,
 			"searching": true,
-			"ordering": true,
+			"ordering": false,
 			"info": true,
 			"autoWidth": false,
 			"responsive": true,
 			"ajax": {
-				"url": '<?php echo base_url('Subcontractorfiles/getAll') ?>',
+				"url": '<?php echo base_url('UploadVoucher/getAll') ?>',
 				"type": "POST",
 				"data": {
 					"id": $('#subcontractorid').val()
@@ -110,10 +88,11 @@
 				type: 'post',
 				success: function (response) {
 					$("#upload-form")[0].reset();
+					alert(response.messages);					
 					Swal.fire({
 						position: 'bottom-end',
 						icon: 'success',
-						title: response,
+						title: response.messages,
 						showConfirmButton: false,
 						timer: 1500
 					}).then(function () {
@@ -121,7 +100,13 @@
 					})
 				},
 				error: function (response) {
-					$('#message').html(response);
+					Swal.fire({
+						position: 'bottom-end',
+						icon: 'error',
+						title: response.messages,
+						showConfirmButton: false,
+						timer: 1500
+					});
 				}
 			});
 		});
