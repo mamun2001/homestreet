@@ -93,6 +93,16 @@
         </li>
 
         <li class="nav-item">
+            <a href="<?= route_to('projectfiles'); ?>"
+                class="nav-link <?= (current_url() == base_url('projectfiles')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Project Files
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a href="<?= route_to('subcontract'); ?>"
                 class="nav-link <?= (current_url() == base_url('subcontract')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>

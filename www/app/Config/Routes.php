@@ -133,11 +133,21 @@ $routes->get('upload/(:any)', 'Upload::index/$1', ['filter' => 'authGuard']);
 $routes->post('doupload', 'Upload::doupload', ['filter' => 'authGuard']);
 $routes->post('upload/getOne', 'Upload::getOne', ['filter' => 'authGuard']);
 
+$routes->get('projectfilesupload', 'ProjectFilesUpload::index', ['filter' => 'authGuard']);
+$routes->post('projectfilesupload', 'ProjectFilesUpload::index', ['filter' => 'authGuard']);
+$routes->get('projectfilesupload/(:any)', 'ProjectFilesUpload::index/$1', ['filter' => 'authGuard']);
+$routes->post('projectfilesdoupload', 'ProjectFilesUpload::doupload', ['filter' => 'authGuard']);
+$routes->post('projectfilesupload/getOne', 'ProjectFilesUpload::getOne', ['filter' => 'authGuard']);
+
 $routes->get('voucher', 'UploadVoucher::index', ['filter' => 'authGuard']);
 $routes->post('voucher', 'UploadVoucher::index', ['filter' => 'authGuard']);
 $routes->get('voucher/(:any)', 'UploadVoucher::index/$1', ['filter' => 'authGuard']);
 $routes->post('voucherupload', 'UploadVoucher::doupload', ['filter' => 'authGuard']);
 $routes->post('voucher/getOne', 'UploadVoucher::getOne', ['filter' => 'authGuard']);
+
+$routes->get('projectfiles', 'ProjectFiles::index', ['filter' => 'authGuard']);
+$routes->post('voucher', 'ProjectFiles::index', ['filter' => 'authGuard']);
+
 
 $routes->get('/', 'Login::index');
 $routes->post('save', 'Login::save');
