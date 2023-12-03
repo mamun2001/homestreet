@@ -1,0 +1,190 @@
+INFO - 2023-12-03 15:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:20:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:20:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:20:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:20:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:21:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:21:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:21:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:21:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:21:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:21:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:26:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:26:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:31:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:31:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:34:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:34:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 15:34:32 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(15): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('11')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 15:34:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:34:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:39:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:39:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:39:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 15:39:47 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(25): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('11')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 15:40:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:40:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:41:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:41:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:41:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:46:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:47:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 15:47:39 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(35): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('11')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 15:49:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 15:49:52 --> Undefined index: project_name
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: project_name', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(35): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('11')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 15:52:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 15:52:00 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(36): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('11')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 15:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 15:52:37 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(36): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('11')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 15:52:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:52:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:52:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 15:52:57 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(36): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('11')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 15:54:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 15:54:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 16:04:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 16:05:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 16:05:01 --> Trying to get property 'id' of non-object
+in APPPATH/Controllers/ProjectFiles.php on line 62.
+ 1 APPPATH/Controllers/ProjectFiles.php(62): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'id\' of non-object', '/var/www/html/app/Controllers/ProjectFiles.php', 62, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFiles->getAll()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFiles))
+ 4 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 16:05:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 16:05:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 16:05:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 16:08:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-12-03 16:08:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 16:08:41 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(37): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('1')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 16:09:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 16:09:15 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(37): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('1')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 16:10:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 16:10:10 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(37): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('1')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 16:11:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 16:11:10 --> Undefined index: project_name
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index: project_name', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(37): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('1')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-12-03 16:12:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-12-03 16:12:06 --> Trying to get property 'project_name' of non-object
+in APPPATH/Views/project_files_upload_form.php on line 23.
+ 1 APPPATH/Views/project_files_upload_form.php(23): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'project_name\' of non-object', '/var/www/html/app/Views/project_files_upload_form.php', 23, [...])
+ 2 SYSTEMPATH/View/View.php(224): include('/var/www/html/app/Views/project_files_upload_form.php')
+ 3 SYSTEMPATH/View/View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1180): CodeIgniter\View\View->render('project_files_upload_form', [], true)
+ 5 APPPATH/Controllers/ProjectFilesUpload.php(37): view('project_files_upload_form', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(932): App\Controllers\ProjectFilesUpload->index('1')
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProjectFilesUpload))
+ 8 SYSTEMPATH/CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

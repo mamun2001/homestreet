@@ -28,7 +28,7 @@
 					<td>
 						<?= $data->district ?>
 					</td>
-				</tr>				
+				</tr>
 			</table>
 
 			<div class="container border mt-3 mb-3">
