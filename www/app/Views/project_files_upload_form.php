@@ -20,20 +20,20 @@
 				<tr>
 					<th width="150">Project</th>
 					<td>
-						<?= $data->project_name ?>
+						<?= $data[0]->project_name ?>
 					</td>
 				</tr>
 				<tr>
 					<th>Location</th>
 					<td>
-						<?= $data->district ?>
+						<?= $data[0]->district ?>
 					</td>
 				</tr>
 			</table>
 
 			<div class="container border mt-3 mb-3">
 				<form id="upload-form" class="row mt-3">
-					<input type="hidden" name="projectid" id="projectid" value="<?= $data->id ?>">
+					<input type="hidden" name="projectid" id="projectid" value="<?= $data[0]->id ?>">
 
 					<div class="col-md-4">
 						<input type="text" id="title" name="title" class="form-control" placeholder="Title"

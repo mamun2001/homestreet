@@ -9,8 +9,6 @@ class ProjectFilesUpload extends BaseController
 	public function index($id = 0)
 	{
 		$data['data'] = array();
-		// $projectsModel = new ProjectsModel();
-		// $projectFilesModel = new ProjectFilesModel();
 
 		$db = \Config\Database::connect();
 		// $builder = $db->table('projects');
@@ -20,20 +18,10 @@ class ProjectFilesUpload extends BaseController
 		//$result = $builder->orderBy('projects.id', 'asc')->get()->getResult();
 
 		$query = $db->query("select projects.id, projects.project_name,districts.district from projects INNER JOIN districts on districts.id=projects.project_location where projects.id=" . $id);
-		$data['data'] = $query->getResultArray();
+		$data['data'] = $query->getResult();
 
-		// foreach ($results as $key => $value) {
+		// print_r($data['data']);
 
-		// 	$data['data'][$key] = array(
-		// 		$value->id,
-		// 		$value->project_name,
-		// 		$value->district,
-		// 	);
-		// }
-		print_r($data['data']);
-
-		// $data['data'] = $projectsModel->where('id', $id)->first();
-		// $data['files'] = $projectFilesModel->where('project_id', $id)->first();
 		return view('project_files_upload_form', $data);
 	}
 
