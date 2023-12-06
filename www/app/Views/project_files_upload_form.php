@@ -9,7 +9,7 @@
 					<h3 class="card-title">Project Files</h3>
 				</div>
 				<div class="col-md-4">
-					<a class="btn btn-block btn-success" href="<?= route_to('subcontractor'); ?>"
+					<a class="btn btn-block btn-success" href="<?= route_to('projectfiles'); ?>"
 						title="Go Back To List">Go Back To List</a>
 				</div>
 			</div>
@@ -55,7 +55,6 @@
 					<tr>
 						<th>Title</th>
 						<th>File Path</th>
-						<th>File Type</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -75,10 +74,10 @@
 			"autoWidth": false,
 			"responsive": true,
 			"ajax": {
-				"url": '<?php echo base_url('Subcontractorfiles/getAll') ?>',
+				"url": '<?php echo base_url('ProjectFilesUpload/getAll') ?>',
 				"type": "POST",
 				"data": {
-					"id": $('#subcontractorid').val()
+					"id": $('#projectid').val()
 				},
 				"dataType": "json",
 				async: "true"
@@ -93,10 +92,10 @@
 			for (var i = 0; i < totalFilesLen; i++) {
 				formData.append("files[]", document.getElementById('files').files[i]);
 			}
-			formData.append("id", $('#subcontractorid').val());
+			formData.append("id", $('#projectid').val());
 			formData.append("title", $('#title').val());
 			$.ajax({
-				url: '<?php echo base_url('upload/doupload'); ?>',
+				url: '<?php echo base_url('projectfilesupload/doupload'); ?>',
 				dataType: 'text',
 				cache: false,
 				contentType: false,
@@ -135,7 +134,7 @@
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					url: '<?php echo base_url('Subcontractorfiles/remove') ?>',
+					url: '<?php echo base_url('ProjectFiles/remove') ?>',
 					type: 'post',
 					data: {
 						id: id

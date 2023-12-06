@@ -183,8 +183,9 @@ class ProjectFiles extends BaseController
 	public function remove()
 	{
 		$response = array();
-
 		$id = $this->request->getPost('id');
+		$data = $this->projectFilesModel->find($id);
+		$file = $data->filepath;
 
 		if (!$this->validation->check($id, 'required|numeric')) {
 
@@ -193,7 +194,9 @@ class ProjectFiles extends BaseController
 		} else {
 
 			if ($this->projectFilesModel->where('id', $id)->delete()) {
-
+				if (file_exists($file)) {
+					unlink($file);
+				}
 				$response['success'] = true;
 				$response['messages'] = 'Deletion succeeded';
 

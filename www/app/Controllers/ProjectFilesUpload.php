@@ -4,8 +4,19 @@ namespace App\Controllers;
 use App\Models\ProjectsModel;
 use App\Models\ProjectFilesModel;
 
+
+
 class ProjectFilesUpload extends BaseController
 {
+	protected $projectfilesModel;
+	protected $validation;
+
+	public function __construct()
+	{
+		$this->projectfilesModel = new ProjectFilesModel();
+		$this->validation = \Config\Services::validation();
+	}
+
 	public function index($id = 0)
 	{
 		$data['data'] = array();
@@ -28,22 +39,22 @@ class ProjectFilesUpload extends BaseController
 	public function doupload()
 	{
 		$filesUploaded = 0;
-		$subcontractorid = $this->request->getPost('id');
+		$projectid = $this->request->getPost('id');
 		$title = $this->request->getPost('title');
 
 		if ($files = $this->request->getFiles()) {
 			foreach ($files['files'] as $file) {
 				if ($file->isValid() && !$file->hasMoved()) {
 					$newName = $file->getRandomName();
-					$file->move('../public/uploads', $newName);
+					$file->move('../public/uploads/projects/', $projectid . "_" . $newName);
 
 					$data = [
-						'subcontractorid' => $subcontractorid,
+						'project_id' => $projectid,
 						'title' => $title,
-						'filepath' => "uploads/" . $newName,
-						'filetype' => $file->getClientExtension()
+						'filepath' => "uploads/projects/" . $projectid . "_" . $newName,
+						'comment' => $file->getClientExtension()
 					];
-					$fileUploadModel = new subcontractorfilesModel();
+					$fileUploadModel = new ProjectFilesModel();
 					$fileUploadModel->save($data);
 
 					$filesUploaded++;
@@ -59,7 +70,7 @@ class ProjectFilesUpload extends BaseController
 	public function getOne()
 	{
 		$response = array();
-		$subcontractorfilesModel = new subcontractorfilesModel();
+		$subcontractorfilesModel = new ProjectFilesModel();
 		$id = $this->request->getPost('id');
 
 		if ($this->validation->check($id, 'required|numeric')) {
@@ -74,20 +85,18 @@ class ProjectFilesUpload extends BaseController
 	{
 		$response = array();
 		$data['data'] = array();
-		$result = $this->subcontractorfilesModel->select('id, subcontractorid, title, filepath, filetype')->findAll();
+		$id = $this->request->getPost('id');
+		$result = $this->projectfilesModel->where('project_id', $id)->findAll();
 
 		foreach ($result as $key => $value) {
 			$ops = '<div class="btn-group">';
-			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+			$ops .= '	<a class="btn btn-sm btn-warning" target="_blank" href="' . base_url($value->filepath) . '"><i class="fa fa-eye"></i></a>';
 			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
 			$ops .= '</div>';
 
 			$data['data'][$key] = array(
-				$value->id,
-				$value->subcontractorid,
 				$value->title,
 				$value->filepath,
-				$value->filetype,
 
 				$ops,
 			);
