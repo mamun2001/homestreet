@@ -4,12 +4,17 @@ namespace App\Controllers;
 use App\Models\SummaryentryModel;
 use App\Models\UserprojectsModel;
 use App\Models\VouchersModel;
+use App\Models\TmpexpensedetailModel;
 
 class UploadVoucher extends BaseController
 {
 	public function index($id = 0)
 	{
-		// $db = \Config\Database::connect();
+		$data = [
+			'controller' => 'Tmpexpensedetail',
+			'title' => 'UploadVoucher'
+		];
+		$db = \Config\Database::connect();
 		// $builder = $db->table('daily_expense_summary d');
 		// $builder->select('d.id,p.project_name,u.full_name,d.amount,d.date_time,d.comment');
 		// $builder->join('projects p', 'p.id = d.project_id', 'inner');
@@ -17,12 +22,63 @@ class UploadVoucher extends BaseController
 		// $result = $builder->orderBy('d.id', 'desc')->get()->getResult();
 		// print_r($result);
 
-		return view('summary_entry');
+		// return view('summary_entry');
+
+		//Heads
+		$builder = $db->table('expense_heads');
+		$result = $builder->get()->getResult();
+		foreach ($result as $key => $value) {
+			$data['heads'][$value->id] = $value->head;
+		}
+
+		//Items
+		$builder = $db->table('items');
+		$result = $builder->get()->getResult();
+		foreach ($result as $key => $value) {
+			$data['items'][$value->id] = $value->item_name;
+		}
+
+		//Category
+		$builder = $db->table('category');
+		$result = $builder->get()->getResult();
+		foreach ($result as $key => $value) {
+			$data['category'][$value->id] = $value->category;
+		}
+
+		//Brand
+		$builder = $db->table('brands');
+		$result = $builder->get()->getResult();
+		foreach ($result as $key => $value) {
+			$data['brands'][$value->id] = $value->brand;
+		}
+
+		//Model
+		$builder = $db->table('models');
+		$result = $builder->get()->getResult();
+		foreach ($result as $key => $value) {
+			$data['models'][$value->id] = $value->model;
+		}
+
+		//Size
+		$builder = $db->table('sizes');
+		$result = $builder->get()->getResult();
+		foreach ($result as $key => $value) {
+			$data['sizes'][$value->id] = $value->size;
+		}
+
+		//Unit
+		$builder = $db->table('units');
+		$result = $builder->get()->getResult();
+		foreach ($result as $key => $value) {
+			$data['units'][$value->id] = $value->unit_name;
+		}
+
+		return view('tmpexpensedetail', $data);
 	}
 
 	public function doupload()
 	{
-		$filesUploaded = 0;		
+		$filesUploaded = 0;
 		$userProjectsModel = new userProjectsModel();
 		$data = $userProjectsModel->where('userid', session()->get('user_id'))->first();
 		$amount = $this->request->getPost('amount');
@@ -55,13 +111,13 @@ class UploadVoucher extends BaseController
 				}
 			}
 			$response['success'] = true;
-            $response['messages'] = $filesUploaded . " Voucher(s) Uploaded";
+			$response['messages'] = $filesUploaded . " Voucher(s) Uploaded";
 
 			//print $filesUploaded . " Voucher(s) Uploaded";
 
 		} else {
-			 $response['success'] = false;
-             $response['messages'] = "There is no file selected";
+			$response['success'] = false;
+			$response['messages'] = "There is no file selected";
 
 			//print "There is no file selected";
 		}
