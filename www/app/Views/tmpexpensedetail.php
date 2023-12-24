@@ -20,7 +20,7 @@
         <!-- /.card-header -->
         <div class="card-body">
           <div class="row">
-            <div class="form-group ml-2">
+            <div class="form-group ml-1">
               <select name="heads" id="heads" class="form-control" style="width:200px">
                 <option value="0">-- Head --</option>
                 <?php foreach ($heads as $key => $value) {
@@ -28,7 +28,7 @@
                 } ?>
               </select>
             </div>&nbsp;
-            <div class="form-group ml-2">
+            <div class="form-group ml-1">
               <select name="items" id="items" class="form-control" style="width:200px">
                 <option value="0">-- Item --</option>
                 <?php foreach ($items as $key => $value) {
@@ -36,8 +36,8 @@
                 } ?>
               </select>
             </div>&nbsp;
-            <div class="form-group ml-2">
-              <select name="category" id="category" class="form-control" style="width:200px">
+            <div class="form-group ml-1">
+              <select name="category" id="category" class="form-control" style="width:190px">
                 <option value="0">-- Category --</option>
                 <?php foreach ($category as $key => $value) {
                   echo "<option value='" . $key . "'>" . $value . "</option>";
@@ -45,39 +45,49 @@
               </select>
             </div>&nbsp;
             <div class="form-group ml-2">
-              <select name="brands" id="brands" class="form-control" style="width:200px">
+              <select name="brands" id="brands" class="form-control" style="width:190px">
                 <option value="0">-- Brand --</option>
                 <?php foreach ($brands as $key => $value) {
                   echo "<option value='" . $key . "'>" . $value . "</option>";
                 } ?>
               </select>
             </div>&nbsp;
-            <div class="form-group ml-2">
-              <select name="models" id="models" class="form-control" style="width:200px">
+            <div class="form-group ml-1">
+              <select name="models" id="models" class="form-control" style="width:100px">
                 <option value="0">-- Model --</option>
                 <?php foreach ($models as $key => $value) {
                   echo "<option value='" . $key . "'>" . $value . "</option>";
                 } ?>
               </select>
             </div>&nbsp;
-            <div class="form-group ml-2">
-              <select name="sizes" id="sizes" class="form-control" style="width:200px">
+            <div class="form-group ml-1">
+              <select name="sizes" id="sizes" class="form-control" style="width:100px">
                 <option value="0">-- Size --</option>
                 <?php foreach ($sizes as $key => $value) {
                   echo "<option value='" . $key . "'>" . $value . "</option>";
                 } ?>
               </select>
             </div>&nbsp;
-            <div class="form-group ml-2">
-              <select name="units" id="units" class="form-control" style="width:200px">
+            <div class="form-group ml-1">
+              <select name="units" id="units" class="form-control" style="width:100px">
                 <option value="0">-- Unit --</option>
                 <?php foreach ($units as $key => $value) {
                   echo "<option value='" . $key . "'>" . $value . "</option>";
                 } ?>
               </select>
             </div>&nbsp;
+
+            <input type="text" class="form-control" style="width:100px"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+              placeholder="Rate" id="rate" />&nbsp;
+            <input type="text" class="form-control" style="width:75px"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Qty"
+              id="qty" />&nbsp;
+            <input type="text" class="form-control" style="width:100px"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+              placeholder="Amount" id="amount" />
             <div class="col-md-1">
-              <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"> <i
+              <button type="button" class="btn btn-block btn-success" onclick="tmpAdd()" title="Add"> <i
                   class="fa fa-plus"></i> Add</button>
             </div>
           </div>
@@ -335,6 +345,77 @@
       }
     });
   });
+
+  // $('#calculate').on('click', function () {
+  //   if ($('#percent').val() != '') {
+  //     CalculateFormula();
+  //   } else {
+  //     alert("Percent can not be null");
+  //     // alert($('#ingre').val());
+  //   }
+  // });
+
+  function tmpAdd() {
+    datatable = $("#data_table").DataTable();
+
+    expheadid = parseInt($('#heads').val());
+    itemid = parseInt($('#items').val());
+
+    console.log($('#heads').val());
+    console.log($('#items').val());
+    console.log($('#category').val());
+    console.log($('#brands').val());
+    console.log($('#models').val());
+    console.log($('#sizes').val());
+    console.log($('#units').val());
+    console.log($('#rate').val());
+    console.log($('#qty').val());
+    console.log($('#amount').val());
+
+    if ($('#rate').val() == 0 || $('#qty').val() == 0 || $('#amount').val() == 0) {
+      alert("Rate, Quantity or Amount Cannot be zero");
+      return 0;
+    }
+
+    if (expheadid == 0 || itemid == 0) {
+      alert("Select Head and Item");
+    } else {
+      $.ajax({
+        url: "<?php echo base_url($controller . '/add') ?>",
+        dataType: 'JSON',
+        method: 'POST',
+        data: {
+          'head_id': $('#heads').val(),
+          'item_id': $('#items').val(),
+          'category_id': $('#category').val(),
+          'brand_id': $('#brands').val(),
+          'model_id': $('#models').val(),
+          'size_id': $('#sizes').val(),
+          'unit_id': $('#units').val(),
+          'rate': $('#rate').val(),
+          'qty': $('#qty').val(),
+          'amount': $('#amount').val()
+        },
+        success: function (data_return) {
+          //console.log(data_return['data']);
+          datatable.clear().rows.add(data_return['data']).draw();
+
+          //Ratios
+          // $("#CN").text(data_return['cn']);
+          // $("#CN_std").text(data_return['std']['cn']);
+
+          // $("#ADCAsh").text(data_return['']);
+          // $("#ADCAsh_std").text(data_return['std']['']);					
+
+          //Total percet
+          // $("#ttlPercent").text(data_return['percent']);
+          // $('#percent').val('');
+        }
+      });
+    }
+
+  }
+
   function add() {
     // reset the form 
     $("#add-form")[0].reset();

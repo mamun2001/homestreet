@@ -73,6 +73,9 @@ class UploadVoucher extends BaseController
 			$data['units'][$value->id] = $value->unit_name;
 		}
 
+		$builder = $db->table('tmp_expense_detail');
+		$builder->truncate();
+
 		return view('tmpexpensedetail', $data);
 	}
 

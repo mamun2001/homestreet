@@ -15,199 +15,200 @@ use App\Models\StageWeightModel;
 use Exception;
 
 class Formulation extends BaseController
-{	
+{
     protected $specModel;
     protected $formulationModel;
     protected $ingredientsModel;
     protected $validation;
-    protected $speciesTypeModel;	
+    protected $speciesTypeModel;
     protected $speciesModel;
-	protected $productionSystemModel;
-	protected $stageWeightModel;
-	
-	public function __construct()
-	{
-        $this->specModel = new SpecModel();
-	    $this->formulationModel = new FormulationModel();
-        $this->ingredientsModel = new IngredientsModel();
-        $this->speciesTypeModel = new SpeciesTypeModel();		
-        $this->speciesModel = new SpeciesModel();
-		$this->productionSystemModel = new ProductionSystemModel();
-		$this->stageWeightModel = new StageWeightModel();
+    protected $productionSystemModel;
+    protected $stageWeightModel;
 
-       	$this->validation =  \Config\Services::validation();
-        $this->db = \Config\Database::connect();		
-	}
-	
-	public function index()
-	{
-	    $data = [
-                'controller'    	=> 'formulation',
-                'title'     		=> 'Formulation'				
-			];
+    public function __construct()
+    {
+        $this->specModel = new SpecModel();
+        $this->formulationModel = new FormulationModel();
+        $this->ingredientsModel = new IngredientsModel();
+        $this->speciesTypeModel = new SpeciesTypeModel();
+        $this->speciesModel = new SpeciesModel();
+        $this->productionSystemModel = new ProductionSystemModel();
+        $this->stageWeightModel = new StageWeightModel();
+
+        $this->validation = \Config\Services::validation();
+        $this->db = \Config\Database::connect();
+    }
+
+    public function index()
+    {
+        $data = [
+            'controller' => 'formulation',
+            'title' => 'Formulation'
+        ];
 
         //get species type
-		$result = $this->speciesTypeModel->select('id, species_type')->findAll();		
-		foreach ($result as $key => $value) {		
-			$data['species_type'][$value->id] = $value->species_type;
-		}
-        
+        $result = $this->speciesTypeModel->select('id, species_type')->findAll();
+        foreach ($result as $key => $value) {
+            $data['species_type'][$value->id] = $value->species_type;
+        }
+
         //get species
-		$result = $this->speciesModel->select('id, species')->findAll();		
-		foreach ($result as $key => $value) {		
-			$data['species'][$value->id] = $value->species;
-		}
-		
-		//get production system
-		$result = $this->productionSystemModel->select('id, production_system')->findAll();		
-		foreach ($result as $key => $value) {		
-			$data['production_system'][$value->id] = $value->production_system;
-		}
-		
-		//get stage weight
-		$result = $this->stageWeightModel->select('id, stage_weight')->findAll();		
-		foreach ($result as $key => $value) {		
-			$data['stage_weight'][$value->id] = $value->stage_weight;
-		}
+        $result = $this->speciesModel->select('id, species')->findAll();
+        foreach ($result as $key => $value) {
+            $data['species'][$value->id] = $value->species;
+        }
+
+        //get production system
+        $result = $this->productionSystemModel->select('id, production_system')->findAll();
+        foreach ($result as $key => $value) {
+            $data['production_system'][$value->id] = $value->production_system;
+        }
+
+        //get stage weight
+        $result = $this->stageWeightModel->select('id, stage_weight')->findAll();
+        foreach ($result as $key => $value) {
+            $data['stage_weight'][$value->id] = $value->stage_weight;
+        }
 
         $result = $this->ingredientsModel->select('id, Ing_Descr_E')->findAll();
-        foreach ($result as $key => $value) {		
+        foreach ($result as $key => $value) {
             $data['ingredients'][$value->id] = $value->Ing_Descr_E;
         }
-		
+
         $builder = $this->db->table('temp');
         $builder->truncate();
 
-		return view('formulation', $data);			
-	}
+        return view('formulation', $data);
+    }
 
-    public function CalculateFormula(){
+    public function CalculateFormula()
+    {
         $response = array();
-		$data['data'] = array();
-				
-		$ingre = $this->request->getPost('ingre');				
-		$percent = $this->request->getPost('percent');
+        $data['data'] = array();
+
+        $ingre = $this->request->getPost('ingre');
+        $percent = $this->request->getPost('percent');
         $species_type = $this->request->getPost('species_type');
-        $species = $this->request->getPost('species');						
-		$production_system = $this->request->getPost('production_system');
-		$stage_weight = $this->request->getPost('stage_weight');
+        $species = $this->request->getPost('species');
+        $production_system = $this->request->getPost('production_system');
+        $stage_weight = $this->request->getPost('stage_weight');
 
         //get standard value from spec
-        $builder = $this->db->table('spec');		       
-		$builder = $builder->where(array(
-				'species_type' => $species_type,
-                'species' => $species,
-				'production_system' => $production_system,
-				'stage_weight' => $stage_weight				
-			));           
-		
-		$result = $builder->get()->getResult();
+        $builder = $this->db->table('spec');
+        $builder = $builder->where(array(
+            'species_type' => $species_type,
+            'species' => $species,
+            'production_system' => $production_system,
+            'stage_weight' => $stage_weight
+        ));
+
+        $result = $builder->get()->getResult();
 
         foreach ($result as $key => $value) {
             //Macro Nutrients
-            if($value->NutrSpecification=="Moisture"){
-                $data['std']['drymatter'] = ((100 - $value->Value) * 1000) / 100;                
+            if ($value->NutrSpecification == "Moisture") {
+                $data['std']['drymatter'] = ((100 - $value->Value) * 1000) / 100;
             }
-            if($value->NutrSpecification=="Crude Protein"){
-                $data['std']['crudeprotein'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Crude Protein") {
+                $data['std']['crudeprotein'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Crude Lipids"){
-                $data['std']['crudefat'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Crude Lipids") {
+                $data['std']['crudefat'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Ash"){
-                $data['std']['crudeash'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Ash") {
+                $data['std']['crudeash'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Crude Fibre"){
-                $data['std']['crudefiber'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Crude Fibre") {
+                $data['std']['crudefiber'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Dig GE (DE) - fish"){
-                $data['std']['grossenergy'] = number_format((($value->Value * 1000) / 100) * 0.004184,2);                
+            if ($value->NutrSpecification == "Dig GE (DE) - fish") {
+                $data['std']['grossenergy'] = number_format((($value->Value * 1000) / 100) * 0.004184, 2);
             }
-            if($value->NutrSpecification=="Starch"){
-                $data['std']['starch'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Starch") {
+                $data['std']['starch'] = ($value->Value * 1000) / 100;
             }
-                        
+
             //Fiber
-            if($value->NutrSpecification=="NDF"){
-                $data['std']['NDF'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "NDF") {
+                $data['std']['NDF'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="ADF"){
-                $data['std']['ADF'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "ADF") {
+                $data['std']['ADF'] = ($value->Value * 1000) / 100;
             }
 
             //Fattyacids
-            if($value->NutrSpecification=="Linoleic 18:2 n-6"){
-                $data['std']['linoleic'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Linoleic 18:2 n-6") {
+                $data['std']['linoleic'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Linolenic 18:3 n-3"){
-                $data['std']['linolenic'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Linolenic 18:3 n-3") {
+                $data['std']['linolenic'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="EPA 20:5 n-3"){
-                $data['std']['epa'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "EPA 20:5 n-3") {
+                $data['std']['epa'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Arachidonic 20:4 n-6"){
-                $data['std']['arachidonic'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Arachidonic 20:4 n-6") {
+                $data['std']['arachidonic'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="DHA 22:6 n-3"){
-                $data['std']['dha'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "DHA 22:6 n-3") {
+                $data['std']['dha'] = ($value->Value * 1000) / 100;
             }
 
             //Aminoacids
-            if($value->NutrSpecification=="Arginine"){
-                $data['std']['arginine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Arginine") {
+                $data['std']['arginine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Histidine"){
-                $data['std']['histidine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Histidine") {
+                $data['std']['histidine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Isoleucine"){
-                $data['std']['isoleucine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Isoleucine") {
+                $data['std']['isoleucine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Leucine"){
-                $data['std']['leucine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Leucine") {
+                $data['std']['leucine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Lysine"){
-                $data['std']['lysine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Lysine") {
+                $data['std']['lysine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Methionine"){
-                $data['std']['methionine'] = ($value->Value * 1000) / 100;                             
+            if ($value->NutrSpecification == "Methionine") {
+                $data['std']['methionine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Cystine"){
-                $data['std']['cystine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Cystine") {
+                $data['std']['cystine'] = ($value->Value * 1000) / 100;
             }
-            
-            $data['std']['methionine_cystine'] = (float)$data['std']['methionine'] + (float)$data['std']['cystine'];
 
-            if($value->NutrSpecification=="Phenylalanine"){
-                $data['std']['phenylalanine'] = ($value->Value * 1000) / 100;                
+            $data['std']['methionine_cystine'] = (float) $data['std']['methionine'] + (float) $data['std']['cystine'];
+
+            if ($value->NutrSpecification == "Phenylalanine") {
+                $data['std']['phenylalanine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Tryptophan"){
-                $data['std']['tryptophan'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Tryptophan") {
+                $data['std']['tryptophan'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Valine"){
-                $data['std']['valine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Valine") {
+                $data['std']['valine'] = ($value->Value * 1000) / 100;
             }
 
             //Vitamins & minerals
-            if($value->NutrSpecification=="Niacin-B3"){
-                $data['std']['niacinb3'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Niacin-B3") {
+                $data['std']['niacinb3'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Folic acid-B9"){
-                $data['std']['folicacidb9'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Folic acid-B9") {
+                $data['std']['folicacidb9'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Vitamin E"){
-                $data['std']['vitamine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin E") {
+                $data['std']['vitamine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Pantothenic Acid-B5"){
-                $data['std']['pantothenicacidb5'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Pantothenic Acid-B5") {
+                $data['std']['pantothenicacidb5'] = ($value->Value * 1000) / 100;
             }
             // if($value->NutrSpecification=="Vitamin B2"){
             //     $data['std']['Vitamin B2'] = ($value->Value * 1000) / 100;                
             // }
-            if($value->NutrSpecification=="Vitamin C"){
-                $data['std']['vitaminc'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin C") {
+                $data['std']['vitaminc'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Vitamin K"){
-                $data['std']['vitamink'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin K") {
+                $data['std']['vitamink'] = ($value->Value * 1000) / 100;
             }
             // if($value->NutrSpecification=="VITAMIN B1"){
             //     $data['std']['VITAMIN B1'] = ($value->Value * 1000) / 100;                
@@ -218,339 +219,339 @@ class Formulation extends BaseController
             // if($value->NutrSpecification=="VITAMIN D3"){
             //     $data['std']['VITAMIN D3'] = ($value->Value * 1000) / 100;                
             // }
-            if($value->NutrSpecification=="Vitamin A"){
-                $data['std']['vitamina'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin A") {
+                $data['std']['vitamina'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Vitamin B12"){
-                $data['std']['vitaminb12'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin B12") {
+                $data['std']['vitaminb12'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Biotin-B7"){
-                $data['std']['biotinb7'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Biotin-B7") {
+                $data['std']['biotinb7'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Iron"){
-                $data['std']['iron'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Iron") {
+                $data['std']['iron'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Copper"){
-                $data['std']['copper'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Copper") {
+                $data['std']['copper'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Zinc"){
-                $data['std']['zinc'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Zinc") {
+                $data['std']['zinc'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Inositol"){
-                $data['std']['inositol'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Inositol") {
+                $data['std']['inositol'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Selenium"){
-                $data['std']['selenium'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Selenium") {
+                $data['std']['selenium'] = ($value->Value * 1000) / 100;
             }
             // if($value->NutrSpecification=="Cobalt"){
             //     $data['std']['Cobalt'] = ($value->Value * 1000) / 100;                
             // }
-            if($value->NutrSpecification=="Iodine"){
-                $data['std']['iodine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Iodine") {
+                $data['std']['iodine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Manganese"){
-                $data['std']['manganese'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Manganese") {
+                $data['std']['manganese'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Calcium"){
-                $data['std']['calcium'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Calcium") {
+                $data['std']['calcium'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Phosphorus"){
-                $data['std']['phosphorus'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Phosphorus") {
+                $data['std']['phosphorus'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Potassium"){
-                $data['std']['Potassium'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Potassium") {
+                $data['std']['Potassium'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Sodium"){
-                $data['std']['sodium'] = ($value->Value * 1000) / 100;                
-            }			
-		}
+            if ($value->NutrSpecification == "Sodium") {
+                $data['std']['sodium'] = ($value->Value * 1000) / 100;
+            }
+        }
 
-        $data['std']['carbohydrate'] = number_format((float)$data['std']['drymatter'] - ((float)$data['std']['crudeprotein'] + (float)$data['std']['crudefat']),2);
-        $carbonstd = (((float)$data['std']['crudeprotein'] * 47)/100) + (((float)$data['std']['crudefat'] * 70)/100) + (((float)$data['std']['carbohydrate'] * 50)/100);
-        $nitrogenstd = ((float)$data['std']['crudeprotein'] * 16)/100;
-        try{
-            $data['std']['cn'] = number_format($carbonstd/$nitrogenstd,2);
-        }catch(\Exception $e){
+        $data['std']['carbohydrate'] = number_format((float) $data['std']['drymatter'] - ((float) $data['std']['crudeprotein'] + (float) $data['std']['crudefat']), 2);
+        $carbonstd = (((float) $data['std']['crudeprotein'] * 47) / 100) + (((float) $data['std']['crudefat'] * 70) / 100) + (((float) $data['std']['carbohydrate'] * 50) / 100);
+        $nitrogenstd = ((float) $data['std']['crudeprotein'] * 16) / 100;
+        try {
+            $data['std']['cn'] = number_format($carbonstd / $nitrogenstd, 2);
+        } catch (\Exception $e) {
             $data['std']['cn'] = 0;
-        }        
+        }
 
-		//get single ingredient	
-		$builder = $this->db->table('ingredients');		       
-		$builder = $builder->where(array(
-				'id' => $ingre
-			));		       
-        
-		$result = $builder->get()->getResult();
-        
-        foreach($result as $key => $value){        
+        //get single ingredient	
+        $builder = $this->db->table('ingredients');
+        $builder = $builder->where(array(
+            'id' => $ingre
+        ));
+
+        $result = $builder->get()->getResult();
+
+        foreach ($result as $key => $value) {
             //$fields['id'] = $this->request->getPost('id');
             $fields['Ing_Code'] = $value->Ing_Code;
             $fields['Ing_Descr_E'] = $value->Ing_Descr_E;
-            $fields['Dry_Matter'] = ($value->Dry_Matter * $percent)/100;
-            $fields['Moisture'] = ($value->Moisture * $percent)/100;
-            $fields['Crude_Protein'] = ($value->Crude_Protein * $percent)/100;
-            $fields['Crude_Lipids'] = ($value->Crude_Lipids * $percent)/100;
-            $fields['Crude_Fibre'] = ($value->Crude_Fibre * $percent)/100;
-            $fields['Ash'] = ($value->Ash * $percent)/100;
-            $fields['NFE'] = ($value->NFE * $percent)/100;
-            $fields['NDF'] = ($value->NDF * $percent)/100;
-            $fields['ADF'] = ($value->ADF * $percent)/100;
-            $fields['Total_CHO'] = ($value->Total_CHO * $percent)/100;
-            $fields['Starch'] = ($value->Starch * $percent)/100;
-            $fields['Sugars'] = ($value->Sugars * $percent)/100;
-            $fields['Gross_Energy_MJ'] = ($value->Gross_Energy_MJ * $percent)/100;
-            $fields['Gross_energy_Kcal'] = ($value->Gross_energy_Kcal * $percent)/100;
-            $fields['DE_Fish_Carni'] = ($value->DE_Fish_Carni * $percent)/100;
-            $fields['DE_Fish_Omni'] = ($value->DE_Fish_Omni * $percent)/100;
-            $fields['DE_Carp'] = ($value->DE_Carp * $percent)/100;
-            $fields['DE_Shrimp'] = ($value->DE_Shrimp * $percent)/100;
-            $fields['DE_Porcine'] = ($value->DE_Porcine * $percent)/100;
-            $fields['DE_Poultry'] = ($value->DE_Poultry * $percent)/100;
-            $fields['ME_Fish'] = ($value->ME_Fish * $percent)/100;
-            $fields['ME_Guelph_Fish_Carni'] = ($value->ME_Guelph_Fish_Carni * $percent)/100;
-            $fields['ME_Guelph_Fish_Omni'] = ($value->ME_Guelph_Fish_Omni * $percent)/100;
-            $fields['ME_Guelph_Carp'] = ($value->ME_Guelph_Carp * $percent)/100;
-            $fields['ME_Guelph_Shrimp'] = ($value->ME_Guelph_Shrimp * $percent)/100;
-            $fields['ME_Poultry'] = ($value->ME_Poultry * $percent)/100;
-            $fields['ME_Porcine'] = ($value->ME_Porcine * $percent)/100;
-            $fields['Arginine'] = ($value->Arginine * $percent)/100;
-            $fields['Histidine'] = ($value->Histidine * $percent)/100;
-            $fields['Isoleucine'] = ($value->Isoleucine * $percent)/100;
-            $fields['Leucine'] = ($value->Leucine * $percent)/100;
-            $fields['Lysine'] = ($value->Lysine * $percent)/100;
-            $fields['Methionine'] = ($value->Methionine * $percent)/100;
-            $fields['Phenylalanine'] = ($value->Phenylalanine * $percent)/100;
-            $fields['Threonine'] = ($value->Threonine * $percent)/100;
-            $fields['Tryptophan'] = ($value->Tryptophan * $percent)/100;
-            $fields['Valine'] = ($value->Valine * $percent)/100;
-            $fields['Cystine'] = ($value->Cystine * $percent)/100;
-            $fields['TSAA_Met_Cys'] = ($value->TSAA_Met_Cys * $percent)/100;
-            $fields['Tyrosine'] = ($value->Tyrosine * $percent)/100;
-            $fields['Phe_Tyr'] = ($value->Phe_Tyr * $percent)/100;
-            $fields['Glutamic'] = ($value->Glutamic * $percent)/100;
-            $fields['Aspartic'] = ($value->Aspartic * $percent)/100;
-            $fields['Glycine'] = ($value->Glycine * $percent)/100;
-            $fields['Serine'] = ($value->Serine * $percent)/100;
-            $fields['Alanine'] = ($value->Alanine * $percent)/100;
-            $fields['Sum_EAAs'] = ($value->Sum_EAAs * $percent)/100;
-            $fields['Sum_NEAAs'] = ($value->Sum_NEAAs * $percent)/100;
-            $fields['Taurine'] = ($value->Taurine * $percent)/100;
-            $fields['Arg_Coeff'] = ($value->Arg_Coeff * $percent)/100;
-            $fields['His_Coeff'] = ($value->His_Coeff * $percent)/100;
-            $fields['Ile_Coeff'] = ($value->Ile_Coeff * $percent)/100;
-            $fields['Leu_Coeff'] = ($value->Leu_Coeff * $percent)/100;
-            $fields['Lys_Coeff'] = ($value->Lys_Coeff * $percent)/100;
-            $fields['Met_Coeff'] = ($value->Met_Coeff * $percent)/100;
-            $fields['Phe_Coeff'] = ($value->Phe_Coeff * $percent)/100;
-            $fields['Thr_Coeff'] = ($value->Thr_Coeff * $percent)/100;
-            $fields['Trp_Coeff'] = ($value->Trp_Coeff * $percent)/100;
-            $fields['Val_Coeff'] = ($value->Val_Coeff * $percent)/100;
-            $fields['Dig_Arg_fish'] = ($value->Dig_Arg_fish * $percent)/100;
-            $fields['Dig_His_fish'] = ($value->Dig_His_fish * $percent)/100;
-            $fields['Dig_Ile_fish'] = ($value->Dig_Ile_fish * $percent)/100;
-            $fields['Dig_Leu_fish'] = ($value->Dig_Leu_fish * $percent)/100;
-            $fields['Dig_Lys_fish'] = ($value->Dig_Lys_fish * $percent)/100;
-            $fields['Dig_Met_fish'] = ($value->Dig_Met_fish * $percent)/100;
-            $fields['Dig_Phe_fish'] = ($value->Dig_Phe_fish * $percent)/100;
-            $fields['Dig_Thr_fish'] = ($value->Dig_Thr_fish * $percent)/100;
-            $fields['Dig_Trp_fish'] = ($value->Dig_Trp_fish * $percent)/100;
-            $fields['Dig_Val_fish'] = ($value->Dig_Val_fish * $percent)/100;
-            $fields['Dig_Cys_fish'] = ($value->Dig_Cys_fish * $percent)/100;
-            $fields['Dig_TSAA_Met_Cys'] = ($value->Dig_TSAA_Met_Cys * $percent)/100;
-            $fields['Dig_Tyr_fish'] = ($value->Dig_Tyr_fish * $percent)/100;
-            $fields['Calcium'] = ($value->Calcium * $percent)/100;
-            $fields['Phosphorus'] = ($value->Phosphorus * $percent)/100;
-            $fields['Ca_Coeff'] = ($value->Ca_Coeff * $percent)/100;
-            $fields['P_coeff'] = ($value->P_coeff * $percent)/100;
-            $fields['Phytate_P'] = ($value->Phytate_P * $percent)/100;
-            $fields['Bone_P'] = ($value->Bone_P * $percent)/100;
-            $fields['Cellular_P'] = ($value->Cellular_P * $percent)/100;
-            $fields['Monobasic_P'] = ($value->Monobasic_P * $percent)/100;
-            $fields['Dibasic_P'] = ($value->Dibasic_P * $percent)/100;
-            $fields['Tribasic_P'] = ($value->Tribasic_P * $percent)/100;
-            $fields['Dig_P_Carni'] = ($value->Dig_P_Carni * $percent)/100;
-            $fields['Dig_P_Omni'] = ($value->Dig_P_Omni * $percent)/100;
-            $fields['Dig_P_Carp'] = ($value->Dig_P_Carp * $percent)/100;
-            $fields['Dig_P_Shrimp'] = ($value->Dig_P_Shrimp * $percent)/100;
-            $fields['Sodium'] = ($value->Sodium * $percent)/100;
-            $fields['Chlorine'] = ($value->Chlorine * $percent)/100;
-            $fields['Potassium'] = ($value->Potassium * $percent)/100;
-            $fields['Magnesium'] = ($value->Magnesium * $percent)/100;
-            $fields['Sulfur'] = ($value->Sulfur * $percent)/100;
-            $fields['Copper'] = ($value->Copper * $percent)/100;
-            $fields['Iron'] = ($value->Iron * $percent)/100;
-            $fields['Manganese'] = ($value->Manganese * $percent)/100;
-            $fields['Selenium'] = ($value->Selenium * $percent)/100;
-            $fields['Zinc'] = ($value->Zinc * $percent)/100;
-            $fields['Iodine'] = ($value->Iodine * $percent)/100;
-            $fields['Cobalt'] = ($value->Cobalt * $percent)/100;
-            $fields['Biotin_B7'] = ($value->Biotin_B7 * $percent)/100;
-            $fields['Folic_acid_B9'] = ($value->folicAcidB9 * $percent)/100;
-            $fields['Niacin_B3'] = ($value->niacinB3 * $percent)/100;
-            $fields['Pantothenic_Acid_B5'] = ($value->pantothenicAcidB5 * $percent)/100;
-            $fields['Pyridoxine_B6'] = ($value->pyridoxineB6 * $percent)/100;
-            $fields['Riboflavin_B2'] = ($value->riboflavinB2 * $percent)/100;
-            $fields['Thiamin_B1'] = ($value->thiaminB1 * $percent)/100;
-            $fields['Vitamin_B12'] = ($value->vitaminB12 * $percent)/100;
-            $fields['Vitamin_C'] = ($value->vitaminC * $percent)/100;
-            $fields['Vitamin_A'] = ($value->vitaminA * $percent)/100;
-            $fields['Vitamin_D'] = ($value->vitaminD * $percent)/100;
-            $fields['Vitamin_E'] = ($value->vitaminE * $percent)/100;
-            $fields['Vitamin_K'] = ($value->vitaminK * $percent)/100;
-            $fields['Choline'] = ($value->choline * $percent)/100;
-            $fields['Inositol'] = ($value->inositol * $percent)/100;
-            $fields['Beta_Carotene'] = ($value->betaCarotene * $percent)/100;
-            $fields['Xanthophylls'] = ($value->xanthophylls * $percent)/100;
-            $fields['Antioxidant'] = ($value->antioxidant * $percent)/100;
-            $fields['ADC_DM_fish'] = ($value->aDCDMFish * $percent)/100;
-            $fields['ADC_CP_fish'] = ($value->aDCCPFish * $percent)/100;
-            $fields['ADC_Lipid_fish'] = ($value->aDCLipidFish * $percent)/100;
-            $fields['ADC_GE_fish'] = ($value->aDCGEFish * $percent)/100;
-            $fields['ADC_Total_CHO_fish'] = ($value->aDCTotalCHOFish * $percent)/100;
-            $fields['ADC_Starch_fish'] = ($value->aDCStarchFish * $percent)/100;
-            $fields['ADC_Starch_Carni'] = ($value->aDCStarchCarni * $percent)/100;
-            $fields['ADC_Starch_Omni'] = ($value->aDCStarchOmni * $percent)/100;
-            $fields['Dig_DM_fish'] = ($value->digDMFish * $percent)/100;
-            $fields['Dig_CP_fish'] = ($value->digCPFish * $percent)/100;
-            $fields['Dig_Lipid_fish'] = ($value->digLipidFish * $percent)/100;
-            $fields['Dig_GE_DE_fish_Kcal'] = ($value->digGEDEFishKcal * $percent)/100;
-            $fields['Dig_Total_CHO_fish'] = ($value->digTotalCHOFish * $percent)/100;
-            $fields['Dig_Starch_fish'] = ($value->digStarchFish * $percent)/100;
-            $fields['Dig_Starch_carni'] = ($value->digStarchCarni * $percent)/100;
-            $fields['Dig_Starch_Omni'] = ($value->digStarchOmni * $percent)/100;
-            $fields['ADC_Arg_fish'] = ($value->aDCArgFish * $percent)/100;
-            $fields['ADC_His_fish'] = ($value->aDCHisFish * $percent)/100;
-            $fields['ADC_Ile_fish'] = ($value->aDCIleFish * $percent)/100;
-            $fields['ADC_Leu_fish'] = ($value->aDCLeuFish * $percent)/100;
-            $fields['ADC_Lys_fish'] = ($value->aDCLysFish * $percent)/100;
-            $fields['ADC_Met_fish'] = ($value->aDCMetFish * $percent)/100;
-            $fields['ADC_Phe_fish'] = ($value->aDCPheFish * $percent)/100;
-            $fields['ADC_Thr_fish'] = ($value->aDCThrFish * $percent)/100;
-            $fields['ADC_Trp_fish'] = ($value->aDCTrpFish * $percent)/100;
-            $fields['ADC_Val_fish'] = ($value->aDCValFish * $percent)/100;
-            $fields['ADC_Cys_fish'] = ($value->aDCCysFish * $percent)/100;
-            $fields['ADC_Tyr_fish'] = ($value->aDCTyrFish * $percent)/100;
-            $fields['Palmitic_16_0'] = ($value->palmitic160 * $percent)/100;
-            $fields['Stearic_18_0'] = ($value->stearic180 * $percent)/100;
-            $fields['Oleic_18_1_n_9'] = ($value->oleic181N9 * $percent)/100;
-            $fields['Linoleic_18_2_n_6'] = ($value->linoleic182N6 * $percent)/100;
-            $fields['Linolenic_18_3_n_3'] = ($value->linolenic183N3 * $percent)/100;
-            $fields['Arachidonic_20_4_n_6'] = ($value->arachidonic204N6 * $percent)/100;
-            $fields['EPA_20_5_n_3'] = ($value->ePA205N3 * $percent)/100;
-            $fields['DHA_22_6_n_3'] = ($value->dHA226N3 * $percent)/100;
-            $fields['EPA_DHA'] = ($value->ePADHA * $percent)/100;
-            $fields['SAFA'] = ($value->sAFA * $percent)/100;
-            $fields['MUFA'] = ($value->mUFA * $percent)/100;
-            $fields['PUFA'] = ($value->pUFA * $percent)/100;
-            $fields['Sum_n_3'] = ($value->sumN3 * $percent)/100;
-            $fields['Sum_n_6'] = ($value->sumN6 * $percent)/100;
-            $fields['Phospholipids'] = ($value->phospholipids * $percent)/100;
-            $fields['Cholesterol'] = ($value->cholesterol * $percent)/100;
-            $fields['Plant_sterols'] = ($value->plantSterols * $percent)/100;
-            $fields['Coeff_18_2_n_6'] = ($value->coeff182N6 * $percent)/100;
-            $fields['Coeff_18_3_n_3'] = ($value->coeff183N3 * $percent)/100;
-            $fields['Coeff_20_4_n_6'] = ($value->coeff204N6 * $percent)/100;
-            $fields['Coeff_20_5_n_3'] = ($value->coeff205N3 * $percent)/100;
-            $fields['Coeff_22_6_n_3'] = ($value->coeff226N3 * $percent)/100;
-            $fields['Coeff_SAFA'] = ($value->coeffSAFA * $percent)/100;
-            $fields['Coeff_MUFA'] = ($value->coeffMUFA * $percent)/100;
-            $fields['Coeff_PUFA'] = ($value->coeffPUFA * $percent)/100;
-            $fields['Aflatoxin_B'] = ($value->aflatoxinB * $percent)/100;
-            $fields['Deoxynivalenol_DON'] = ($value->deoxynivalenolDON * $percent)/100;
-            $fields['Zeralenone_ZON'] = ($value->zeralenoneZON * $percent)/100;
-            $fields['Fumonicin_FUM'] = ($value->fumonicinFUM * $percent)/100;
-            $fields['Anti_trypsic_factors'] = ($value->antiTrypsicFactors * $percent)/100;
-            $fields['Gossypol'] = ($value->gossypol * $percent)/100;
-            $fields['Phytic_Acid'] = ($value->phyticAcid * $percent)/100;
-            $fields['Glucosinolates'] = ($value->glucosinolates * $percent)/100;
-            $fields['Sinapine'] = ($value->sinapine * $percent)/100;
-            $fields['Tannins'] = ($value->tannins * $percent)/100;
-            $fields['Lectins'] = ($value->lectins * $percent)/100;
-            $fields['Cyanogens'] = ($value->cyanogens * $percent)/100;
-            $fields['PCBs'] = ($value->pCBs * $percent)/100;
-            $fields['Dioxins'] = ($value->dioxins * $percent)/100;
-            $fields['Soyasaponins'] = ($value->soyasaponins * $percent)/100;
-            $fields['Isoflavones'] = ($value->isoflavones * $percent)/100;
-            $fields['SIDC_DM_porcine'] = ($value->sIDCDMPorcine * $percent)/100;
-            $fields['SIDC_CP_porcine'] = ($value->sIDCCPPorcine * $percent)/100;
-            $fields['SIDC_Arg_porcine'] = ($value->sIDCArgPorcine * $percent)/100;
-            $fields['SIDC_His_porcine'] = ($value->sIDCHisPorcine * $percent)/100;
-            $fields['SIDC_Ile_porcine'] = ($value->sIDCIlePorcine * $percent)/100;
-            $fields['SIDC_Leu_porcine'] = ($value->sIDCLeuPorcine * $percent)/100;
-            $fields['SIDC_Lys_porcine'] = ($value->sIDCLysPorcine * $percent)/100;
-            $fields['SIDC_Met_porcine'] = ($value->sIDCMetPorcine * $percent)/100;
-            $fields['SIDC_Phe_porcine'] = ($value->sIDCPhePorcine * $percent)/100;
-            $fields['SIDC_Thr_porcine'] = ($value->sIDCThrPorcine * $percent)/100;
-            $fields['SIDC_Trp_porcine'] = ($value->sIDCTrpPorcine * $percent)/100;
-            $fields['SIDC_Val_porcine'] = ($value->sIDCValPorcine * $percent)/100;
-            $fields['SIDC_Cys_porcine'] = ($value->sIDCCysPorcine * $percent)/100;
-            $fields['SIDC_Tyr_porcine'] = ($value->sIDCTyrPorcine * $percent)/100;
-            $fields['SIDC_DM_poultry'] = ($value->sIDCDMPoultry * $percent)/100;
-            $fields['SIDC_CP_poultry'] = ($value->sIDCCPPoultry * $percent)/100;
-            $fields['SIDC_Arg_poultry'] = ($value->sIDCArgPoultry * $percent)/100;
-            $fields['SIDC_His_poultry'] = ($value->sIDCHisPoultry * $percent)/100;
-            $fields['SIDC_Ile_poultry'] = ($value->sIDCIlePoultry * $percent)/100;
-            $fields['SIDC_Leu_poultry'] = ($value->sIDCLeuPoultry * $percent)/100;
-            $fields['SIDC_Lys_poultry'] = ($value->sIDCLysPoultry * $percent)/100;
-            $fields['SIDC_Met_poultry'] = ($value->sIDCMetPoultry * $percent)/100;
-            $fields['SIDC_Phe_poultry'] = ($value->sIDCPhePoultry * $percent)/100;
-            $fields['SIDC_Thr_poultry'] = ($value->sIDCThrPoultry * $percent)/100;
-            $fields['SIDC_Trp_poultry'] = ($value->sIDCTrpPoultry * $percent)/100;
-            $fields['SIDC_Val_poultry'] = ($value->sIDCValPoultry * $percent)/100;
-            $fields['SIDC_Cys_poultry'] = ($value->sIDCCysPoultry * $percent)/100;
-            $fields['SIDC_Tyr_poultry'] = ($value->sIDCTyrPoultry * $percent)/100;
-            $fields['SID_Arg_porcine'] = ($value->sIDArgPorcine * $percent)/100;
-            $fields['SID_His_porcine'] = ($value->sIDHisPorcine * $percent)/100;
-            $fields['SID_Ile_porcine'] = ($value->sIDIlePorcine * $percent)/100;
-            $fields['SID_Leu_porcine'] = ($value->sIDLeuPorcine * $percent)/100;
-            $fields['SID_Lys_porcine'] = ($value->sIDLysPorcine * $percent)/100;
-            $fields['SID_Met_porcine'] = ($value->sIDMetPorcine * $percent)/100;
-            $fields['SID_Phe_porcine'] = ($value->sIDPhePorcine * $percent)/100;
-            $fields['SID_Thr_porcine'] = ($value->sIDThrPorcine * $percent)/100;
-            $fields['SID_Trp_porcine'] = ($value->sIDTrpPorcine * $percent)/100;
-            $fields['SID_Val_porcine'] = ($value->sIDValPorcine * $percent)/100;
-            $fields['SID_Cys_porcine'] = ($value->sIDCysPorcine * $percent)/100;
-            $fields['SID_Tyr_porcine'] = ($value->sIDTyrPorcine * $percent)/100;
-            $fields['SID_Arg_poultry'] = ($value->sIDArgPoultry * $percent)/100;
-            $fields['SID_His_poultry'] = ($value->sIDHisPoultry * $percent)/100;
-            $fields['SID_Ile_poultry'] = ($value->sIDIlePoultry * $percent)/100;
-            $fields['SID_Leu_poultry'] = ($value->sIDLeuPoultry * $percent)/100;
-            $fields['SID_Lys_poultry'] = ($value->sIDLysPoultry * $percent)/100;
-            $fields['SID_Met_poultry'] = ($value->sIDMetPoultry * $percent)/100;
-            $fields['SID_Phe_poultry'] = ($value->sIDPhePoultry * $percent)/100;
-            $fields['SID_Thr_poultry'] = ($value->sIDThrPoultry * $percent)/100;
-            $fields['SID_Trp_poultry'] = ($value->sIDTrpPoultry * $percent)/100;
-            $fields['SID_Val_poultry'] = ($value->sIDValPoultry * $percent)/100;
-            $fields['SID_Cys_poultry'] = ($value->sIDCysPoultry * $percent)/100;
-            $fields['SID_Tyr_poultry'] = ($value->sIDTyrPoultry * $percent)/100;
+            $fields['Dry_Matter'] = ($value->Dry_Matter * $percent) / 100;
+            $fields['Moisture'] = ($value->Moisture * $percent) / 100;
+            $fields['Crude_Protein'] = ($value->Crude_Protein * $percent) / 100;
+            $fields['Crude_Lipids'] = ($value->Crude_Lipids * $percent) / 100;
+            $fields['Crude_Fibre'] = ($value->Crude_Fibre * $percent) / 100;
+            $fields['Ash'] = ($value->Ash * $percent) / 100;
+            $fields['NFE'] = ($value->NFE * $percent) / 100;
+            $fields['NDF'] = ($value->NDF * $percent) / 100;
+            $fields['ADF'] = ($value->ADF * $percent) / 100;
+            $fields['Total_CHO'] = ($value->Total_CHO * $percent) / 100;
+            $fields['Starch'] = ($value->Starch * $percent) / 100;
+            $fields['Sugars'] = ($value->Sugars * $percent) / 100;
+            $fields['Gross_Energy_MJ'] = ($value->Gross_Energy_MJ * $percent) / 100;
+            $fields['Gross_energy_Kcal'] = ($value->Gross_energy_Kcal * $percent) / 100;
+            $fields['DE_Fish_Carni'] = ($value->DE_Fish_Carni * $percent) / 100;
+            $fields['DE_Fish_Omni'] = ($value->DE_Fish_Omni * $percent) / 100;
+            $fields['DE_Carp'] = ($value->DE_Carp * $percent) / 100;
+            $fields['DE_Shrimp'] = ($value->DE_Shrimp * $percent) / 100;
+            $fields['DE_Porcine'] = ($value->DE_Porcine * $percent) / 100;
+            $fields['DE_Poultry'] = ($value->DE_Poultry * $percent) / 100;
+            $fields['ME_Fish'] = ($value->ME_Fish * $percent) / 100;
+            $fields['ME_Guelph_Fish_Carni'] = ($value->ME_Guelph_Fish_Carni * $percent) / 100;
+            $fields['ME_Guelph_Fish_Omni'] = ($value->ME_Guelph_Fish_Omni * $percent) / 100;
+            $fields['ME_Guelph_Carp'] = ($value->ME_Guelph_Carp * $percent) / 100;
+            $fields['ME_Guelph_Shrimp'] = ($value->ME_Guelph_Shrimp * $percent) / 100;
+            $fields['ME_Poultry'] = ($value->ME_Poultry * $percent) / 100;
+            $fields['ME_Porcine'] = ($value->ME_Porcine * $percent) / 100;
+            $fields['Arginine'] = ($value->Arginine * $percent) / 100;
+            $fields['Histidine'] = ($value->Histidine * $percent) / 100;
+            $fields['Isoleucine'] = ($value->Isoleucine * $percent) / 100;
+            $fields['Leucine'] = ($value->Leucine * $percent) / 100;
+            $fields['Lysine'] = ($value->Lysine * $percent) / 100;
+            $fields['Methionine'] = ($value->Methionine * $percent) / 100;
+            $fields['Phenylalanine'] = ($value->Phenylalanine * $percent) / 100;
+            $fields['Threonine'] = ($value->Threonine * $percent) / 100;
+            $fields['Tryptophan'] = ($value->Tryptophan * $percent) / 100;
+            $fields['Valine'] = ($value->Valine * $percent) / 100;
+            $fields['Cystine'] = ($value->Cystine * $percent) / 100;
+            $fields['TSAA_Met_Cys'] = ($value->TSAA_Met_Cys * $percent) / 100;
+            $fields['Tyrosine'] = ($value->Tyrosine * $percent) / 100;
+            $fields['Phe_Tyr'] = ($value->Phe_Tyr * $percent) / 100;
+            $fields['Glutamic'] = ($value->Glutamic * $percent) / 100;
+            $fields['Aspartic'] = ($value->Aspartic * $percent) / 100;
+            $fields['Glycine'] = ($value->Glycine * $percent) / 100;
+            $fields['Serine'] = ($value->Serine * $percent) / 100;
+            $fields['Alanine'] = ($value->Alanine * $percent) / 100;
+            $fields['Sum_EAAs'] = ($value->Sum_EAAs * $percent) / 100;
+            $fields['Sum_NEAAs'] = ($value->Sum_NEAAs * $percent) / 100;
+            $fields['Taurine'] = ($value->Taurine * $percent) / 100;
+            $fields['Arg_Coeff'] = ($value->Arg_Coeff * $percent) / 100;
+            $fields['His_Coeff'] = ($value->His_Coeff * $percent) / 100;
+            $fields['Ile_Coeff'] = ($value->Ile_Coeff * $percent) / 100;
+            $fields['Leu_Coeff'] = ($value->Leu_Coeff * $percent) / 100;
+            $fields['Lys_Coeff'] = ($value->Lys_Coeff * $percent) / 100;
+            $fields['Met_Coeff'] = ($value->Met_Coeff * $percent) / 100;
+            $fields['Phe_Coeff'] = ($value->Phe_Coeff * $percent) / 100;
+            $fields['Thr_Coeff'] = ($value->Thr_Coeff * $percent) / 100;
+            $fields['Trp_Coeff'] = ($value->Trp_Coeff * $percent) / 100;
+            $fields['Val_Coeff'] = ($value->Val_Coeff * $percent) / 100;
+            $fields['Dig_Arg_fish'] = ($value->Dig_Arg_fish * $percent) / 100;
+            $fields['Dig_His_fish'] = ($value->Dig_His_fish * $percent) / 100;
+            $fields['Dig_Ile_fish'] = ($value->Dig_Ile_fish * $percent) / 100;
+            $fields['Dig_Leu_fish'] = ($value->Dig_Leu_fish * $percent) / 100;
+            $fields['Dig_Lys_fish'] = ($value->Dig_Lys_fish * $percent) / 100;
+            $fields['Dig_Met_fish'] = ($value->Dig_Met_fish * $percent) / 100;
+            $fields['Dig_Phe_fish'] = ($value->Dig_Phe_fish * $percent) / 100;
+            $fields['Dig_Thr_fish'] = ($value->Dig_Thr_fish * $percent) / 100;
+            $fields['Dig_Trp_fish'] = ($value->Dig_Trp_fish * $percent) / 100;
+            $fields['Dig_Val_fish'] = ($value->Dig_Val_fish * $percent) / 100;
+            $fields['Dig_Cys_fish'] = ($value->Dig_Cys_fish * $percent) / 100;
+            $fields['Dig_TSAA_Met_Cys'] = ($value->Dig_TSAA_Met_Cys * $percent) / 100;
+            $fields['Dig_Tyr_fish'] = ($value->Dig_Tyr_fish * $percent) / 100;
+            $fields['Calcium'] = ($value->Calcium * $percent) / 100;
+            $fields['Phosphorus'] = ($value->Phosphorus * $percent) / 100;
+            $fields['Ca_Coeff'] = ($value->Ca_Coeff * $percent) / 100;
+            $fields['P_coeff'] = ($value->P_coeff * $percent) / 100;
+            $fields['Phytate_P'] = ($value->Phytate_P * $percent) / 100;
+            $fields['Bone_P'] = ($value->Bone_P * $percent) / 100;
+            $fields['Cellular_P'] = ($value->Cellular_P * $percent) / 100;
+            $fields['Monobasic_P'] = ($value->Monobasic_P * $percent) / 100;
+            $fields['Dibasic_P'] = ($value->Dibasic_P * $percent) / 100;
+            $fields['Tribasic_P'] = ($value->Tribasic_P * $percent) / 100;
+            $fields['Dig_P_Carni'] = ($value->Dig_P_Carni * $percent) / 100;
+            $fields['Dig_P_Omni'] = ($value->Dig_P_Omni * $percent) / 100;
+            $fields['Dig_P_Carp'] = ($value->Dig_P_Carp * $percent) / 100;
+            $fields['Dig_P_Shrimp'] = ($value->Dig_P_Shrimp * $percent) / 100;
+            $fields['Sodium'] = ($value->Sodium * $percent) / 100;
+            $fields['Chlorine'] = ($value->Chlorine * $percent) / 100;
+            $fields['Potassium'] = ($value->Potassium * $percent) / 100;
+            $fields['Magnesium'] = ($value->Magnesium * $percent) / 100;
+            $fields['Sulfur'] = ($value->Sulfur * $percent) / 100;
+            $fields['Copper'] = ($value->Copper * $percent) / 100;
+            $fields['Iron'] = ($value->Iron * $percent) / 100;
+            $fields['Manganese'] = ($value->Manganese * $percent) / 100;
+            $fields['Selenium'] = ($value->Selenium * $percent) / 100;
+            $fields['Zinc'] = ($value->Zinc * $percent) / 100;
+            $fields['Iodine'] = ($value->Iodine * $percent) / 100;
+            $fields['Cobalt'] = ($value->Cobalt * $percent) / 100;
+            $fields['Biotin_B7'] = ($value->Biotin_B7 * $percent) / 100;
+            $fields['Folic_acid_B9'] = ($value->folicAcidB9 * $percent) / 100;
+            $fields['Niacin_B3'] = ($value->niacinB3 * $percent) / 100;
+            $fields['Pantothenic_Acid_B5'] = ($value->pantothenicAcidB5 * $percent) / 100;
+            $fields['Pyridoxine_B6'] = ($value->pyridoxineB6 * $percent) / 100;
+            $fields['Riboflavin_B2'] = ($value->riboflavinB2 * $percent) / 100;
+            $fields['Thiamin_B1'] = ($value->thiaminB1 * $percent) / 100;
+            $fields['Vitamin_B12'] = ($value->vitaminB12 * $percent) / 100;
+            $fields['Vitamin_C'] = ($value->vitaminC * $percent) / 100;
+            $fields['Vitamin_A'] = ($value->vitaminA * $percent) / 100;
+            $fields['Vitamin_D'] = ($value->vitaminD * $percent) / 100;
+            $fields['Vitamin_E'] = ($value->vitaminE * $percent) / 100;
+            $fields['Vitamin_K'] = ($value->vitaminK * $percent) / 100;
+            $fields['Choline'] = ($value->choline * $percent) / 100;
+            $fields['Inositol'] = ($value->inositol * $percent) / 100;
+            $fields['Beta_Carotene'] = ($value->betaCarotene * $percent) / 100;
+            $fields['Xanthophylls'] = ($value->xanthophylls * $percent) / 100;
+            $fields['Antioxidant'] = ($value->antioxidant * $percent) / 100;
+            $fields['ADC_DM_fish'] = ($value->aDCDMFish * $percent) / 100;
+            $fields['ADC_CP_fish'] = ($value->aDCCPFish * $percent) / 100;
+            $fields['ADC_Lipid_fish'] = ($value->aDCLipidFish * $percent) / 100;
+            $fields['ADC_GE_fish'] = ($value->aDCGEFish * $percent) / 100;
+            $fields['ADC_Total_CHO_fish'] = ($value->aDCTotalCHOFish * $percent) / 100;
+            $fields['ADC_Starch_fish'] = ($value->aDCStarchFish * $percent) / 100;
+            $fields['ADC_Starch_Carni'] = ($value->aDCStarchCarni * $percent) / 100;
+            $fields['ADC_Starch_Omni'] = ($value->aDCStarchOmni * $percent) / 100;
+            $fields['Dig_DM_fish'] = ($value->digDMFish * $percent) / 100;
+            $fields['Dig_CP_fish'] = ($value->digCPFish * $percent) / 100;
+            $fields['Dig_Lipid_fish'] = ($value->digLipidFish * $percent) / 100;
+            $fields['Dig_GE_DE_fish_Kcal'] = ($value->digGEDEFishKcal * $percent) / 100;
+            $fields['Dig_Total_CHO_fish'] = ($value->digTotalCHOFish * $percent) / 100;
+            $fields['Dig_Starch_fish'] = ($value->digStarchFish * $percent) / 100;
+            $fields['Dig_Starch_carni'] = ($value->digStarchCarni * $percent) / 100;
+            $fields['Dig_Starch_Omni'] = ($value->digStarchOmni * $percent) / 100;
+            $fields['ADC_Arg_fish'] = ($value->aDCArgFish * $percent) / 100;
+            $fields['ADC_His_fish'] = ($value->aDCHisFish * $percent) / 100;
+            $fields['ADC_Ile_fish'] = ($value->aDCIleFish * $percent) / 100;
+            $fields['ADC_Leu_fish'] = ($value->aDCLeuFish * $percent) / 100;
+            $fields['ADC_Lys_fish'] = ($value->aDCLysFish * $percent) / 100;
+            $fields['ADC_Met_fish'] = ($value->aDCMetFish * $percent) / 100;
+            $fields['ADC_Phe_fish'] = ($value->aDCPheFish * $percent) / 100;
+            $fields['ADC_Thr_fish'] = ($value->aDCThrFish * $percent) / 100;
+            $fields['ADC_Trp_fish'] = ($value->aDCTrpFish * $percent) / 100;
+            $fields['ADC_Val_fish'] = ($value->aDCValFish * $percent) / 100;
+            $fields['ADC_Cys_fish'] = ($value->aDCCysFish * $percent) / 100;
+            $fields['ADC_Tyr_fish'] = ($value->aDCTyrFish * $percent) / 100;
+            $fields['Palmitic_16_0'] = ($value->palmitic160 * $percent) / 100;
+            $fields['Stearic_18_0'] = ($value->stearic180 * $percent) / 100;
+            $fields['Oleic_18_1_n_9'] = ($value->oleic181N9 * $percent) / 100;
+            $fields['Linoleic_18_2_n_6'] = ($value->linoleic182N6 * $percent) / 100;
+            $fields['Linolenic_18_3_n_3'] = ($value->linolenic183N3 * $percent) / 100;
+            $fields['Arachidonic_20_4_n_6'] = ($value->arachidonic204N6 * $percent) / 100;
+            $fields['EPA_20_5_n_3'] = ($value->ePA205N3 * $percent) / 100;
+            $fields['DHA_22_6_n_3'] = ($value->dHA226N3 * $percent) / 100;
+            $fields['EPA_DHA'] = ($value->ePADHA * $percent) / 100;
+            $fields['SAFA'] = ($value->sAFA * $percent) / 100;
+            $fields['MUFA'] = ($value->mUFA * $percent) / 100;
+            $fields['PUFA'] = ($value->pUFA * $percent) / 100;
+            $fields['Sum_n_3'] = ($value->sumN3 * $percent) / 100;
+            $fields['Sum_n_6'] = ($value->sumN6 * $percent) / 100;
+            $fields['Phospholipids'] = ($value->phospholipids * $percent) / 100;
+            $fields['Cholesterol'] = ($value->cholesterol * $percent) / 100;
+            $fields['Plant_sterols'] = ($value->plantSterols * $percent) / 100;
+            $fields['Coeff_18_2_n_6'] = ($value->coeff182N6 * $percent) / 100;
+            $fields['Coeff_18_3_n_3'] = ($value->coeff183N3 * $percent) / 100;
+            $fields['Coeff_20_4_n_6'] = ($value->coeff204N6 * $percent) / 100;
+            $fields['Coeff_20_5_n_3'] = ($value->coeff205N3 * $percent) / 100;
+            $fields['Coeff_22_6_n_3'] = ($value->coeff226N3 * $percent) / 100;
+            $fields['Coeff_SAFA'] = ($value->coeffSAFA * $percent) / 100;
+            $fields['Coeff_MUFA'] = ($value->coeffMUFA * $percent) / 100;
+            $fields['Coeff_PUFA'] = ($value->coeffPUFA * $percent) / 100;
+            $fields['Aflatoxin_B'] = ($value->aflatoxinB * $percent) / 100;
+            $fields['Deoxynivalenol_DON'] = ($value->deoxynivalenolDON * $percent) / 100;
+            $fields['Zeralenone_ZON'] = ($value->zeralenoneZON * $percent) / 100;
+            $fields['Fumonicin_FUM'] = ($value->fumonicinFUM * $percent) / 100;
+            $fields['Anti_trypsic_factors'] = ($value->antiTrypsicFactors * $percent) / 100;
+            $fields['Gossypol'] = ($value->gossypol * $percent) / 100;
+            $fields['Phytic_Acid'] = ($value->phyticAcid * $percent) / 100;
+            $fields['Glucosinolates'] = ($value->glucosinolates * $percent) / 100;
+            $fields['Sinapine'] = ($value->sinapine * $percent) / 100;
+            $fields['Tannins'] = ($value->tannins * $percent) / 100;
+            $fields['Lectins'] = ($value->lectins * $percent) / 100;
+            $fields['Cyanogens'] = ($value->cyanogens * $percent) / 100;
+            $fields['PCBs'] = ($value->pCBs * $percent) / 100;
+            $fields['Dioxins'] = ($value->dioxins * $percent) / 100;
+            $fields['Soyasaponins'] = ($value->soyasaponins * $percent) / 100;
+            $fields['Isoflavones'] = ($value->isoflavones * $percent) / 100;
+            $fields['SIDC_DM_porcine'] = ($value->sIDCDMPorcine * $percent) / 100;
+            $fields['SIDC_CP_porcine'] = ($value->sIDCCPPorcine * $percent) / 100;
+            $fields['SIDC_Arg_porcine'] = ($value->sIDCArgPorcine * $percent) / 100;
+            $fields['SIDC_His_porcine'] = ($value->sIDCHisPorcine * $percent) / 100;
+            $fields['SIDC_Ile_porcine'] = ($value->sIDCIlePorcine * $percent) / 100;
+            $fields['SIDC_Leu_porcine'] = ($value->sIDCLeuPorcine * $percent) / 100;
+            $fields['SIDC_Lys_porcine'] = ($value->sIDCLysPorcine * $percent) / 100;
+            $fields['SIDC_Met_porcine'] = ($value->sIDCMetPorcine * $percent) / 100;
+            $fields['SIDC_Phe_porcine'] = ($value->sIDCPhePorcine * $percent) / 100;
+            $fields['SIDC_Thr_porcine'] = ($value->sIDCThrPorcine * $percent) / 100;
+            $fields['SIDC_Trp_porcine'] = ($value->sIDCTrpPorcine * $percent) / 100;
+            $fields['SIDC_Val_porcine'] = ($value->sIDCValPorcine * $percent) / 100;
+            $fields['SIDC_Cys_porcine'] = ($value->sIDCCysPorcine * $percent) / 100;
+            $fields['SIDC_Tyr_porcine'] = ($value->sIDCTyrPorcine * $percent) / 100;
+            $fields['SIDC_DM_poultry'] = ($value->sIDCDMPoultry * $percent) / 100;
+            $fields['SIDC_CP_poultry'] = ($value->sIDCCPPoultry * $percent) / 100;
+            $fields['SIDC_Arg_poultry'] = ($value->sIDCArgPoultry * $percent) / 100;
+            $fields['SIDC_His_poultry'] = ($value->sIDCHisPoultry * $percent) / 100;
+            $fields['SIDC_Ile_poultry'] = ($value->sIDCIlePoultry * $percent) / 100;
+            $fields['SIDC_Leu_poultry'] = ($value->sIDCLeuPoultry * $percent) / 100;
+            $fields['SIDC_Lys_poultry'] = ($value->sIDCLysPoultry * $percent) / 100;
+            $fields['SIDC_Met_poultry'] = ($value->sIDCMetPoultry * $percent) / 100;
+            $fields['SIDC_Phe_poultry'] = ($value->sIDCPhePoultry * $percent) / 100;
+            $fields['SIDC_Thr_poultry'] = ($value->sIDCThrPoultry * $percent) / 100;
+            $fields['SIDC_Trp_poultry'] = ($value->sIDCTrpPoultry * $percent) / 100;
+            $fields['SIDC_Val_poultry'] = ($value->sIDCValPoultry * $percent) / 100;
+            $fields['SIDC_Cys_poultry'] = ($value->sIDCCysPoultry * $percent) / 100;
+            $fields['SIDC_Tyr_poultry'] = ($value->sIDCTyrPoultry * $percent) / 100;
+            $fields['SID_Arg_porcine'] = ($value->sIDArgPorcine * $percent) / 100;
+            $fields['SID_His_porcine'] = ($value->sIDHisPorcine * $percent) / 100;
+            $fields['SID_Ile_porcine'] = ($value->sIDIlePorcine * $percent) / 100;
+            $fields['SID_Leu_porcine'] = ($value->sIDLeuPorcine * $percent) / 100;
+            $fields['SID_Lys_porcine'] = ($value->sIDLysPorcine * $percent) / 100;
+            $fields['SID_Met_porcine'] = ($value->sIDMetPorcine * $percent) / 100;
+            $fields['SID_Phe_porcine'] = ($value->sIDPhePorcine * $percent) / 100;
+            $fields['SID_Thr_porcine'] = ($value->sIDThrPorcine * $percent) / 100;
+            $fields['SID_Trp_porcine'] = ($value->sIDTrpPorcine * $percent) / 100;
+            $fields['SID_Val_porcine'] = ($value->sIDValPorcine * $percent) / 100;
+            $fields['SID_Cys_porcine'] = ($value->sIDCysPorcine * $percent) / 100;
+            $fields['SID_Tyr_porcine'] = ($value->sIDTyrPorcine * $percent) / 100;
+            $fields['SID_Arg_poultry'] = ($value->sIDArgPoultry * $percent) / 100;
+            $fields['SID_His_poultry'] = ($value->sIDHisPoultry * $percent) / 100;
+            $fields['SID_Ile_poultry'] = ($value->sIDIlePoultry * $percent) / 100;
+            $fields['SID_Leu_poultry'] = ($value->sIDLeuPoultry * $percent) / 100;
+            $fields['SID_Lys_poultry'] = ($value->sIDLysPoultry * $percent) / 100;
+            $fields['SID_Met_poultry'] = ($value->sIDMetPoultry * $percent) / 100;
+            $fields['SID_Phe_poultry'] = ($value->sIDPhePoultry * $percent) / 100;
+            $fields['SID_Thr_poultry'] = ($value->sIDThrPoultry * $percent) / 100;
+            $fields['SID_Trp_poultry'] = ($value->sIDTrpPoultry * $percent) / 100;
+            $fields['SID_Val_poultry'] = ($value->sIDValPoultry * $percent) / 100;
+            $fields['SID_Cys_poultry'] = ($value->sIDCysPoultry * $percent) / 100;
+            $fields['SID_Tyr_poultry'] = ($value->sIDTyrPoultry * $percent) / 100;
             $fields['percent'] = $percent;
         }
 
-        $this->formulationModel->insert($fields);     
+        $this->formulationModel->insert($fields);
 
         //Return all data from temp table
-		$result1 = $this->formulationModel->select('id, Ing_Descr_E, percent')->findAll();
+        $result1 = $this->formulationModel->select('id, Ing_Descr_E, percent')->findAll();
 
-		foreach ($result1 as $key => $value) {
-							
-			$ops = '<div class="btn-group">';
-			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit('. $value->id .')"><i class="fa fa-edit"></i></button>';
-			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove('. $value->id .')"><i class="fa fa-trash"></i></button>';
-			$ops .= '</div>';
-			
-			$data['data'][$key] = array(                
-				$value->Ing_Descr_E,				
+        foreach ($result1 as $key => $value) {
+
+            $ops = '<div class="btn-group">';
+            $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+            $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+            $ops .= '</div>';
+
+            $data['data'][$key] = array(
+                $value->Ing_Descr_E,
                 $value->percent,
 
-				$ops,
-			);
-		} 
+                $ops,
+            );
+        }
 
         //Return sum of values from view        
-		$builder = $this->db->table('vw_sum');		       
+        $builder = $this->db->table('vw_sum');
         $query = $this->db->query('SELECT * FROM vw_sum');
 
-        foreach ($query->getResult() as $row){
+        foreach ($query->getResult() as $row) {
             // $data['DM'] = $row->DM;  
             // $data['CP'] = $row->CP;
             // $data['CL'] = $row->CL;
@@ -802,141 +803,142 @@ class Formulation extends BaseController
             $data['percent'] = $row->PRCNT;
         }
 
-        $data['carbohydrate'] = number_format((float)$data['Dry_Matter'] - ((float)$data['Crude_Protein'] + (float)$data['Crude_Lipids']),2);
-        $carbon = (((float)$data['Crude_Protein'] * 47)/100) + (((float)$data['Crude_Lipids'] * 70)/100) + (((float)$data['carbohydrate'] * 50)/100);
-        $nitrogen = ((float)$data['Crude_Protein'] * 16)/100;
-        try{
-            $data['cn'] = number_format($carbon/$nitrogen,2);
-        }catch(\Exception $e){
+        $data['carbohydrate'] = number_format((float) $data['Dry_Matter'] - ((float) $data['Crude_Protein'] + (float) $data['Crude_Lipids']), 2);
+        $carbon = (((float) $data['Crude_Protein'] * 47) / 100) + (((float) $data['Crude_Lipids'] * 70) / 100) + (((float) $data['carbohydrate'] * 50) / 100);
+        $nitrogen = ((float) $data['Crude_Protein'] * 16) / 100;
+        try {
+            $data['cn'] = number_format($carbon / $nitrogen, 2);
+        } catch (\Exception $e) {
             $data['cn'] = 0;
-        }        
+        }
 
-		return $this->response->setJSON($data);
+        return $this->response->setJSON($data);
     }
 
-    public function getStandardValues(){
-        $data['data'] = array();			
-		
+    public function getStandardValues()
+    {
+        $data['data'] = array();
+
         $species_type = $this->request->getPost('species_type');
-        $species = $this->request->getPost('species');						
-		$production_system = $this->request->getPost('production_system');
-		$stage_weight = $this->request->getPost('stage_weight');
+        $species = $this->request->getPost('species');
+        $production_system = $this->request->getPost('production_system');
+        $stage_weight = $this->request->getPost('stage_weight');
 
         //get standard value from spec
-        $builder = $this->db->table('spec');		       
-		$builder = $builder->where(array(
-				'species_type' => $species_type,
-                'species' => $species,
-				'production_system' => $production_system,
-				'stage_weight' => $stage_weight				
-			));           
-		
-		$result = $builder->get()->getResult();
+        $builder = $this->db->table('spec');
+        $builder = $builder->where(array(
+            'species_type' => $species_type,
+            'species' => $species,
+            'production_system' => $production_system,
+            'stage_weight' => $stage_weight
+        ));
+
+        $result = $builder->get()->getResult();
 
         foreach ($result as $key => $value) {
             //Macro Nutrients
-            if($value->NutrSpecification=="Moisture"){
-                $data['std']['drymatter'] = ((100 - $value->Value) * 1000) / 100;                
+            if ($value->NutrSpecification == "Moisture") {
+                $data['std']['drymatter'] = ((100 - $value->Value) * 1000) / 100;
             }
-            if($value->NutrSpecification=="Crude Protein"){
-                $data['std']['crudeprotein'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Crude Protein") {
+                $data['std']['crudeprotein'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Crude Lipids"){
-                $data['std']['crudefat'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Crude Lipids") {
+                $data['std']['crudefat'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Ash"){
-                $data['std']['crudeash'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Ash") {
+                $data['std']['crudeash'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Crude Fibre"){
-                $data['std']['crudefiber'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Crude Fibre") {
+                $data['std']['crudefiber'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Dig GE (DE) - fish"){
-                $data['std']['grossenergy'] = number_format((($value->Value * 1000) / 100) * 0.004184,2);                
+            if ($value->NutrSpecification == "Dig GE (DE) - fish") {
+                $data['std']['grossenergy'] = number_format((($value->Value * 1000) / 100) * 0.004184, 2);
             }
-            if($value->NutrSpecification=="Starch"){
-                $data['std']['starch'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Starch") {
+                $data['std']['starch'] = ($value->Value * 1000) / 100;
             }
-            $data['std']['carbohydrate'] = number_format((float)$data['std']['drymatter'] - ((float)$data['std']['crudeprotein'] + (float)$data['std']['crudefat']),2);
-            
+            $data['std']['carbohydrate'] = number_format((float) $data['std']['drymatter'] - ((float) $data['std']['crudeprotein'] + (float) $data['std']['crudefat']), 2);
+
             //Fiber
-            if($value->NutrSpecification=="NDF"){
-                $data['std']['NDF'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "NDF") {
+                $data['std']['NDF'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="ADF"){
-                $data['std']['ADF'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "ADF") {
+                $data['std']['ADF'] = ($value->Value * 1000) / 100;
             }
 
             //Fattyacids
-            if($value->NutrSpecification=="Linoleic 18:2 n-6"){
-                $data['std']['linoleic'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Linoleic 18:2 n-6") {
+                $data['std']['linoleic'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Linolenic 18:3 n-3"){
-                $data['std']['linolenic'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Linolenic 18:3 n-3") {
+                $data['std']['linolenic'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="EPA 20:5 n-3"){
-                $data['std']['epa'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "EPA 20:5 n-3") {
+                $data['std']['epa'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Arachidonic 20:4 n-6"){
-                $data['std']['arachidonic'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Arachidonic 20:4 n-6") {
+                $data['std']['arachidonic'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="DHA 22:6 n-3"){
-                $data['std']['dha'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "DHA 22:6 n-3") {
+                $data['std']['dha'] = ($value->Value * 1000) / 100;
             }
 
             //Aminoacids
-            if($value->NutrSpecification=="Arginine"){
-                $data['std']['arginine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Arginine") {
+                $data['std']['arginine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Histidine"){
-                $data['std']['histidine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Histidine") {
+                $data['std']['histidine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Isoleucine"){
-                $data['std']['isoleucine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Isoleucine") {
+                $data['std']['isoleucine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Leucine"){
-                $data['std']['leucine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Leucine") {
+                $data['std']['leucine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Lysine"){
-                $data['std']['lysine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Lysine") {
+                $data['std']['lysine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Methionine"){
-                $data['std']['methionine'] = ($value->Value * 1000) / 100;                             
+            if ($value->NutrSpecification == "Methionine") {
+                $data['std']['methionine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Cystine"){
-                $data['std']['cystine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Cystine") {
+                $data['std']['cystine'] = ($value->Value * 1000) / 100;
             }
-            $data['std']['methionine_cystine'] = (float)$data['std']['methionine'] + (float)$data['std']['cystine'];
-            if($value->NutrSpecification=="Phenylalanine"){
-                $data['std']['phenylalanine'] = ($value->Value * 1000) / 100;                
+            $data['std']['methionine_cystine'] = (float) $data['std']['methionine'] + (float) $data['std']['cystine'];
+            if ($value->NutrSpecification == "Phenylalanine") {
+                $data['std']['phenylalanine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Tryptophan"){
-                $data['std']['tryptophan'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Tryptophan") {
+                $data['std']['tryptophan'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Valine"){
-                $data['std']['valine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Valine") {
+                $data['std']['valine'] = ($value->Value * 1000) / 100;
             }
 
             //Vitamins & minerals
-            if($value->NutrSpecification=="Niacin-B3"){
-                $data['std']['niacinb3'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Niacin-B3") {
+                $data['std']['niacinb3'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Folic acid-B9"){
-                $data['std']['folicacidb9'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Folic acid-B9") {
+                $data['std']['folicacidb9'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Vitamin E"){
-                $data['std']['vitamine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin E") {
+                $data['std']['vitamine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Pantothenic Acid-B5"){
-                $data['std']['pantothenicacidb5'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Pantothenic Acid-B5") {
+                $data['std']['pantothenicacidb5'] = ($value->Value * 1000) / 100;
             }
             // if($value->NutrSpecification=="Vitamin B2"){
             //     $data['std']['Vitamin B2'] = ($value->Value * 1000) / 100;                
             // }
-            if($value->NutrSpecification=="Vitamin C"){
-                $data['std']['vitaminc'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin C") {
+                $data['std']['vitaminc'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Vitamin K"){
-                $data['std']['vitamink'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin K") {
+                $data['std']['vitamink'] = ($value->Value * 1000) / 100;
             }
             // if($value->NutrSpecification=="VITAMIN B1"){
             //     $data['std']['VITAMIN B1'] = ($value->Value * 1000) / 100;                
@@ -947,97 +949,98 @@ class Formulation extends BaseController
             // if($value->NutrSpecification=="VITAMIN D3"){
             //     $data['std']['VITAMIN D3'] = ($value->Value * 1000) / 100;                
             // }
-            if($value->NutrSpecification=="Vitamin A"){
-                $data['std']['vitamina'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin A") {
+                $data['std']['vitamina'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Vitamin B12"){
-                $data['std']['vitaminb12'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Vitamin B12") {
+                $data['std']['vitaminb12'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Biotin-B7"){
-                $data['std']['biotinb7'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Biotin-B7") {
+                $data['std']['biotinb7'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Iron"){
-                $data['std']['iron'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Iron") {
+                $data['std']['iron'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Copper"){
-                $data['std']['copper'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Copper") {
+                $data['std']['copper'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Zinc"){
-                $data['std']['zinc'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Zinc") {
+                $data['std']['zinc'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Inositol"){
-                $data['std']['inositol'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Inositol") {
+                $data['std']['inositol'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Selenium"){
-                $data['std']['selenium'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Selenium") {
+                $data['std']['selenium'] = ($value->Value * 1000) / 100;
             }
             // if($value->NutrSpecification=="Cobalt"){
             //     $data['std']['Cobalt'] = ($value->Value * 1000) / 100;                
             // }
-            if($value->NutrSpecification=="Iodine"){
-                $data['std']['iodine'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Iodine") {
+                $data['std']['iodine'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Manganese"){
-                $data['std']['manganese'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Manganese") {
+                $data['std']['manganese'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Calcium"){
-                $data['std']['calcium'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Calcium") {
+                $data['std']['calcium'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Phosphorus"){
-                $data['std']['phosphorus'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Phosphorus") {
+                $data['std']['phosphorus'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Potassium"){
-                $data['std']['Potassium'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Potassium") {
+                $data['std']['Potassium'] = ($value->Value * 1000) / 100;
             }
-            if($value->NutrSpecification=="Sodium"){
-                $data['std']['sodium'] = ($value->Value * 1000) / 100;                
+            if ($value->NutrSpecification == "Sodium") {
+                $data['std']['sodium'] = ($value->Value * 1000) / 100;
             }
-            
+
             //Ratios
             // if($value->NutrSpecification=="DP/DE (g/MJ)"){
             //     $DPDE = ($value->Value * 1000) / 100;
-                
+
             // }
-		}       
-        
-        $carbonstd = (((float)$data['std']['crudeprotein'] * 47)/100) + (((float)$data['std']['crudefat'] * 70)/100) + (((float)$data['std']['carbohydrate'] * 50)/100);
-        $nitrogenstd = ((float)$data['std']['crudeprotein'] * 16)/100;
-        try{
-            $data['std']['cn'] = number_format($carbonstd/$nitrogenstd,2);
-        }catch(\Exception $e){
+        }
+
+        $carbonstd = (((float) $data['std']['crudeprotein'] * 47) / 100) + (((float) $data['std']['crudefat'] * 70) / 100) + (((float) $data['std']['carbohydrate'] * 50) / 100);
+        $nitrogenstd = ((float) $data['std']['crudeprotein'] * 16) / 100;
+        try {
+            $data['std']['cn'] = number_format($carbonstd / $nitrogenstd, 2);
+        } catch (\Exception $e) {
             $data['std']['cn'] = 0;
-        }        
+        }
 
         return $this->response->setJSON($data);
     }
 
-    public function ReloadFormula(){
+    public function ReloadFormula()
+    {
         $response = array();
-		$data['data'] = array();
-		
-        //Return all data from temp table
-		$result1 = $this->formulationModel->select('id, Ing_Descr_E, percent')->findAll();
+        $data['data'] = array();
 
-		foreach ($result1 as $key => $value) {
-							
-			$ops = '<div class="btn-group">';
-			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit('. $value->id .')"><i class="fa fa-edit"></i></button>';
-			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove('. $value->id .')"><i class="fa fa-trash"></i></button>';
-			$ops .= '</div>';
-			
-			$data['data'][$key] = array(                
-				$value->Ing_Descr_E,				
+        //Return all data from temp table
+        $result1 = $this->formulationModel->select('id, Ing_Descr_E, percent')->findAll();
+
+        foreach ($result1 as $key => $value) {
+
+            $ops = '<div class="btn-group">';
+            $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+            $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+            $ops .= '</div>';
+
+            $data['data'][$key] = array(
+                $value->Ing_Descr_E,
                 $value->percent,
 
-				$ops,
-			);
-		} 
+                $ops,
+            );
+        }
 
         //Return sum of values from view        
-		$builder = $this->db->table('vw_sum');
+        $builder = $this->db->table('vw_sum');
         $query = $this->db->query('SELECT * FROM vw_sum');
 
-        foreach ($query->getResult() as $row){            
+        foreach ($query->getResult() as $row) {
             $data['Dry_Matter'] = $row->dryMatter;
             $data['Moisture'] = $row->moisture;
             $data['Crude_Protein'] = $row->crudeProtein;
@@ -1277,301 +1280,301 @@ class Formulation extends BaseController
             $data['SID_Tyr_poultry'] = $row->sIDTyrPoultry;
             $data['percent'] = $row->PRCNT;
         }
-        
-        $data['carbohydrate'] = number_format((float)$data['Dry_Matter'] - ((float)$data['Crude_Protein'] + (float)$data['Crude_Lipids']),2);
-        $carbon = (((float)$data['Crude_Protein'] * 47)/100) + (((float)$data['Crude_Lipids'] * 70)/100) + (((float)$data['carbohydrate'] * 50)/100);
-        $nitrogen = ((float)$data['Crude_Protein'] * 16)/100;
-        try{
-            $data['cn'] = number_format($carbon/$nitrogen,2);
-        }catch(\Exception $e){
+
+        $data['carbohydrate'] = number_format((float) $data['Dry_Matter'] - ((float) $data['Crude_Protein'] + (float) $data['Crude_Lipids']), 2);
+        $carbon = (((float) $data['Crude_Protein'] * 47) / 100) + (((float) $data['Crude_Lipids'] * 70) / 100) + (((float) $data['carbohydrate'] * 50) / 100);
+        $nitrogen = ((float) $data['Crude_Protein'] * 16) / 100;
+        try {
+            $data['cn'] = number_format($carbon / $nitrogen, 2);
+        } catch (\Exception $e) {
             $data['cn'] = 0;
         }
-        
 
-		return $this->response->setJSON($data);
+
+        return $this->response->setJSON($data);
     }
 
-	public function getAll()
-	{
- 		$response = array();		
-		
-	    $data['data'] = array();
- 
-		$result = $this->formulationModel->select('id, Ing_Code, Ing_Descr_E, Dry_Matter, Moisture, Crude_Protein, Crude_Lipids, Crude_Fibre, Ash, NFE, NDF, ADF, Total_CHO, Starch, Sugars, Gross_Energy_MJ, Gross_energy_Kcal, DE_Fish_Carni, DE_Fish_Omni, DE_Carp, DE_Shrimp, DE_Porcine, DE_Poultry, ME_Fish, ME_Guelph_Fish_Carni, ME_Guelph_Fish_Omni, ME_Guelph_Carp, ME_Guelph_Shrimp, ME_Poultry, ME_Porcine, Arginine, Histidine, Isoleucine, Leucine, Lysine, Methionine, Phenylalanine, Threonine, Tryptophan, Valine, Cystine, TSAA_Met_Cys, Tyrosine, Phe_Tyr, Glutamic, Aspartic, Glycine, Serine, Alanine, Sum_EAAs, Sum_NEAAs, Taurine, Arg_Coeff, His_Coeff, Ile_Coeff, Leu_Coeff, Lys_Coeff, Met_Coeff, Phe_Coeff, Thr_Coeff, Trp_Coeff, Val_Coeff, Dig_Arg_fish, Dig_His_fish, Dig_Ile_fish, Dig_Leu_fish, Dig_Lys_fish, Dig_Met_fish, Dig_Phe_fish, Dig_Thr_fish, Dig_Trp_fish, Dig_Val_fish, Dig_Cys_fish, Dig_TSAA_Met_Cys, Dig_Tyr_fish, Calcium, Phosphorus, Ca_Coeff, P_coeff, Phytate_P, Bone_P, Cellular_P, Monobasic_P, Dibasic_P, Tribasic_P, Dig_P_Carni, Dig_P_Omni, Dig_P_Carp, Dig_P_Shrimp, Sodium, Chlorine, Potassium, Magnesium, Sulfur, Copper, Iron, Manganese, Selenium, Zinc, Iodine, Cobalt, Biotin_B7, Folic_acid_B9, Niacin_B3, Pantothenic_Acid_B5, Pyridoxine_B6, Riboflavin_B2, Thiamin_B1, Vitamin_B12, Vitamin_C, Vitamin_A, Vitamin_D, Vitamin_E, Vitamin_K, Choline, Inositol, Beta_Carotene, Xanthophylls, Antioxidant, ADC_DM_fish, ADC_CP_fish, ADC_Lipid_fish, ADC_GE_fish, ADC_Total_CHO_fish, ADC_Starch_fish, ADC_Starch_Carni, ADC_Starch_Omni, Dig_DM_fish, Dig_CP_fish, Dig_Lipid_fish, Dig_GE_DE_fish_Kcal, Dig_Total_CHO_fish, Dig_Starch_fish, Dig_Starch_carni, Dig_Starch_Omni, ADC_Arg_fish, ADC_His_fish, ADC_Ile_fish, ADC_Leu_fish, ADC_Lys_fish, ADC_Met_fish, ADC_Phe_fish, ADC_Thr_fish, ADC_Trp_fish, ADC_Val_fish, ADC_Cys_fish, ADC_Tyr_fish, Palmitic_16_0, Stearic_18_0, Oleic_18_1_n_9, Linoleic_18_2_n_6, Linolenic_18_3_n_3, Arachidonic_20_4_n_6, EPA_20_5_n_3, DHA_22_6_n_3, EPA_DHA, SAFA, MUFA, PUFA, Sum_n_3, Sum_n_6, Phospholipids, Cholesterol, Plant_sterols, Coeff_18_2_n_6, Coeff_18_3_n_3, Coeff_20_4_n_6, Coeff_20_5_n_3, Coeff_22_6_n_3, Coeff_SAFA, Coeff_MUFA, Coeff_PUFA, Aflatoxin_B, Deoxynivalenol_DON, Zeralenone_ZON, Fumonicin_FUM, Anti_trypsic_factors, Gossypol, Phytic_Acid, Glucosinolates, Sinapine, Tannins, Lectins, Cyanogens, PCBs, Dioxins, Soyasaponins, Isoflavones, SIDC_DM_porcine, SIDC_CP_porcine, SIDC_Arg_porcine, SIDC_His_porcine, SIDC_Ile_porcine, SIDC_Leu_porcine, SIDC_Lys_porcine, SIDC_Met_porcine, SIDC_Phe_porcine, SIDC_Thr_porcine, SIDC_Trp_porcine, SIDC_Val_porcine, SIDC_Cys_porcine, SIDC_Tyr_porcine, SIDC_DM_poultry, SIDC_CP_poultry, SIDC_Arg_poultry, SIDC_His_poultry, SIDC_Ile_poultry, SIDC_Leu_poultry, SIDC_Lys_poultry, SIDC_Met_poultry, SIDC_Phe_poultry, SIDC_Thr_poultry, SIDC_Trp_poultry, SIDC_Val_poultry, SIDC_Cys_poultry, SIDC_Tyr_poultry, SID_Arg_porcine, SID_His_porcine, SID_Ile_porcine, SID_Leu_porcine, SID_Lys_porcine, SID_Met_porcine, SID_Phe_porcine, SID_Thr_porcine, SID_Trp_porcine, SID_Val_porcine, SID_Cys_porcine, SID_Tyr_porcine, SID_Arg_poultry, SID_His_poultry, SID_Ile_poultry, SID_Leu_poultry, SID_Lys_poultry, SID_Met_poultry, SID_Phe_poultry, SID_Thr_poultry, SID_Trp_poultry, SID_Val_poultry, SID_Cys_poultry, SID_Tyr_poultry, percent')->findAll();
-		
-		foreach ($result as $key => $value) {
-							
-			$ops = '<div class="btn-group">';
-			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit('. $value->id .')"><i class="fa fa-edit"></i></button>';
-			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove('. $value->id .')"><i class="fa fa-trash"></i></button>';
-			$ops .= '</div>';
-			
-			$data['data'][$key] = array(
-				$value->id,
-				$value->Ing_Code,
-				$value->Ing_Descr_E,
-				$value->Dry_Matter,
-				$value->Moisture,
-				$value->Crude_Protein,
-				$value->Crude_Lipids,
-				$value->Crude_Fibre,
-				$value->Ash,
-				$value->NFE,
-				$value->NDF,
-				$value->ADF,
-				$value->Total_CHO,
-				$value->Starch,
-				$value->Sugars,
-				$value->Gross_Energy_MJ,
-				$value->Gross_energy_Kcal,
-				$value->DE_Fish_Carni,
-				$value->DE_Fish_Omni,
-				$value->DE_Carp,
-				$value->DE_Shrimp,
-				$value->DE_Porcine,
-				$value->DE_Poultry,
-				$value->ME_Fish,
-				$value->ME_Guelph_Fish_Carni,
-				$value->ME_Guelph_Fish_Omni,
-				$value->ME_Guelph_Carp,
-				$value->ME_Guelph_Shrimp,
-				$value->ME_Poultry,
-				$value->ME_Porcine,
-				$value->Arginine,
-				$value->Histidine,
-				$value->Isoleucine,
-				$value->Leucine,
-				$value->Lysine,
-				$value->Methionine,
-				$value->Phenylalanine,
-				$value->Threonine,
-				$value->Tryptophan,
-				$value->Valine,
-				$value->Cystine,
-				$value->TSAA_Met_Cys,
-				$value->Tyrosine,
-				$value->Phe_Tyr,
-				$value->Glutamic,
-				$value->Aspartic,
-				$value->Glycine,
-				$value->Serine,
-				$value->Alanine,
-				$value->Sum_EAAs,
-				$value->Sum_NEAAs,
-				$value->Taurine,
-				$value->Arg_Coeff,
-				$value->His_Coeff,
-				$value->Ile_Coeff,
-				$value->Leu_Coeff,
-				$value->Lys_Coeff,
-				$value->Met_Coeff,
-				$value->Phe_Coeff,
-				$value->Thr_Coeff,
-				$value->Trp_Coeff,
-				$value->Val_Coeff,
-				$value->Dig_Arg_fish,
-				$value->Dig_His_fish,
-				$value->Dig_Ile_fish,
-				$value->Dig_Leu_fish,
-				$value->Dig_Lys_fish,
-				$value->Dig_Met_fish,
-				$value->Dig_Phe_fish,
-				$value->Dig_Thr_fish,
-				$value->Dig_Trp_fish,
-				$value->Dig_Val_fish,
-				$value->Dig_Cys_fish,
-				$value->Dig_TSAA_Met_Cys,
-				$value->Dig_Tyr_fish,
-				$value->Calcium,
-				$value->Phosphorus,
-				$value->Ca_Coeff,
-				$value->P_coeff,
-				$value->Phytate_P,
-				$value->Bone_P,
-				$value->Cellular_P,
-				$value->Monobasic_P,
-				$value->Dibasic_P,
-				$value->Tribasic_P,
-				$value->Dig_P_Carni,
-				$value->Dig_P_Omni,
-				$value->Dig_P_Carp,
-				$value->Dig_P_Shrimp,
-				$value->Sodium,
-				$value->Chlorine,
-				$value->Potassium,
-				$value->Magnesium,
-				$value->Sulfur,
-				$value->Copper,
-				$value->Iron,
-				$value->Manganese,
-				$value->Selenium,
-				$value->Zinc,
-				$value->Iodine,
-				$value->Cobalt,
-				$value->Biotin_B7,
-				$value->Folic_acid_B9,
-				$value->Niacin_B3,
-				$value->Pantothenic_Acid_B5,
-				$value->Pyridoxine_B6,
-				$value->Riboflavin_B2,
-				$value->Thiamin_B1,
-				$value->Vitamin_B12,
-				$value->Vitamin_C,
-				$value->Vitamin_A,
-				$value->Vitamin_D,
-				$value->Vitamin_E,
-				$value->Vitamin_K,
-				$value->Choline,
-				$value->Inositol,
-				$value->Beta_Carotene,
-				$value->Xanthophylls,
-				$value->Antioxidant,
-				$value->ADC_DM_fish,
-				$value->ADC_CP_fish,
-				$value->ADC_Lipid_fish,
-				$value->ADC_GE_fish,
-				$value->ADC_Total_CHO_fish,
-				$value->ADC_Starch_fish,
-				$value->ADC_Starch_Carni,
-				$value->ADC_Starch_Omni,
-				$value->Dig_DM_fish,
-				$value->Dig_CP_fish,
-				$value->Dig_Lipid_fish,
-				$value->Dig_GE_DE_fish_Kcal,
-				$value->Dig_Total_CHO_fish,
-				$value->Dig_Starch_fish,
-				$value->Dig_Starch_carni,
-				$value->Dig_Starch_Omni,
-				$value->ADC_Arg_fish,
-				$value->ADC_His_fish,
-				$value->ADC_Ile_fish,
-				$value->ADC_Leu_fish,
-				$value->ADC_Lys_fish,
-				$value->ADC_Met_fish,
-				$value->ADC_Phe_fish,
-				$value->ADC_Thr_fish,
-				$value->ADC_Trp_fish,
-				$value->ADC_Val_fish,
-				$value->ADC_Cys_fish,
-				$value->ADC_Tyr_fish,
-				$value->Palmitic_16_0,
-				$value->Stearic_18_0,
-				$value->Oleic_18_1_n_9,
-				$value->Linoleic_18_2_n_6,
-				$value->Linolenic_18_3_n_3,
-				$value->Arachidonic_20_4_n_6,
-				$value->EPA_20_5_n_3,
-				$value->DHA_22_6_n_3,
-				$value->EPA_DHA,
-				$value->SAFA,
-				$value->MUFA,
-				$value->PUFA,
-				$value->Sum_n_3,
-				$value->Sum_n_6,
-				$value->Phospholipids,
-				$value->Cholesterol,
-				$value->Plant_sterols,
-				$value->Coeff_18_2_n_6,
-				$value->Coeff_18_3_n_3,
-				$value->Coeff_20_4_n_6,
-				$value->Coeff_20_5_n_3,
-				$value->Coeff_22_6_n_3,
-				$value->Coeff_SAFA,
-				$value->Coeff_MUFA,
-				$value->Coeff_PUFA,
-				$value->Aflatoxin_B,
-				$value->Deoxynivalenol_DON,
-				$value->Zeralenone_ZON,
-				$value->Fumonicin_FUM,
-				$value->Anti_trypsic_factors,
-				$value->Gossypol,
-				$value->Phytic_Acid,
-				$value->Glucosinolates,
-				$value->Sinapine,
-				$value->Tannins,
-				$value->Lectins,
-				$value->Cyanogens,
-				$value->PCBs,
-				$value->Dioxins,
-				$value->Soyasaponins,
-				$value->Isoflavones,
-				$value->SIDC_DM_porcine,
-				$value->SIDC_CP_porcine,
-				$value->SIDC_Arg_porcine,
-				$value->SIDC_His_porcine,
-				$value->SIDC_Ile_porcine,
-				$value->SIDC_Leu_porcine,
-				$value->SIDC_Lys_porcine,
-				$value->SIDC_Met_porcine,
-				$value->SIDC_Phe_porcine,
-				$value->SIDC_Thr_porcine,
-				$value->SIDC_Trp_porcine,
-				$value->SIDC_Val_porcine,
-				$value->SIDC_Cys_porcine,
-				$value->SIDC_Tyr_porcine,
-				$value->SIDC_DM_poultry,
-				$value->SIDC_CP_poultry,
-				$value->SIDC_Arg_poultry,
-				$value->SIDC_His_poultry,
-				$value->SIDC_Ile_poultry,
-				$value->SIDC_Leu_poultry,
-				$value->SIDC_Lys_poultry,
-				$value->SIDC_Met_poultry,
-				$value->SIDC_Phe_poultry,
-				$value->SIDC_Thr_poultry,
-				$value->SIDC_Trp_poultry,
-				$value->SIDC_Val_poultry,
-				$value->SIDC_Cys_poultry,
-				$value->SIDC_Tyr_poultry,
-				$value->SID_Arg_porcine,
-				$value->SID_His_porcine,
-				$value->SID_Ile_porcine,
-				$value->SID_Leu_porcine,
-				$value->SID_Lys_porcine,
-				$value->SID_Met_porcine,
-				$value->SID_Phe_porcine,
-				$value->SID_Thr_porcine,
-				$value->SID_Trp_porcine,
-				$value->SID_Val_porcine,
-				$value->SID_Cys_porcine,
-				$value->SID_Tyr_porcine,
-				$value->SID_Arg_poultry,
-				$value->SID_His_poultry,
-				$value->SID_Ile_poultry,
-				$value->SID_Leu_poultry,
-				$value->SID_Lys_poultry,
-				$value->SID_Met_poultry,
-				$value->SID_Phe_poultry,
-				$value->SID_Thr_poultry,
-				$value->SID_Trp_poultry,
-				$value->SID_Val_poultry,
-				$value->SID_Cys_poultry,
-				$value->SID_Tyr_poultry,
+    public function getAll()
+    {
+        $response = array();
+
+        $data['data'] = array();
+
+        $result = $this->formulationModel->select('id, Ing_Code, Ing_Descr_E, Dry_Matter, Moisture, Crude_Protein, Crude_Lipids, Crude_Fibre, Ash, NFE, NDF, ADF, Total_CHO, Starch, Sugars, Gross_Energy_MJ, Gross_energy_Kcal, DE_Fish_Carni, DE_Fish_Omni, DE_Carp, DE_Shrimp, DE_Porcine, DE_Poultry, ME_Fish, ME_Guelph_Fish_Carni, ME_Guelph_Fish_Omni, ME_Guelph_Carp, ME_Guelph_Shrimp, ME_Poultry, ME_Porcine, Arginine, Histidine, Isoleucine, Leucine, Lysine, Methionine, Phenylalanine, Threonine, Tryptophan, Valine, Cystine, TSAA_Met_Cys, Tyrosine, Phe_Tyr, Glutamic, Aspartic, Glycine, Serine, Alanine, Sum_EAAs, Sum_NEAAs, Taurine, Arg_Coeff, His_Coeff, Ile_Coeff, Leu_Coeff, Lys_Coeff, Met_Coeff, Phe_Coeff, Thr_Coeff, Trp_Coeff, Val_Coeff, Dig_Arg_fish, Dig_His_fish, Dig_Ile_fish, Dig_Leu_fish, Dig_Lys_fish, Dig_Met_fish, Dig_Phe_fish, Dig_Thr_fish, Dig_Trp_fish, Dig_Val_fish, Dig_Cys_fish, Dig_TSAA_Met_Cys, Dig_Tyr_fish, Calcium, Phosphorus, Ca_Coeff, P_coeff, Phytate_P, Bone_P, Cellular_P, Monobasic_P, Dibasic_P, Tribasic_P, Dig_P_Carni, Dig_P_Omni, Dig_P_Carp, Dig_P_Shrimp, Sodium, Chlorine, Potassium, Magnesium, Sulfur, Copper, Iron, Manganese, Selenium, Zinc, Iodine, Cobalt, Biotin_B7, Folic_acid_B9, Niacin_B3, Pantothenic_Acid_B5, Pyridoxine_B6, Riboflavin_B2, Thiamin_B1, Vitamin_B12, Vitamin_C, Vitamin_A, Vitamin_D, Vitamin_E, Vitamin_K, Choline, Inositol, Beta_Carotene, Xanthophylls, Antioxidant, ADC_DM_fish, ADC_CP_fish, ADC_Lipid_fish, ADC_GE_fish, ADC_Total_CHO_fish, ADC_Starch_fish, ADC_Starch_Carni, ADC_Starch_Omni, Dig_DM_fish, Dig_CP_fish, Dig_Lipid_fish, Dig_GE_DE_fish_Kcal, Dig_Total_CHO_fish, Dig_Starch_fish, Dig_Starch_carni, Dig_Starch_Omni, ADC_Arg_fish, ADC_His_fish, ADC_Ile_fish, ADC_Leu_fish, ADC_Lys_fish, ADC_Met_fish, ADC_Phe_fish, ADC_Thr_fish, ADC_Trp_fish, ADC_Val_fish, ADC_Cys_fish, ADC_Tyr_fish, Palmitic_16_0, Stearic_18_0, Oleic_18_1_n_9, Linoleic_18_2_n_6, Linolenic_18_3_n_3, Arachidonic_20_4_n_6, EPA_20_5_n_3, DHA_22_6_n_3, EPA_DHA, SAFA, MUFA, PUFA, Sum_n_3, Sum_n_6, Phospholipids, Cholesterol, Plant_sterols, Coeff_18_2_n_6, Coeff_18_3_n_3, Coeff_20_4_n_6, Coeff_20_5_n_3, Coeff_22_6_n_3, Coeff_SAFA, Coeff_MUFA, Coeff_PUFA, Aflatoxin_B, Deoxynivalenol_DON, Zeralenone_ZON, Fumonicin_FUM, Anti_trypsic_factors, Gossypol, Phytic_Acid, Glucosinolates, Sinapine, Tannins, Lectins, Cyanogens, PCBs, Dioxins, Soyasaponins, Isoflavones, SIDC_DM_porcine, SIDC_CP_porcine, SIDC_Arg_porcine, SIDC_His_porcine, SIDC_Ile_porcine, SIDC_Leu_porcine, SIDC_Lys_porcine, SIDC_Met_porcine, SIDC_Phe_porcine, SIDC_Thr_porcine, SIDC_Trp_porcine, SIDC_Val_porcine, SIDC_Cys_porcine, SIDC_Tyr_porcine, SIDC_DM_poultry, SIDC_CP_poultry, SIDC_Arg_poultry, SIDC_His_poultry, SIDC_Ile_poultry, SIDC_Leu_poultry, SIDC_Lys_poultry, SIDC_Met_poultry, SIDC_Phe_poultry, SIDC_Thr_poultry, SIDC_Trp_poultry, SIDC_Val_poultry, SIDC_Cys_poultry, SIDC_Tyr_poultry, SID_Arg_porcine, SID_His_porcine, SID_Ile_porcine, SID_Leu_porcine, SID_Lys_porcine, SID_Met_porcine, SID_Phe_porcine, SID_Thr_porcine, SID_Trp_porcine, SID_Val_porcine, SID_Cys_porcine, SID_Tyr_porcine, SID_Arg_poultry, SID_His_poultry, SID_Ile_poultry, SID_Leu_poultry, SID_Lys_poultry, SID_Met_poultry, SID_Phe_poultry, SID_Thr_poultry, SID_Trp_poultry, SID_Val_poultry, SID_Cys_poultry, SID_Tyr_poultry, percent')->findAll();
+
+        foreach ($result as $key => $value) {
+
+            $ops = '<div class="btn-group">';
+            $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+            $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+            $ops .= '</div>';
+
+            $data['data'][$key] = array(
+                $value->id,
+                $value->Ing_Code,
+                $value->Ing_Descr_E,
+                $value->Dry_Matter,
+                $value->Moisture,
+                $value->Crude_Protein,
+                $value->Crude_Lipids,
+                $value->Crude_Fibre,
+                $value->Ash,
+                $value->NFE,
+                $value->NDF,
+                $value->ADF,
+                $value->Total_CHO,
+                $value->Starch,
+                $value->Sugars,
+                $value->Gross_Energy_MJ,
+                $value->Gross_energy_Kcal,
+                $value->DE_Fish_Carni,
+                $value->DE_Fish_Omni,
+                $value->DE_Carp,
+                $value->DE_Shrimp,
+                $value->DE_Porcine,
+                $value->DE_Poultry,
+                $value->ME_Fish,
+                $value->ME_Guelph_Fish_Carni,
+                $value->ME_Guelph_Fish_Omni,
+                $value->ME_Guelph_Carp,
+                $value->ME_Guelph_Shrimp,
+                $value->ME_Poultry,
+                $value->ME_Porcine,
+                $value->Arginine,
+                $value->Histidine,
+                $value->Isoleucine,
+                $value->Leucine,
+                $value->Lysine,
+                $value->Methionine,
+                $value->Phenylalanine,
+                $value->Threonine,
+                $value->Tryptophan,
+                $value->Valine,
+                $value->Cystine,
+                $value->TSAA_Met_Cys,
+                $value->Tyrosine,
+                $value->Phe_Tyr,
+                $value->Glutamic,
+                $value->Aspartic,
+                $value->Glycine,
+                $value->Serine,
+                $value->Alanine,
+                $value->Sum_EAAs,
+                $value->Sum_NEAAs,
+                $value->Taurine,
+                $value->Arg_Coeff,
+                $value->His_Coeff,
+                $value->Ile_Coeff,
+                $value->Leu_Coeff,
+                $value->Lys_Coeff,
+                $value->Met_Coeff,
+                $value->Phe_Coeff,
+                $value->Thr_Coeff,
+                $value->Trp_Coeff,
+                $value->Val_Coeff,
+                $value->Dig_Arg_fish,
+                $value->Dig_His_fish,
+                $value->Dig_Ile_fish,
+                $value->Dig_Leu_fish,
+                $value->Dig_Lys_fish,
+                $value->Dig_Met_fish,
+                $value->Dig_Phe_fish,
+                $value->Dig_Thr_fish,
+                $value->Dig_Trp_fish,
+                $value->Dig_Val_fish,
+                $value->Dig_Cys_fish,
+                $value->Dig_TSAA_Met_Cys,
+                $value->Dig_Tyr_fish,
+                $value->Calcium,
+                $value->Phosphorus,
+                $value->Ca_Coeff,
+                $value->P_coeff,
+                $value->Phytate_P,
+                $value->Bone_P,
+                $value->Cellular_P,
+                $value->Monobasic_P,
+                $value->Dibasic_P,
+                $value->Tribasic_P,
+                $value->Dig_P_Carni,
+                $value->Dig_P_Omni,
+                $value->Dig_P_Carp,
+                $value->Dig_P_Shrimp,
+                $value->Sodium,
+                $value->Chlorine,
+                $value->Potassium,
+                $value->Magnesium,
+                $value->Sulfur,
+                $value->Copper,
+                $value->Iron,
+                $value->Manganese,
+                $value->Selenium,
+                $value->Zinc,
+                $value->Iodine,
+                $value->Cobalt,
+                $value->Biotin_B7,
+                $value->Folic_acid_B9,
+                $value->Niacin_B3,
+                $value->Pantothenic_Acid_B5,
+                $value->Pyridoxine_B6,
+                $value->Riboflavin_B2,
+                $value->Thiamin_B1,
+                $value->Vitamin_B12,
+                $value->Vitamin_C,
+                $value->Vitamin_A,
+                $value->Vitamin_D,
+                $value->Vitamin_E,
+                $value->Vitamin_K,
+                $value->Choline,
+                $value->Inositol,
+                $value->Beta_Carotene,
+                $value->Xanthophylls,
+                $value->Antioxidant,
+                $value->ADC_DM_fish,
+                $value->ADC_CP_fish,
+                $value->ADC_Lipid_fish,
+                $value->ADC_GE_fish,
+                $value->ADC_Total_CHO_fish,
+                $value->ADC_Starch_fish,
+                $value->ADC_Starch_Carni,
+                $value->ADC_Starch_Omni,
+                $value->Dig_DM_fish,
+                $value->Dig_CP_fish,
+                $value->Dig_Lipid_fish,
+                $value->Dig_GE_DE_fish_Kcal,
+                $value->Dig_Total_CHO_fish,
+                $value->Dig_Starch_fish,
+                $value->Dig_Starch_carni,
+                $value->Dig_Starch_Omni,
+                $value->ADC_Arg_fish,
+                $value->ADC_His_fish,
+                $value->ADC_Ile_fish,
+                $value->ADC_Leu_fish,
+                $value->ADC_Lys_fish,
+                $value->ADC_Met_fish,
+                $value->ADC_Phe_fish,
+                $value->ADC_Thr_fish,
+                $value->ADC_Trp_fish,
+                $value->ADC_Val_fish,
+                $value->ADC_Cys_fish,
+                $value->ADC_Tyr_fish,
+                $value->Palmitic_16_0,
+                $value->Stearic_18_0,
+                $value->Oleic_18_1_n_9,
+                $value->Linoleic_18_2_n_6,
+                $value->Linolenic_18_3_n_3,
+                $value->Arachidonic_20_4_n_6,
+                $value->EPA_20_5_n_3,
+                $value->DHA_22_6_n_3,
+                $value->EPA_DHA,
+                $value->SAFA,
+                $value->MUFA,
+                $value->PUFA,
+                $value->Sum_n_3,
+                $value->Sum_n_6,
+                $value->Phospholipids,
+                $value->Cholesterol,
+                $value->Plant_sterols,
+                $value->Coeff_18_2_n_6,
+                $value->Coeff_18_3_n_3,
+                $value->Coeff_20_4_n_6,
+                $value->Coeff_20_5_n_3,
+                $value->Coeff_22_6_n_3,
+                $value->Coeff_SAFA,
+                $value->Coeff_MUFA,
+                $value->Coeff_PUFA,
+                $value->Aflatoxin_B,
+                $value->Deoxynivalenol_DON,
+                $value->Zeralenone_ZON,
+                $value->Fumonicin_FUM,
+                $value->Anti_trypsic_factors,
+                $value->Gossypol,
+                $value->Phytic_Acid,
+                $value->Glucosinolates,
+                $value->Sinapine,
+                $value->Tannins,
+                $value->Lectins,
+                $value->Cyanogens,
+                $value->PCBs,
+                $value->Dioxins,
+                $value->Soyasaponins,
+                $value->Isoflavones,
+                $value->SIDC_DM_porcine,
+                $value->SIDC_CP_porcine,
+                $value->SIDC_Arg_porcine,
+                $value->SIDC_His_porcine,
+                $value->SIDC_Ile_porcine,
+                $value->SIDC_Leu_porcine,
+                $value->SIDC_Lys_porcine,
+                $value->SIDC_Met_porcine,
+                $value->SIDC_Phe_porcine,
+                $value->SIDC_Thr_porcine,
+                $value->SIDC_Trp_porcine,
+                $value->SIDC_Val_porcine,
+                $value->SIDC_Cys_porcine,
+                $value->SIDC_Tyr_porcine,
+                $value->SIDC_DM_poultry,
+                $value->SIDC_CP_poultry,
+                $value->SIDC_Arg_poultry,
+                $value->SIDC_His_poultry,
+                $value->SIDC_Ile_poultry,
+                $value->SIDC_Leu_poultry,
+                $value->SIDC_Lys_poultry,
+                $value->SIDC_Met_poultry,
+                $value->SIDC_Phe_poultry,
+                $value->SIDC_Thr_poultry,
+                $value->SIDC_Trp_poultry,
+                $value->SIDC_Val_poultry,
+                $value->SIDC_Cys_poultry,
+                $value->SIDC_Tyr_poultry,
+                $value->SID_Arg_porcine,
+                $value->SID_His_porcine,
+                $value->SID_Ile_porcine,
+                $value->SID_Leu_porcine,
+                $value->SID_Lys_porcine,
+                $value->SID_Met_porcine,
+                $value->SID_Phe_porcine,
+                $value->SID_Thr_porcine,
+                $value->SID_Trp_porcine,
+                $value->SID_Val_porcine,
+                $value->SID_Cys_porcine,
+                $value->SID_Tyr_porcine,
+                $value->SID_Arg_poultry,
+                $value->SID_His_poultry,
+                $value->SID_Ile_poultry,
+                $value->SID_Leu_poultry,
+                $value->SID_Lys_poultry,
+                $value->SID_Met_poultry,
+                $value->SID_Phe_poultry,
+                $value->SID_Thr_poultry,
+                $value->SID_Trp_poultry,
+                $value->SID_Val_poultry,
+                $value->SID_Cys_poultry,
+                $value->SID_Tyr_poultry,
                 $value->percent,
 
-				$ops,
-			);
-		} 
+                $ops,
+            );
+        }
 
-		return $this->response->setJSON($data);		
-	}
-	
-	public function getOne()
-	{
- 		$response = array();
-		
-		$id = $this->request->getPost('id');
-		
-		if ($this->validation->check($id, 'required|numeric')) {			
-			$data = $this->formulationModel->where('id' ,$id)->first();
-			return $this->response->setJSON($data);					
-		} else {			
-			throw new \CodeIgniter\Exceptions\PageNotFoundException();
-		}			
-	}	
-	
-	public function add()
-	{
+        return $this->response->setJSON($data);
+    }
+
+    public function getOne()
+    {
+        $response = array();
+
+        $id = $this->request->getPost('id');
+
+        if ($this->validation->check($id, 'required|numeric')) {
+            $data = $this->formulationModel->where('id', $id)->first();
+            return $this->response->setJSON($data);
+        } else {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException();
+        }
+    }
+
+    public function add()
+    {
         $response = array();
 
         $fields['id'] = $this->request->getPost('id');
@@ -2061,26 +2064,27 @@ class Formulation extends BaseController
 
         if ($this->validation->run($fields) == FALSE) {
             $response['success'] = false;
-            $response['messages'] = $this->validation->listErrors();			
+            $response['messages'] = $this->validation->listErrors();
         } else {
-            if ($this->formulationModel->insert($fields)) {												
+            if ($this->formulationModel->insert($fields)) {
                 $response['success'] = true;
-                $response['messages'] = 'Data has been inserted successfully';					
-            } else {				
+                $response['messages'] = 'Data has been inserted successfully';
+            } else {
                 $response['success'] = false;
-                $response['messages'] = 'Insertion error!';				
+                $response['messages'] = 'Insertion error!';
             }
         }
-		
-        return $this->response->setJSON($response);	}
 
-	public function edit()
-	{
+        return $this->response->setJSON($response);
+    }
+
+    public function edit()
+    {
         $response = array();
 
         $id = $this->request->getPost('id');
         $percent = $this->request->getPost('percent');
-        $fields['id'] = $id;      
+        $fields['id'] = $id;
         $fields['percent'] = $percent;
 
         $this->validation->setRules([
@@ -2328,288 +2332,288 @@ class Formulation extends BaseController
 
         if ($this->validation->run($fields) == FALSE) {
             $response['success'] = false;
-            $response['messages'] = $this->validation->listErrors();			
+            $response['messages'] = $this->validation->listErrors();
         } else {
 
-            $data = $this->formulationModel->where('id' ,$this->request->getPost('id'))->first();
+            $data = $this->formulationModel->where('id', $this->request->getPost('id'))->first();
             //get single ingredient	
-            $builder = $this->db->table('ingredients');		       
+            $builder = $this->db->table('ingredients');
             $builder = $builder->where(array(
-                    'Ing_Code' => $data->Ing_Code
-                ));
+                'Ing_Code' => $data->Ing_Code
+            ));
             $result = $builder->get()->getResult();
-            
-            foreach($result as $key => $value){        
+
+            foreach ($result as $key => $value) {
                 //$fields['id'] = $this->request->getPost('id');
                 $fields['Ing_Code'] = $value->Ing_Code;
                 $fields['Ing_Descr_E'] = $value->Ing_Descr_E;
-                $fields['Dry_Matter'] = ($value->Dry_Matter * $percent)/100;
-                $fields['Moisture'] = ($value->Moisture * $percent)/100;
-                $fields['Crude_Protein'] = ($value->Crude_Protein * $percent)/100;
-                $fields['Crude_Lipids'] = ($value->Crude_Lipids * $percent)/100;
-                $fields['Crude_Fibre'] = ($value->Crude_Fibre * $percent)/100;
-                $fields['Ash'] = ($value->Ash * $percent)/100;
-                $fields['NFE'] = ($value->NFE * $percent)/100;
-                $fields['NDF'] = ($value->NDF * $percent)/100;
-                $fields['ADF'] = ($value->ADF * $percent)/100;
-                $fields['Total_CHO'] = ($value->Total_CHO * $percent)/100;
-                $fields['Starch'] = ($value->Starch * $percent)/100;
-                $fields['Sugars'] = ($value->Sugars * $percent)/100;
-                $fields['Gross_Energy_MJ'] = ($value->Gross_Energy_MJ * $percent)/100;
-                $fields['Gross_energy_Kcal'] = ($value->Gross_energy_Kcal * $percent)/100;
-                $fields['DE_Fish_Carni'] = ($value->DE_Fish_Carni * $percent)/100;
-                $fields['DE_Fish_Omni'] = ($value->DE_Fish_Omni * $percent)/100;
-                $fields['DE_Carp'] = ($value->DE_Carp * $percent)/100;
-                $fields['DE_Shrimp'] = ($value->DE_Shrimp * $percent)/100;
-                $fields['DE_Porcine'] = ($value->DE_Porcine * $percent)/100;
-                $fields['DE_Poultry'] = ($value->DE_Poultry * $percent)/100;
-                $fields['ME_Fish'] = ($value->ME_Fish * $percent)/100;
-                $fields['ME_Guelph_Fish_Carni'] = ($value->ME_Guelph_Fish_Carni * $percent)/100;
-                $fields['ME_Guelph_Fish_Omni'] = ($value->ME_Guelph_Fish_Omni * $percent)/100;
-                $fields['ME_Guelph_Carp'] = ($value->ME_Guelph_Carp * $percent)/100;
-                $fields['ME_Guelph_Shrimp'] = ($value->ME_Guelph_Shrimp * $percent)/100;
-                $fields['ME_Poultry'] = ($value->ME_Poultry * $percent)/100;
-                $fields['ME_Porcine'] = ($value->ME_Porcine * $percent)/100;
-                $fields['Arginine'] = ($value->Arginine * $percent)/100;
-                $fields['Histidine'] = ($value->Histidine * $percent)/100;
-                $fields['Isoleucine'] = ($value->Isoleucine * $percent)/100;
-                $fields['Leucine'] = ($value->Leucine * $percent)/100;
-                $fields['Lysine'] = ($value->Lysine * $percent)/100;
-                $fields['Methionine'] = ($value->Methionine * $percent)/100;
-                $fields['Phenylalanine'] = ($value->Phenylalanine * $percent)/100;
-                $fields['Threonine'] = ($value->Threonine * $percent)/100;
-                $fields['Tryptophan'] = ($value->Tryptophan * $percent)/100;
-                $fields['Valine'] = ($value->Valine * $percent)/100;
-                $fields['Cystine'] = ($value->Cystine * $percent)/100;
-                $fields['TSAA_Met_Cys'] = ($value->TSAA_Met_Cys * $percent)/100;
-                $fields['Tyrosine'] = ($value->Tyrosine * $percent)/100;
-                $fields['Phe_Tyr'] = ($value->Phe_Tyr * $percent)/100;
-                $fields['Glutamic'] = ($value->Glutamic * $percent)/100;
-                $fields['Aspartic'] = ($value->Aspartic * $percent)/100;
-                $fields['Glycine'] = ($value->Glycine * $percent)/100;
-                $fields['Serine'] = ($value->Serine * $percent)/100;
-                $fields['Alanine'] = ($value->Alanine * $percent)/100;
-                $fields['Sum_EAAs'] = ($value->Sum_EAAs * $percent)/100;
-                $fields['Sum_NEAAs'] = ($value->Sum_NEAAs * $percent)/100;
-                $fields['Taurine'] = ($value->Taurine * $percent)/100;
-                $fields['Arg_Coeff'] = ($value->Arg_Coeff * $percent)/100;
-                $fields['His_Coeff'] = ($value->His_Coeff * $percent)/100;
-                $fields['Ile_Coeff'] = ($value->Ile_Coeff * $percent)/100;
-                $fields['Leu_Coeff'] = ($value->Leu_Coeff * $percent)/100;
-                $fields['Lys_Coeff'] = ($value->Lys_Coeff * $percent)/100;
-                $fields['Met_Coeff'] = ($value->Met_Coeff * $percent)/100;
-                $fields['Phe_Coeff'] = ($value->Phe_Coeff * $percent)/100;
-                $fields['Thr_Coeff'] = ($value->Thr_Coeff * $percent)/100;
-                $fields['Trp_Coeff'] = ($value->Trp_Coeff * $percent)/100;
-                $fields['Val_Coeff'] = ($value->Val_Coeff * $percent)/100;
-                $fields['Dig_Arg_fish'] = ($value->Dig_Arg_fish * $percent)/100;
-                $fields['Dig_His_fish'] = ($value->Dig_His_fish * $percent)/100;
-                $fields['Dig_Ile_fish'] = ($value->Dig_Ile_fish * $percent)/100;
-                $fields['Dig_Leu_fish'] = ($value->Dig_Leu_fish * $percent)/100;
-                $fields['Dig_Lys_fish'] = ($value->Dig_Lys_fish * $percent)/100;
-                $fields['Dig_Met_fish'] = ($value->Dig_Met_fish * $percent)/100;
-                $fields['Dig_Phe_fish'] = ($value->Dig_Phe_fish * $percent)/100;
-                $fields['Dig_Thr_fish'] = ($value->Dig_Thr_fish * $percent)/100;
-                $fields['Dig_Trp_fish'] = ($value->Dig_Trp_fish * $percent)/100;
-                $fields['Dig_Val_fish'] = ($value->Dig_Val_fish * $percent)/100;
-                $fields['Dig_Cys_fish'] = ($value->Dig_Cys_fish * $percent)/100;
-                $fields['Dig_TSAA_Met_Cys'] = ($value->Dig_TSAA_Met_Cys * $percent)/100;
-                $fields['Dig_Tyr_fish'] = ($value->Dig_Tyr_fish * $percent)/100;
-                $fields['Calcium'] = ($value->Calcium * $percent)/100;
-                $fields['Phosphorus'] = ($value->Phosphorus * $percent)/100;
-                $fields['Ca_Coeff'] = ($value->Ca_Coeff * $percent)/100;
-                $fields['P_coeff'] = ($value->P_coeff * $percent)/100;
-                $fields['Phytate_P'] = ($value->Phytate_P * $percent)/100;
-                $fields['Bone_P'] = ($value->Bone_P * $percent)/100;
-                $fields['Cellular_P'] = ($value->Cellular_P * $percent)/100;
-                $fields['Monobasic_P'] = ($value->Monobasic_P * $percent)/100;
-                $fields['Dibasic_P'] = ($value->Dibasic_P * $percent)/100;
-                $fields['Tribasic_P'] = ($value->Tribasic_P * $percent)/100;
-                $fields['Dig_P_Carni'] = ($value->Dig_P_Carni * $percent)/100;
-                $fields['Dig_P_Omni'] = ($value->Dig_P_Omni * $percent)/100;
-                $fields['Dig_P_Carp'] = ($value->Dig_P_Carp * $percent)/100;
-                $fields['Dig_P_Shrimp'] = ($value->Dig_P_Shrimp * $percent)/100;
-                $fields['Sodium'] = ($value->Sodium * $percent)/100;
-                $fields['Chlorine'] = ($value->Chlorine * $percent)/100;
-                $fields['Potassium'] = ($value->Potassium * $percent)/100;
-                $fields['Magnesium'] = ($value->Magnesium * $percent)/100;
-                $fields['Sulfur'] = ($value->Sulfur * $percent)/100;
-                $fields['Copper'] = ($value->Copper * $percent)/100;
-                $fields['Iron'] = ($value->Iron * $percent)/100;
-                $fields['Manganese'] = ($value->Manganese * $percent)/100;
-                $fields['Selenium'] = ($value->Selenium * $percent)/100;
-                $fields['Zinc'] = ($value->Zinc * $percent)/100;
-                $fields['Iodine'] = ($value->Iodine * $percent)/100;
-                $fields['Cobalt'] = ($value->Cobalt * $percent)/100;
-                $fields['Biotin_B7'] = ($value->Biotin_B7 * $percent)/100;
-                $fields['Folic_acid_B9'] = ($value->folicAcidB9 * $percent)/100;
-                $fields['Niacin_B3'] = ($value->niacinB3 * $percent)/100;
-                $fields['Pantothenic_Acid_B5'] = ($value->pantothenicAcidB5 * $percent)/100;
-                $fields['Pyridoxine_B6'] = ($value->pyridoxineB6 * $percent)/100;
-                $fields['Riboflavin_B2'] = ($value->riboflavinB2 * $percent)/100;
-                $fields['Thiamin_B1'] = ($value->thiaminB1 * $percent)/100;
-                $fields['Vitamin_B12'] = ($value->vitaminB12 * $percent)/100;
-                $fields['Vitamin_C'] = ($value->vitaminC * $percent)/100;
-                $fields['Vitamin_A'] = ($value->vitaminA * $percent)/100;
-                $fields['Vitamin_D'] = ($value->vitaminD * $percent)/100;
-                $fields['Vitamin_E'] = ($value->vitaminE * $percent)/100;
-                $fields['Vitamin_K'] = ($value->vitaminK * $percent)/100;
-                $fields['Choline'] = ($value->choline * $percent)/100;
-                $fields['Inositol'] = ($value->inositol * $percent)/100;
-                $fields['Beta_Carotene'] = ($value->betaCarotene * $percent)/100;
-                $fields['Xanthophylls'] = ($value->xanthophylls * $percent)/100;
-                $fields['Antioxidant'] = ($value->antioxidant * $percent)/100;
-                $fields['ADC_DM_fish'] = ($value->aDCDMFish * $percent)/100;
-                $fields['ADC_CP_fish'] = ($value->aDCCPFish * $percent)/100;
-                $fields['ADC_Lipid_fish'] = ($value->aDCLipidFish * $percent)/100;
-                $fields['ADC_GE_fish'] = ($value->aDCGEFish * $percent)/100;
-                $fields['ADC_Total_CHO_fish'] = ($value->aDCTotalCHOFish * $percent)/100;
-                $fields['ADC_Starch_fish'] = ($value->aDCStarchFish * $percent)/100;
-                $fields['ADC_Starch_Carni'] = ($value->aDCStarchCarni * $percent)/100;
-                $fields['ADC_Starch_Omni'] = ($value->aDCStarchOmni * $percent)/100;
-                $fields['Dig_DM_fish'] = ($value->digDMFish * $percent)/100;
-                $fields['Dig_CP_fish'] = ($value->digCPFish * $percent)/100;
-                $fields['Dig_Lipid_fish'] = ($value->digLipidFish * $percent)/100;
-                $fields['Dig_GE_DE_fish_Kcal'] = ($value->digGEDEFishKcal * $percent)/100;
-                $fields['Dig_Total_CHO_fish'] = ($value->digTotalCHOFish * $percent)/100;
-                $fields['Dig_Starch_fish'] = ($value->digStarchFish * $percent)/100;
-                $fields['Dig_Starch_carni'] = ($value->digStarchCarni * $percent)/100;
-                $fields['Dig_Starch_Omni'] = ($value->digStarchOmni * $percent)/100;
-                $fields['ADC_Arg_fish'] = ($value->aDCArgFish * $percent)/100;
-                $fields['ADC_His_fish'] = ($value->aDCHisFish * $percent)/100;
-                $fields['ADC_Ile_fish'] = ($value->aDCIleFish * $percent)/100;
-                $fields['ADC_Leu_fish'] = ($value->aDCLeuFish * $percent)/100;
-                $fields['ADC_Lys_fish'] = ($value->aDCLysFish * $percent)/100;
-                $fields['ADC_Met_fish'] = ($value->aDCMetFish * $percent)/100;
-                $fields['ADC_Phe_fish'] = ($value->aDCPheFish * $percent)/100;
-                $fields['ADC_Thr_fish'] = ($value->aDCThrFish * $percent)/100;
-                $fields['ADC_Trp_fish'] = ($value->aDCTrpFish * $percent)/100;
-                $fields['ADC_Val_fish'] = ($value->aDCValFish * $percent)/100;
-                $fields['ADC_Cys_fish'] = ($value->aDCCysFish * $percent)/100;
-                $fields['ADC_Tyr_fish'] = ($value->aDCTyrFish * $percent)/100;
-                $fields['Palmitic_16_0'] = ($value->palmitic160 * $percent)/100;
-                $fields['Stearic_18_0'] = ($value->stearic180 * $percent)/100;
-                $fields['Oleic_18_1_n_9'] = ($value->oleic181N9 * $percent)/100;
-                $fields['Linoleic_18_2_n_6'] = ($value->linoleic182N6 * $percent)/100;
-                $fields['Linolenic_18_3_n_3'] = ($value->linolenic183N3 * $percent)/100;
-                $fields['Arachidonic_20_4_n_6'] = ($value->arachidonic204N6 * $percent)/100;
-                $fields['EPA_20_5_n_3'] = ($value->ePA205N3 * $percent)/100;
-                $fields['DHA_22_6_n_3'] = ($value->dHA226N3 * $percent)/100;
-                $fields['EPA_DHA'] = ($value->ePADHA * $percent)/100;
-                $fields['SAFA'] = ($value->sAFA * $percent)/100;
-                $fields['MUFA'] = ($value->mUFA * $percent)/100;
-                $fields['PUFA'] = ($value->pUFA * $percent)/100;
-                $fields['Sum_n_3'] = ($value->sumN3 * $percent)/100;
-                $fields['Sum_n_6'] = ($value->sumN6 * $percent)/100;
-                $fields['Phospholipids'] = ($value->phospholipids * $percent)/100;
-                $fields['Cholesterol'] = ($value->cholesterol * $percent)/100;
-                $fields['Plant_sterols'] = ($value->plantSterols * $percent)/100;
-                $fields['Coeff_18_2_n_6'] = ($value->coeff182N6 * $percent)/100;
-                $fields['Coeff_18_3_n_3'] = ($value->coeff183N3 * $percent)/100;
-                $fields['Coeff_20_4_n_6'] = ($value->coeff204N6 * $percent)/100;
-                $fields['Coeff_20_5_n_3'] = ($value->coeff205N3 * $percent)/100;
-                $fields['Coeff_22_6_n_3'] = ($value->coeff226N3 * $percent)/100;
-                $fields['Coeff_SAFA'] = ($value->coeffSAFA * $percent)/100;
-                $fields['Coeff_MUFA'] = ($value->coeffMUFA * $percent)/100;
-                $fields['Coeff_PUFA'] = ($value->coeffPUFA * $percent)/100;
-                $fields['Aflatoxin_B'] = ($value->aflatoxinB * $percent)/100;
-                $fields['Deoxynivalenol_DON'] = ($value->deoxynivalenolDON * $percent)/100;
-                $fields['Zeralenone_ZON'] = ($value->zeralenoneZON * $percent)/100;
-                $fields['Fumonicin_FUM'] = ($value->fumonicinFUM * $percent)/100;
-                $fields['Anti_trypsic_factors'] = ($value->antiTrypsicFactors * $percent)/100;
-                $fields['Gossypol'] = ($value->gossypol * $percent)/100;
-                $fields['Phytic_Acid'] = ($value->phyticAcid * $percent)/100;
-                $fields['Glucosinolates'] = ($value->glucosinolates * $percent)/100;
-                $fields['Sinapine'] = ($value->sinapine * $percent)/100;
-                $fields['Tannins'] = ($value->tannins * $percent)/100;
-                $fields['Lectins'] = ($value->lectins * $percent)/100;
-                $fields['Cyanogens'] = ($value->cyanogens * $percent)/100;
-                $fields['PCBs'] = ($value->pCBs * $percent)/100;
-                $fields['Dioxins'] = ($value->dioxins * $percent)/100;
-                $fields['Soyasaponins'] = ($value->soyasaponins * $percent)/100;
-                $fields['Isoflavones'] = ($value->isoflavones * $percent)/100;
-                $fields['SIDC_DM_porcine'] = ($value->sIDCDMPorcine * $percent)/100;
-                $fields['SIDC_CP_porcine'] = ($value->sIDCCPPorcine * $percent)/100;
-                $fields['SIDC_Arg_porcine'] = ($value->sIDCArgPorcine * $percent)/100;
-                $fields['SIDC_His_porcine'] = ($value->sIDCHisPorcine * $percent)/100;
-                $fields['SIDC_Ile_porcine'] = ($value->sIDCIlePorcine * $percent)/100;
-                $fields['SIDC_Leu_porcine'] = ($value->sIDCLeuPorcine * $percent)/100;
-                $fields['SIDC_Lys_porcine'] = ($value->sIDCLysPorcine * $percent)/100;
-                $fields['SIDC_Met_porcine'] = ($value->sIDCMetPorcine * $percent)/100;
-                $fields['SIDC_Phe_porcine'] = ($value->sIDCPhePorcine * $percent)/100;
-                $fields['SIDC_Thr_porcine'] = ($value->sIDCThrPorcine * $percent)/100;
-                $fields['SIDC_Trp_porcine'] = ($value->sIDCTrpPorcine * $percent)/100;
-                $fields['SIDC_Val_porcine'] = ($value->sIDCValPorcine * $percent)/100;
-                $fields['SIDC_Cys_porcine'] = ($value->sIDCCysPorcine * $percent)/100;
-                $fields['SIDC_Tyr_porcine'] = ($value->sIDCTyrPorcine * $percent)/100;
-                $fields['SIDC_DM_poultry'] = ($value->sIDCDMPoultry * $percent)/100;
-                $fields['SIDC_CP_poultry'] = ($value->sIDCCPPoultry * $percent)/100;
-                $fields['SIDC_Arg_poultry'] = ($value->sIDCArgPoultry * $percent)/100;
-                $fields['SIDC_His_poultry'] = ($value->sIDCHisPoultry * $percent)/100;
-                $fields['SIDC_Ile_poultry'] = ($value->sIDCIlePoultry * $percent)/100;
-                $fields['SIDC_Leu_poultry'] = ($value->sIDCLeuPoultry * $percent)/100;
-                $fields['SIDC_Lys_poultry'] = ($value->sIDCLysPoultry * $percent)/100;
-                $fields['SIDC_Met_poultry'] = ($value->sIDCMetPoultry * $percent)/100;
-                $fields['SIDC_Phe_poultry'] = ($value->sIDCPhePoultry * $percent)/100;
-                $fields['SIDC_Thr_poultry'] = ($value->sIDCThrPoultry * $percent)/100;
-                $fields['SIDC_Trp_poultry'] = ($value->sIDCTrpPoultry * $percent)/100;
-                $fields['SIDC_Val_poultry'] = ($value->sIDCValPoultry * $percent)/100;
-                $fields['SIDC_Cys_poultry'] = ($value->sIDCCysPoultry * $percent)/100;
-                $fields['SIDC_Tyr_poultry'] = ($value->sIDCTyrPoultry * $percent)/100;
-                $fields['SID_Arg_porcine'] = ($value->sIDArgPorcine * $percent)/100;
-                $fields['SID_His_porcine'] = ($value->sIDHisPorcine * $percent)/100;
-                $fields['SID_Ile_porcine'] = ($value->sIDIlePorcine * $percent)/100;
-                $fields['SID_Leu_porcine'] = ($value->sIDLeuPorcine * $percent)/100;
-                $fields['SID_Lys_porcine'] = ($value->sIDLysPorcine * $percent)/100;
-                $fields['SID_Met_porcine'] = ($value->sIDMetPorcine * $percent)/100;
-                $fields['SID_Phe_porcine'] = ($value->sIDPhePorcine * $percent)/100;
-                $fields['SID_Thr_porcine'] = ($value->sIDThrPorcine * $percent)/100;
-                $fields['SID_Trp_porcine'] = ($value->sIDTrpPorcine * $percent)/100;
-                $fields['SID_Val_porcine'] = ($value->sIDValPorcine * $percent)/100;
-                $fields['SID_Cys_porcine'] = ($value->sIDCysPorcine * $percent)/100;
-                $fields['SID_Tyr_porcine'] = ($value->sIDTyrPorcine * $percent)/100;
-                $fields['SID_Arg_poultry'] = ($value->sIDArgPoultry * $percent)/100;
-                $fields['SID_His_poultry'] = ($value->sIDHisPoultry * $percent)/100;
-                $fields['SID_Ile_poultry'] = ($value->sIDIlePoultry * $percent)/100;
-                $fields['SID_Leu_poultry'] = ($value->sIDLeuPoultry * $percent)/100;
-                $fields['SID_Lys_poultry'] = ($value->sIDLysPoultry * $percent)/100;
-                $fields['SID_Met_poultry'] = ($value->sIDMetPoultry * $percent)/100;
-                $fields['SID_Phe_poultry'] = ($value->sIDPhePoultry * $percent)/100;
-                $fields['SID_Thr_poultry'] = ($value->sIDThrPoultry * $percent)/100;
-                $fields['SID_Trp_poultry'] = ($value->sIDTrpPoultry * $percent)/100;
-                $fields['SID_Val_poultry'] = ($value->sIDValPoultry * $percent)/100;
-                $fields['SID_Cys_poultry'] = ($value->sIDCysPoultry * $percent)/100;
-                $fields['SID_Tyr_poultry'] = ($value->sIDTyrPoultry * $percent)/100;
+                $fields['Dry_Matter'] = ($value->Dry_Matter * $percent) / 100;
+                $fields['Moisture'] = ($value->Moisture * $percent) / 100;
+                $fields['Crude_Protein'] = ($value->Crude_Protein * $percent) / 100;
+                $fields['Crude_Lipids'] = ($value->Crude_Lipids * $percent) / 100;
+                $fields['Crude_Fibre'] = ($value->Crude_Fibre * $percent) / 100;
+                $fields['Ash'] = ($value->Ash * $percent) / 100;
+                $fields['NFE'] = ($value->NFE * $percent) / 100;
+                $fields['NDF'] = ($value->NDF * $percent) / 100;
+                $fields['ADF'] = ($value->ADF * $percent) / 100;
+                $fields['Total_CHO'] = ($value->Total_CHO * $percent) / 100;
+                $fields['Starch'] = ($value->Starch * $percent) / 100;
+                $fields['Sugars'] = ($value->Sugars * $percent) / 100;
+                $fields['Gross_Energy_MJ'] = ($value->Gross_Energy_MJ * $percent) / 100;
+                $fields['Gross_energy_Kcal'] = ($value->Gross_energy_Kcal * $percent) / 100;
+                $fields['DE_Fish_Carni'] = ($value->DE_Fish_Carni * $percent) / 100;
+                $fields['DE_Fish_Omni'] = ($value->DE_Fish_Omni * $percent) / 100;
+                $fields['DE_Carp'] = ($value->DE_Carp * $percent) / 100;
+                $fields['DE_Shrimp'] = ($value->DE_Shrimp * $percent) / 100;
+                $fields['DE_Porcine'] = ($value->DE_Porcine * $percent) / 100;
+                $fields['DE_Poultry'] = ($value->DE_Poultry * $percent) / 100;
+                $fields['ME_Fish'] = ($value->ME_Fish * $percent) / 100;
+                $fields['ME_Guelph_Fish_Carni'] = ($value->ME_Guelph_Fish_Carni * $percent) / 100;
+                $fields['ME_Guelph_Fish_Omni'] = ($value->ME_Guelph_Fish_Omni * $percent) / 100;
+                $fields['ME_Guelph_Carp'] = ($value->ME_Guelph_Carp * $percent) / 100;
+                $fields['ME_Guelph_Shrimp'] = ($value->ME_Guelph_Shrimp * $percent) / 100;
+                $fields['ME_Poultry'] = ($value->ME_Poultry * $percent) / 100;
+                $fields['ME_Porcine'] = ($value->ME_Porcine * $percent) / 100;
+                $fields['Arginine'] = ($value->Arginine * $percent) / 100;
+                $fields['Histidine'] = ($value->Histidine * $percent) / 100;
+                $fields['Isoleucine'] = ($value->Isoleucine * $percent) / 100;
+                $fields['Leucine'] = ($value->Leucine * $percent) / 100;
+                $fields['Lysine'] = ($value->Lysine * $percent) / 100;
+                $fields['Methionine'] = ($value->Methionine * $percent) / 100;
+                $fields['Phenylalanine'] = ($value->Phenylalanine * $percent) / 100;
+                $fields['Threonine'] = ($value->Threonine * $percent) / 100;
+                $fields['Tryptophan'] = ($value->Tryptophan * $percent) / 100;
+                $fields['Valine'] = ($value->Valine * $percent) / 100;
+                $fields['Cystine'] = ($value->Cystine * $percent) / 100;
+                $fields['TSAA_Met_Cys'] = ($value->TSAA_Met_Cys * $percent) / 100;
+                $fields['Tyrosine'] = ($value->Tyrosine * $percent) / 100;
+                $fields['Phe_Tyr'] = ($value->Phe_Tyr * $percent) / 100;
+                $fields['Glutamic'] = ($value->Glutamic * $percent) / 100;
+                $fields['Aspartic'] = ($value->Aspartic * $percent) / 100;
+                $fields['Glycine'] = ($value->Glycine * $percent) / 100;
+                $fields['Serine'] = ($value->Serine * $percent) / 100;
+                $fields['Alanine'] = ($value->Alanine * $percent) / 100;
+                $fields['Sum_EAAs'] = ($value->Sum_EAAs * $percent) / 100;
+                $fields['Sum_NEAAs'] = ($value->Sum_NEAAs * $percent) / 100;
+                $fields['Taurine'] = ($value->Taurine * $percent) / 100;
+                $fields['Arg_Coeff'] = ($value->Arg_Coeff * $percent) / 100;
+                $fields['His_Coeff'] = ($value->His_Coeff * $percent) / 100;
+                $fields['Ile_Coeff'] = ($value->Ile_Coeff * $percent) / 100;
+                $fields['Leu_Coeff'] = ($value->Leu_Coeff * $percent) / 100;
+                $fields['Lys_Coeff'] = ($value->Lys_Coeff * $percent) / 100;
+                $fields['Met_Coeff'] = ($value->Met_Coeff * $percent) / 100;
+                $fields['Phe_Coeff'] = ($value->Phe_Coeff * $percent) / 100;
+                $fields['Thr_Coeff'] = ($value->Thr_Coeff * $percent) / 100;
+                $fields['Trp_Coeff'] = ($value->Trp_Coeff * $percent) / 100;
+                $fields['Val_Coeff'] = ($value->Val_Coeff * $percent) / 100;
+                $fields['Dig_Arg_fish'] = ($value->Dig_Arg_fish * $percent) / 100;
+                $fields['Dig_His_fish'] = ($value->Dig_His_fish * $percent) / 100;
+                $fields['Dig_Ile_fish'] = ($value->Dig_Ile_fish * $percent) / 100;
+                $fields['Dig_Leu_fish'] = ($value->Dig_Leu_fish * $percent) / 100;
+                $fields['Dig_Lys_fish'] = ($value->Dig_Lys_fish * $percent) / 100;
+                $fields['Dig_Met_fish'] = ($value->Dig_Met_fish * $percent) / 100;
+                $fields['Dig_Phe_fish'] = ($value->Dig_Phe_fish * $percent) / 100;
+                $fields['Dig_Thr_fish'] = ($value->Dig_Thr_fish * $percent) / 100;
+                $fields['Dig_Trp_fish'] = ($value->Dig_Trp_fish * $percent) / 100;
+                $fields['Dig_Val_fish'] = ($value->Dig_Val_fish * $percent) / 100;
+                $fields['Dig_Cys_fish'] = ($value->Dig_Cys_fish * $percent) / 100;
+                $fields['Dig_TSAA_Met_Cys'] = ($value->Dig_TSAA_Met_Cys * $percent) / 100;
+                $fields['Dig_Tyr_fish'] = ($value->Dig_Tyr_fish * $percent) / 100;
+                $fields['Calcium'] = ($value->Calcium * $percent) / 100;
+                $fields['Phosphorus'] = ($value->Phosphorus * $percent) / 100;
+                $fields['Ca_Coeff'] = ($value->Ca_Coeff * $percent) / 100;
+                $fields['P_coeff'] = ($value->P_coeff * $percent) / 100;
+                $fields['Phytate_P'] = ($value->Phytate_P * $percent) / 100;
+                $fields['Bone_P'] = ($value->Bone_P * $percent) / 100;
+                $fields['Cellular_P'] = ($value->Cellular_P * $percent) / 100;
+                $fields['Monobasic_P'] = ($value->Monobasic_P * $percent) / 100;
+                $fields['Dibasic_P'] = ($value->Dibasic_P * $percent) / 100;
+                $fields['Tribasic_P'] = ($value->Tribasic_P * $percent) / 100;
+                $fields['Dig_P_Carni'] = ($value->Dig_P_Carni * $percent) / 100;
+                $fields['Dig_P_Omni'] = ($value->Dig_P_Omni * $percent) / 100;
+                $fields['Dig_P_Carp'] = ($value->Dig_P_Carp * $percent) / 100;
+                $fields['Dig_P_Shrimp'] = ($value->Dig_P_Shrimp * $percent) / 100;
+                $fields['Sodium'] = ($value->Sodium * $percent) / 100;
+                $fields['Chlorine'] = ($value->Chlorine * $percent) / 100;
+                $fields['Potassium'] = ($value->Potassium * $percent) / 100;
+                $fields['Magnesium'] = ($value->Magnesium * $percent) / 100;
+                $fields['Sulfur'] = ($value->Sulfur * $percent) / 100;
+                $fields['Copper'] = ($value->Copper * $percent) / 100;
+                $fields['Iron'] = ($value->Iron * $percent) / 100;
+                $fields['Manganese'] = ($value->Manganese * $percent) / 100;
+                $fields['Selenium'] = ($value->Selenium * $percent) / 100;
+                $fields['Zinc'] = ($value->Zinc * $percent) / 100;
+                $fields['Iodine'] = ($value->Iodine * $percent) / 100;
+                $fields['Cobalt'] = ($value->Cobalt * $percent) / 100;
+                $fields['Biotin_B7'] = ($value->Biotin_B7 * $percent) / 100;
+                $fields['Folic_acid_B9'] = ($value->folicAcidB9 * $percent) / 100;
+                $fields['Niacin_B3'] = ($value->niacinB3 * $percent) / 100;
+                $fields['Pantothenic_Acid_B5'] = ($value->pantothenicAcidB5 * $percent) / 100;
+                $fields['Pyridoxine_B6'] = ($value->pyridoxineB6 * $percent) / 100;
+                $fields['Riboflavin_B2'] = ($value->riboflavinB2 * $percent) / 100;
+                $fields['Thiamin_B1'] = ($value->thiaminB1 * $percent) / 100;
+                $fields['Vitamin_B12'] = ($value->vitaminB12 * $percent) / 100;
+                $fields['Vitamin_C'] = ($value->vitaminC * $percent) / 100;
+                $fields['Vitamin_A'] = ($value->vitaminA * $percent) / 100;
+                $fields['Vitamin_D'] = ($value->vitaminD * $percent) / 100;
+                $fields['Vitamin_E'] = ($value->vitaminE * $percent) / 100;
+                $fields['Vitamin_K'] = ($value->vitaminK * $percent) / 100;
+                $fields['Choline'] = ($value->choline * $percent) / 100;
+                $fields['Inositol'] = ($value->inositol * $percent) / 100;
+                $fields['Beta_Carotene'] = ($value->betaCarotene * $percent) / 100;
+                $fields['Xanthophylls'] = ($value->xanthophylls * $percent) / 100;
+                $fields['Antioxidant'] = ($value->antioxidant * $percent) / 100;
+                $fields['ADC_DM_fish'] = ($value->aDCDMFish * $percent) / 100;
+                $fields['ADC_CP_fish'] = ($value->aDCCPFish * $percent) / 100;
+                $fields['ADC_Lipid_fish'] = ($value->aDCLipidFish * $percent) / 100;
+                $fields['ADC_GE_fish'] = ($value->aDCGEFish * $percent) / 100;
+                $fields['ADC_Total_CHO_fish'] = ($value->aDCTotalCHOFish * $percent) / 100;
+                $fields['ADC_Starch_fish'] = ($value->aDCStarchFish * $percent) / 100;
+                $fields['ADC_Starch_Carni'] = ($value->aDCStarchCarni * $percent) / 100;
+                $fields['ADC_Starch_Omni'] = ($value->aDCStarchOmni * $percent) / 100;
+                $fields['Dig_DM_fish'] = ($value->digDMFish * $percent) / 100;
+                $fields['Dig_CP_fish'] = ($value->digCPFish * $percent) / 100;
+                $fields['Dig_Lipid_fish'] = ($value->digLipidFish * $percent) / 100;
+                $fields['Dig_GE_DE_fish_Kcal'] = ($value->digGEDEFishKcal * $percent) / 100;
+                $fields['Dig_Total_CHO_fish'] = ($value->digTotalCHOFish * $percent) / 100;
+                $fields['Dig_Starch_fish'] = ($value->digStarchFish * $percent) / 100;
+                $fields['Dig_Starch_carni'] = ($value->digStarchCarni * $percent) / 100;
+                $fields['Dig_Starch_Omni'] = ($value->digStarchOmni * $percent) / 100;
+                $fields['ADC_Arg_fish'] = ($value->aDCArgFish * $percent) / 100;
+                $fields['ADC_His_fish'] = ($value->aDCHisFish * $percent) / 100;
+                $fields['ADC_Ile_fish'] = ($value->aDCIleFish * $percent) / 100;
+                $fields['ADC_Leu_fish'] = ($value->aDCLeuFish * $percent) / 100;
+                $fields['ADC_Lys_fish'] = ($value->aDCLysFish * $percent) / 100;
+                $fields['ADC_Met_fish'] = ($value->aDCMetFish * $percent) / 100;
+                $fields['ADC_Phe_fish'] = ($value->aDCPheFish * $percent) / 100;
+                $fields['ADC_Thr_fish'] = ($value->aDCThrFish * $percent) / 100;
+                $fields['ADC_Trp_fish'] = ($value->aDCTrpFish * $percent) / 100;
+                $fields['ADC_Val_fish'] = ($value->aDCValFish * $percent) / 100;
+                $fields['ADC_Cys_fish'] = ($value->aDCCysFish * $percent) / 100;
+                $fields['ADC_Tyr_fish'] = ($value->aDCTyrFish * $percent) / 100;
+                $fields['Palmitic_16_0'] = ($value->palmitic160 * $percent) / 100;
+                $fields['Stearic_18_0'] = ($value->stearic180 * $percent) / 100;
+                $fields['Oleic_18_1_n_9'] = ($value->oleic181N9 * $percent) / 100;
+                $fields['Linoleic_18_2_n_6'] = ($value->linoleic182N6 * $percent) / 100;
+                $fields['Linolenic_18_3_n_3'] = ($value->linolenic183N3 * $percent) / 100;
+                $fields['Arachidonic_20_4_n_6'] = ($value->arachidonic204N6 * $percent) / 100;
+                $fields['EPA_20_5_n_3'] = ($value->ePA205N3 * $percent) / 100;
+                $fields['DHA_22_6_n_3'] = ($value->dHA226N3 * $percent) / 100;
+                $fields['EPA_DHA'] = ($value->ePADHA * $percent) / 100;
+                $fields['SAFA'] = ($value->sAFA * $percent) / 100;
+                $fields['MUFA'] = ($value->mUFA * $percent) / 100;
+                $fields['PUFA'] = ($value->pUFA * $percent) / 100;
+                $fields['Sum_n_3'] = ($value->sumN3 * $percent) / 100;
+                $fields['Sum_n_6'] = ($value->sumN6 * $percent) / 100;
+                $fields['Phospholipids'] = ($value->phospholipids * $percent) / 100;
+                $fields['Cholesterol'] = ($value->cholesterol * $percent) / 100;
+                $fields['Plant_sterols'] = ($value->plantSterols * $percent) / 100;
+                $fields['Coeff_18_2_n_6'] = ($value->coeff182N6 * $percent) / 100;
+                $fields['Coeff_18_3_n_3'] = ($value->coeff183N3 * $percent) / 100;
+                $fields['Coeff_20_4_n_6'] = ($value->coeff204N6 * $percent) / 100;
+                $fields['Coeff_20_5_n_3'] = ($value->coeff205N3 * $percent) / 100;
+                $fields['Coeff_22_6_n_3'] = ($value->coeff226N3 * $percent) / 100;
+                $fields['Coeff_SAFA'] = ($value->coeffSAFA * $percent) / 100;
+                $fields['Coeff_MUFA'] = ($value->coeffMUFA * $percent) / 100;
+                $fields['Coeff_PUFA'] = ($value->coeffPUFA * $percent) / 100;
+                $fields['Aflatoxin_B'] = ($value->aflatoxinB * $percent) / 100;
+                $fields['Deoxynivalenol_DON'] = ($value->deoxynivalenolDON * $percent) / 100;
+                $fields['Zeralenone_ZON'] = ($value->zeralenoneZON * $percent) / 100;
+                $fields['Fumonicin_FUM'] = ($value->fumonicinFUM * $percent) / 100;
+                $fields['Anti_trypsic_factors'] = ($value->antiTrypsicFactors * $percent) / 100;
+                $fields['Gossypol'] = ($value->gossypol * $percent) / 100;
+                $fields['Phytic_Acid'] = ($value->phyticAcid * $percent) / 100;
+                $fields['Glucosinolates'] = ($value->glucosinolates * $percent) / 100;
+                $fields['Sinapine'] = ($value->sinapine * $percent) / 100;
+                $fields['Tannins'] = ($value->tannins * $percent) / 100;
+                $fields['Lectins'] = ($value->lectins * $percent) / 100;
+                $fields['Cyanogens'] = ($value->cyanogens * $percent) / 100;
+                $fields['PCBs'] = ($value->pCBs * $percent) / 100;
+                $fields['Dioxins'] = ($value->dioxins * $percent) / 100;
+                $fields['Soyasaponins'] = ($value->soyasaponins * $percent) / 100;
+                $fields['Isoflavones'] = ($value->isoflavones * $percent) / 100;
+                $fields['SIDC_DM_porcine'] = ($value->sIDCDMPorcine * $percent) / 100;
+                $fields['SIDC_CP_porcine'] = ($value->sIDCCPPorcine * $percent) / 100;
+                $fields['SIDC_Arg_porcine'] = ($value->sIDCArgPorcine * $percent) / 100;
+                $fields['SIDC_His_porcine'] = ($value->sIDCHisPorcine * $percent) / 100;
+                $fields['SIDC_Ile_porcine'] = ($value->sIDCIlePorcine * $percent) / 100;
+                $fields['SIDC_Leu_porcine'] = ($value->sIDCLeuPorcine * $percent) / 100;
+                $fields['SIDC_Lys_porcine'] = ($value->sIDCLysPorcine * $percent) / 100;
+                $fields['SIDC_Met_porcine'] = ($value->sIDCMetPorcine * $percent) / 100;
+                $fields['SIDC_Phe_porcine'] = ($value->sIDCPhePorcine * $percent) / 100;
+                $fields['SIDC_Thr_porcine'] = ($value->sIDCThrPorcine * $percent) / 100;
+                $fields['SIDC_Trp_porcine'] = ($value->sIDCTrpPorcine * $percent) / 100;
+                $fields['SIDC_Val_porcine'] = ($value->sIDCValPorcine * $percent) / 100;
+                $fields['SIDC_Cys_porcine'] = ($value->sIDCCysPorcine * $percent) / 100;
+                $fields['SIDC_Tyr_porcine'] = ($value->sIDCTyrPorcine * $percent) / 100;
+                $fields['SIDC_DM_poultry'] = ($value->sIDCDMPoultry * $percent) / 100;
+                $fields['SIDC_CP_poultry'] = ($value->sIDCCPPoultry * $percent) / 100;
+                $fields['SIDC_Arg_poultry'] = ($value->sIDCArgPoultry * $percent) / 100;
+                $fields['SIDC_His_poultry'] = ($value->sIDCHisPoultry * $percent) / 100;
+                $fields['SIDC_Ile_poultry'] = ($value->sIDCIlePoultry * $percent) / 100;
+                $fields['SIDC_Leu_poultry'] = ($value->sIDCLeuPoultry * $percent) / 100;
+                $fields['SIDC_Lys_poultry'] = ($value->sIDCLysPoultry * $percent) / 100;
+                $fields['SIDC_Met_poultry'] = ($value->sIDCMetPoultry * $percent) / 100;
+                $fields['SIDC_Phe_poultry'] = ($value->sIDCPhePoultry * $percent) / 100;
+                $fields['SIDC_Thr_poultry'] = ($value->sIDCThrPoultry * $percent) / 100;
+                $fields['SIDC_Trp_poultry'] = ($value->sIDCTrpPoultry * $percent) / 100;
+                $fields['SIDC_Val_poultry'] = ($value->sIDCValPoultry * $percent) / 100;
+                $fields['SIDC_Cys_poultry'] = ($value->sIDCCysPoultry * $percent) / 100;
+                $fields['SIDC_Tyr_poultry'] = ($value->sIDCTyrPoultry * $percent) / 100;
+                $fields['SID_Arg_porcine'] = ($value->sIDArgPorcine * $percent) / 100;
+                $fields['SID_His_porcine'] = ($value->sIDHisPorcine * $percent) / 100;
+                $fields['SID_Ile_porcine'] = ($value->sIDIlePorcine * $percent) / 100;
+                $fields['SID_Leu_porcine'] = ($value->sIDLeuPorcine * $percent) / 100;
+                $fields['SID_Lys_porcine'] = ($value->sIDLysPorcine * $percent) / 100;
+                $fields['SID_Met_porcine'] = ($value->sIDMetPorcine * $percent) / 100;
+                $fields['SID_Phe_porcine'] = ($value->sIDPhePorcine * $percent) / 100;
+                $fields['SID_Thr_porcine'] = ($value->sIDThrPorcine * $percent) / 100;
+                $fields['SID_Trp_porcine'] = ($value->sIDTrpPorcine * $percent) / 100;
+                $fields['SID_Val_porcine'] = ($value->sIDValPorcine * $percent) / 100;
+                $fields['SID_Cys_porcine'] = ($value->sIDCysPorcine * $percent) / 100;
+                $fields['SID_Tyr_porcine'] = ($value->sIDTyrPorcine * $percent) / 100;
+                $fields['SID_Arg_poultry'] = ($value->sIDArgPoultry * $percent) / 100;
+                $fields['SID_His_poultry'] = ($value->sIDHisPoultry * $percent) / 100;
+                $fields['SID_Ile_poultry'] = ($value->sIDIlePoultry * $percent) / 100;
+                $fields['SID_Leu_poultry'] = ($value->sIDLeuPoultry * $percent) / 100;
+                $fields['SID_Lys_poultry'] = ($value->sIDLysPoultry * $percent) / 100;
+                $fields['SID_Met_poultry'] = ($value->sIDMetPoultry * $percent) / 100;
+                $fields['SID_Phe_poultry'] = ($value->sIDPhePoultry * $percent) / 100;
+                $fields['SID_Thr_poultry'] = ($value->sIDThrPoultry * $percent) / 100;
+                $fields['SID_Trp_poultry'] = ($value->sIDTrpPoultry * $percent) / 100;
+                $fields['SID_Val_poultry'] = ($value->sIDValPoultry * $percent) / 100;
+                $fields['SID_Cys_poultry'] = ($value->sIDCysPoultry * $percent) / 100;
+                $fields['SID_Tyr_poultry'] = ($value->sIDTyrPoultry * $percent) / 100;
                 $fields['percent'] = $percent;
             }
 
-            if ($this->formulationModel->update($fields['id'], $fields)) {				
+            if ($this->formulationModel->update($fields['id'], $fields)) {
                 $response['success'] = true;
-                $response['messages'] = 'Successfully updated';					
-            } else {				
+                $response['messages'] = 'Successfully updated';
+            } else {
                 $response['success'] = false;
-                $response['messages'] = 'Update error!';				
+                $response['messages'] = 'Update error!';
             }
         }
-		
-        return $this->response->setJSON($response);		
-	}
-	
-	public function remove()
-	{
-		$response = array();		
-		$id = $this->request->getPost('id');		
-		if (!$this->validation->check($id, 'required|numeric')) {
-			throw new \CodeIgniter\Exceptions\PageNotFoundException();			
-		} else {			
-			if ($this->formulationModel->where('id', $id)->delete()) {								
-				$response['success'] = true;
-				$response['messages'] = 'Deletion succeeded';					
-			} else {				
-				$response['success'] = false;
-				$response['messages'] = 'Deletion error!';				
-			}
-		}		
-        return $this->response->setJSON($response);		
-	}			
-}	
+
+        return $this->response->setJSON($response);
+    }
+
+    public function remove()
+    {
+        $response = array();
+        $id = $this->request->getPost('id');
+        if (!$this->validation->check($id, 'required|numeric')) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException();
+        } else {
+            if ($this->formulationModel->where('id', $id)->delete()) {
+                $response['success'] = true;
+                $response['messages'] = 'Deletion succeeded';
+            } else {
+                $response['success'] = false;
+                $response['messages'] = 'Deletion error!';
+            }
+        }
+        return $this->response->setJSON($response);
+    }
+}

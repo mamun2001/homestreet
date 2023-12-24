@@ -146,7 +146,7 @@ $routes->post('voucherupload', 'UploadVoucher::doupload', ['filter' => 'authGuar
 $routes->post('voucher/getOne', 'UploadVoucher::getOne', ['filter' => 'authGuard']);
 
 $routes->get('projectfiles', 'ProjectFiles::index', ['filter' => 'authGuard']);
-$routes->post('voucher', 'ProjectFiles::index', ['filter' => 'authGuard']);
+// $routes->post('voucher', 'ProjectFiles::index', ['filter' => 'authGuard']);
 
 
 $routes->get('/', 'Login::index');
