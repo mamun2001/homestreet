@@ -5,6 +5,7 @@ use App\Models\SummaryentryModel;
 use App\Models\UserprojectsModel;
 use App\Models\VouchersModel;
 use App\Models\TmpexpensedetailModel;
+use App\Models\DailyExpenseDetailModel;
 
 class UploadVoucher extends BaseController
 {
@@ -81,23 +82,23 @@ class UploadVoucher extends BaseController
 
 	public function doupload()
 	{
+		// $response = array();
 		$filesUploaded = 0;
-		$userProjectsModel = new userProjectsModel();
-		$data = $userProjectsModel->where('userid', session()->get('user_id'))->first();
-		$amount = $this->request->getPost('amount');
+		$tmpexp = new TmpexpensedetailModel();
+		$result = $tmpexp->asArray()->select('sum(amount) as amount')->first();
 
 		if ($files = $this->request->getFiles()) {
 			$data = [
-				'project_id' => $data['projectid'],
+				'project_id' => session()->get('project_id'),
 				'user_id' => session()->get('user_id'),
-				'amount' => $amount,
+				'amount' => $result['amount'],
 				'date_time' => date("Y-m-d H:i:s"),
 				'comment' => ""
 			];
 
-			$fileUploadModel = new SummaryentryModel();
-			$fileUploadModel->save($data);
-			$summery_id = $fileUploadModel->insertID;
+			$Summaryentry = new SummaryentryModel();
+			$Summaryentry->save($data);
+			$summery_id = $Summaryentry->insertID;
 
 			foreach ($files['files'] as $file) {
 				if ($file->isValid() && !$file->hasMoved()) {
@@ -116,16 +117,22 @@ class UploadVoucher extends BaseController
 			$response['success'] = true;
 			$response['messages'] = $filesUploaded . " Voucher(s) Uploaded";
 
-			//print $filesUploaded . " Voucher(s) Uploaded";
+			//insert into daily_expense_detail table from tmp_expense_detail
+
+			//truncate tmp_expense_detail
+
+
+
+			print $filesUploaded . " Voucher(s) Uploaded";
 
 		} else {
 			$response['success'] = false;
 			$response['messages'] = "There is no file selected";
 
-			//print "There is no file selected";
+			print "There is no file selected";
 		}
 
-		return $this->response->setJSON($response);
+		//return $this->response->setJSON($response);
 	}
 
 	public function getOne()
@@ -153,7 +160,6 @@ class UploadVoucher extends BaseController
 		$builder->join('projects p', 'p.id = d.project_id', 'inner');
 		$builder->join('tbl_user u', 'u.id = d.user_id', 'inner');
 		$result = $builder->orderBy('d.id', 'desc')->get()->getResult();
-
 
 		foreach ($result as $key => $value) {
 			$ops = '<div class="btn-group">';

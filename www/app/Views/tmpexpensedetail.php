@@ -1,6 +1,6 @@
 <?= $this->extend('layout/layout-a'); ?>
 <?= $this->section('content'); ?>
-
+<?php //print_r($_SESSION); ?>
 <!-- Main content -->
 <section class="content">
   <div class="row">
@@ -110,6 +110,18 @@
               </tr>
             </thead>
           </table>
+
+          <div class="border pl-3 mt-3">
+            <form id="voucher-upload-form" class="row mt-3">
+              <div class="col-md-3">
+                <input type="file" id="files" name="files[]" class="form-control" multiple="multiple">
+              </div>
+              <div class="form-group mb-3">
+                <button class="btn btn-success" id="upload_btn" type="button">Save</button>
+              </div>
+            </form>
+          </div>
+
         </div>
         <!-- /.card-body -->
       </div>
@@ -334,7 +346,7 @@
       "lengthChange": false,
       "searching": false,
       "ordering": true,
-      "info": true,
+      "info": false,
       "autoWidth": false,
       "responsive": true,
       "ajax": {
@@ -361,16 +373,16 @@
     expheadid = parseInt($('#heads').val());
     itemid = parseInt($('#items').val());
 
-    console.log($('#heads').val());
-    console.log($('#items').val());
-    console.log($('#category').val());
-    console.log($('#brands').val());
-    console.log($('#models').val());
-    console.log($('#sizes').val());
-    console.log($('#units').val());
-    console.log($('#rate').val());
-    console.log($('#qty').val());
-    console.log($('#amount').val());
+    // console.log($('#heads').val());
+    // console.log($('#items').val());
+    // console.log($('#category').val());
+    // console.log($('#brands').val());
+    // console.log($('#models').val());
+    // console.log($('#sizes').val());
+    // console.log($('#units').val());
+    // console.log($('#rate').val());
+    // console.log($('#qty').val());
+    // console.log($('#amount').val());
 
     if ($('#rate').val() == 0 || $('#qty').val() == 0 || $('#amount').val() == 0) {
       alert("Rate, Quantity or Amount Cannot be zero");
@@ -413,8 +425,41 @@
         }
       });
     }
-
   }
+
+  $(document).ready(function (e) {
+    $('#upload_btn').on('click', function () {
+      var formData = new FormData();
+      var totalFilesLen = document.getElementById('files').files.length;
+      for (var i = 0; i < totalFilesLen; i++) {
+        formData.append("files[]", document.getElementById('files').files[i]);
+      }
+      $.ajax({
+        url: '<?php echo base_url('UploadVoucher/doupload'); ?>',
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        type: 'post',
+        success: function (response) {
+          $("#voucher-upload-form")[0].reset();
+          Swal.fire({
+            position: 'bottom-end',
+            icon: 'success',
+            title: response,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+          })
+        },
+        error: function (response) {
+          $('#message').html(response);
+        }
+      });
+    });
+  });
 
   function add() {
     // reset the form 

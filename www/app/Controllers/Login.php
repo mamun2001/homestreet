@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\UsersModel;
+use App\Models\UserprojectsModel;
 
 class Login extends Controller
 {
@@ -52,9 +53,11 @@ class Login extends Controller
     {
         $session = session();
         $model = new UsersModel();
+        $userProject = new UserprojectsModel();
         $login = $this->request->getVar('login');
         $password = $this->request->getVar('password');
         $data = $model->where('login', $login)->first();
+        $res = $userProject->where('userid', $data['id'])->first();
 
         if ($data) {
             if (md5($password) == $data['password']) {
@@ -64,6 +67,7 @@ class Login extends Controller
                     'user_email' => $data['email'],
                     'user_type' => $data['user_type'],
                     'active' => $data['active'],
+                    'project_id' => $res['projectid'],
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
