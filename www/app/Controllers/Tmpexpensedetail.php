@@ -17,28 +17,28 @@ class Tmpexpensedetail extends BaseController
     {
         $this->tmpexpensedetailModel = new TmpexpensedetailModel();
         $this->validation = \Config\Services::validation();
-
     }
 
     public function index()
     {
-
         $data = [
             'controller' => 'tmpexpensedetail',
             'title' => 'TempExpenseDetail'
         ];
 
         return view('tmpexpensedetail', $data);
-
     }
 
     public function getAll()
     {
         $response = array();
-
         $data['data'] = array();
+        //$result = $this->tmpexpensedetailModel->select('id, head_id, item_id, category_id, brand_id, model_id, size_id, unit_id, rate, qty, amount')->findAll();
 
-        $result = $this->tmpexpensedetailModel->select('id, head_id, item_id, category_id, brand_id, model_id, size_id, unit_id, rate, qty, amount')->findAll();
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT t.id, h.head, i.item_name, c.category, b.brand, m.model, s.size, u.unit_name, rate, qty, amount FROM tmp_expense_detail t LEFT join expense_heads h on h.id=t.head_id LEFT JOIN items i on i.id=t.item_id LEFT JOIN category c on c.id=t.category_id LEFT JOIN brands b on b.id=t.brand_id LEFT JOIN models m on  m.id=t.model_id LEFT JOIN sizes s on s.id=t.size_id LEFT JOIN units u on u.id=t.unit_id
+        ');
+        $result = $query->getResult();
 
         foreach ($result as $key => $value) {
 
@@ -49,13 +49,13 @@ class Tmpexpensedetail extends BaseController
 
             $data['data'][$key] = array(
                 $value->id,
-                $value->head_id,
-                $value->item_id,
-                $value->category_id,
-                $value->brand_id,
-                $value->model_id,
-                $value->size_id,
-                $value->unit_id,
+                $value->head,
+                $value->item_name,
+                $value->category,
+                $value->brand,
+                $value->model,
+                $value->size,
+                $value->unit_name,
                 $value->rate,
                 $value->qty,
                 $value->amount,
@@ -70,21 +70,13 @@ class Tmpexpensedetail extends BaseController
     public function getOne()
     {
         $response = array();
-
         $id = $this->request->getPost('id');
-
         if ($this->validation->check($id, 'required|numeric')) {
-
             $data = $this->tmpexpensedetailModel->where('id', $id)->first();
-
             return $this->response->setJSON($data);
-
         } else {
-
             throw new \CodeIgniter\Exceptions\PageNotFoundException();
-
         }
-
     }
 
     public function add()
@@ -103,7 +95,6 @@ class Tmpexpensedetail extends BaseController
         $fields['qty'] = $this->request->getPost('qty');
         $fields['amount'] = $this->request->getPost('amount');
 
-
         $this->validation->setRules([
             'head_id' => ['label' => 'Head id', 'rules' => 'required|numeric|max_length[11]'],
             'item_id' => ['label' => 'Item id', 'rules' => 'required|numeric|max_length[11]'],
@@ -115,7 +106,6 @@ class Tmpexpensedetail extends BaseController
             'rate' => ['label' => 'Rate', 'rules' => 'required|numeric|max_length[11]'],
             'qty' => ['label' => 'Qty', 'rules' => 'required|numeric|max_length[11]'],
             'amount' => ['label' => 'Amount', 'rules' => 'required|numeric|max_length[11]'],
-
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
@@ -132,7 +122,12 @@ class Tmpexpensedetail extends BaseController
         }
 
         $data['data'] = array();
-        $result = $this->tmpexpensedetailModel->select('id, head_id, item_id, category_id, brand_id, model_id, size_id, unit_id, rate, qty, amount')->findAll();
+        //$result = $this->tmpexpensedetailModel->select('id, head_id, item_id, category_id, brand_id, model_id, size_id, unit_id, rate, qty, amount')->findAll();
+
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT t.id, h.head, i.item_name, c.category, b.brand, m.model, s.size, u.unit_name, rate, qty, amount FROM tmp_expense_detail t LEFT join expense_heads h on h.id=t.head_id LEFT JOIN items i on i.id=t.item_id LEFT JOIN category c on c.id=t.category_id LEFT JOIN brands b on b.id=t.brand_id LEFT JOIN models m on  m.id=t.model_id LEFT JOIN sizes s on s.id=t.size_id LEFT JOIN units u on u.id=t.unit_id
+        ');
+        $result = $query->getResult();
 
         foreach ($result as $key => $value) {
             $ops = '<div class="btn-group">';
@@ -142,13 +137,14 @@ class Tmpexpensedetail extends BaseController
 
             $data['data'][$key] = array(
                 $value->id,
-                $value->head_id,
-                $value->item_id,
-                $value->category_id,
-                $value->brand_id,
-                $value->model_id,
-                $value->size_id,
-                $value->unit_id,
+
+                $value->head,
+                $value->item_name,
+                $value->category,
+                $value->brand,
+                $value->model,
+                $value->size,
+                $value->unit_name,
                 $value->rate,
                 $value->qty,
                 $value->amount,
@@ -162,7 +158,6 @@ class Tmpexpensedetail extends BaseController
 
     public function edit()
     {
-
         $response = array();
 
         $fields['id'] = $this->request->getPost('id');
@@ -177,7 +172,6 @@ class Tmpexpensedetail extends BaseController
         $fields['qty'] = $this->request->getPost('qty');
         $fields['amount'] = $this->request->getPost('amount');
 
-
         $this->validation->setRules([
             'head_id' => ['label' => 'Head id', 'rules' => 'required|numeric|max_length[11]'],
             'item_id' => ['label' => 'Item id', 'rules' => 'required|numeric|max_length[11]'],
@@ -189,59 +183,40 @@ class Tmpexpensedetail extends BaseController
             'rate' => ['label' => 'Rate', 'rules' => 'required|numeric|max_length[11]'],
             'qty' => ['label' => 'Qty', 'rules' => 'required|numeric|max_length[11]'],
             'amount' => ['label' => 'Amount', 'rules' => 'required|numeric|max_length[11]'],
-
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
-
             $response['success'] = false;
             $response['messages'] = $this->validation->listErrors();
-
         } else {
-
             if ($this->tmpexpensedetailModel->update($fields['id'], $fields)) {
-
                 $response['success'] = true;
                 $response['messages'] = 'Successfully updated';
-
             } else {
-
                 $response['success'] = false;
                 $response['messages'] = 'Update error!';
-
             }
         }
 
         return $this->response->setJSON($response);
-
     }
 
     public function remove()
     {
         $response = array();
-
         $id = $this->request->getPost('id');
-
         if (!$this->validation->check($id, 'required|numeric')) {
-
             throw new \CodeIgniter\Exceptions\PageNotFoundException();
-
         } else {
-
             if ($this->tmpexpensedetailModel->where('id', $id)->delete()) {
-
                 $response['success'] = true;
                 $response['messages'] = 'Deletion succeeded';
-
             } else {
-
                 $response['success'] = false;
                 $response['messages'] = 'Deletion error!';
-
             }
         }
 
         return $this->response->setJSON($response);
     }
-
 }

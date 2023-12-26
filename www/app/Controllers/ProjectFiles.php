@@ -81,7 +81,7 @@ class ProjectFiles extends BaseController
 
 		if ($this->validation->check($id, 'required|numeric')) {
 
-			$data = $this->sourcesModel->where('id', $id)->first();
+			$data = $this->projectFilesModel->where('id', $id)->first();
 
 			return $this->response->setJSON($data);
 

@@ -411,14 +411,8 @@
         success: function (data_return) {
           //console.log(data_return['data']);
           datatable.clear().rows.add(data_return['data']).draw();
-
-          //Ratios
-          // $("#CN").text(data_return['cn']);
-          // $("#CN_std").text(data_return['std']['cn']);
-
-          // $("#ADCAsh").text(data_return['']);
-          // $("#ADCAsh_std").text(data_return['std']['']);					
-
+          //$('#data_table').DataTable().ajax.reload(null, false).draw(true);
+          resetFields();
           //Total percet
           // $("#ttlPercent").text(data_return['percent']);
           // $('#percent').val('');
@@ -431,6 +425,12 @@
     $('#upload_btn').on('click', function () {
       var formData = new FormData();
       var totalFilesLen = document.getElementById('files').files.length;
+
+      if (totalFilesLen == 0) {
+        alert("No file selected");
+        return 0;
+      }
+
       for (var i = 0; i < totalFilesLen; i++) {
         formData.append("files[]", document.getElementById('files').files[i]);
       }
@@ -444,6 +444,8 @@
         type: 'post',
         success: function (response) {
           $("#voucher-upload-form")[0].reset();
+          resetFields();
+
           Swal.fire({
             position: 'bottom-end',
             icon: 'success',
@@ -451,7 +453,7 @@
             showConfirmButton: false,
             timer: 1500
           }).then(function () {
-            $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+            $('#data_table').DataTable().ajax.reload(null, false).draw(true);
           })
         },
         error: function (response) {
@@ -460,6 +462,19 @@
       });
     });
   });
+
+  function resetFields() {
+    $('#heads').val('0');
+    $('#items').val('0');
+    $('#category').val('0');
+    $('#brands').val('0');
+    $('#models').val('0');
+    $('#sizes').val('0');
+    $('#units').val('0');
+    $('#rate').val('');
+    $('#qty').val('');
+    $('#amount').val('');
+  }
 
   function add() {
     // reset the form 
@@ -710,8 +725,6 @@
                 showConfirmButton: false,
                 timer: 1500
               })
-
-
             }
           }
         });

@@ -82,7 +82,8 @@ class UploadVoucher extends BaseController
 
 	public function doupload()
 	{
-		// $response = array();
+		$response = array();
+		$db = \Config\Database::connect();
 		$filesUploaded = 0;
 		$tmpexp = new TmpexpensedetailModel();
 		$result = $tmpexp->asArray()->select('sum(amount) as amount')->first();
@@ -114,25 +115,47 @@ class UploadVoucher extends BaseController
 					$filesUploaded++;
 				}
 			}
-			$response['success'] = true;
-			$response['messages'] = $filesUploaded . " Voucher(s) Uploaded";
 
 			//insert into daily_expense_detail table from tmp_expense_detail
+			$result = $tmpexp->select('id, head_id, item_id, category_id, brand_id, model_id, size_id, unit_id, rate, qty, amount')->findAll();
+
+			foreach ($result as $key => $value) {
+				$fields['summary_id'] = $summery_id;
+				$fields['head_id'] = $value->head_id;
+				$fields['item_id'] = $value->item_id;
+				$fields['category_id'] = $value->category_id;
+				$fields['brand_id'] = $value->brand_id;
+				$fields['model_id'] = $value->model_id;
+				$fields['size_id'] = $value->size_id;
+				$fields['unit_id'] = $value->unit_id;
+				$fields['rate'] = $value->rate;
+				$fields['qty'] = $value->qty;
+				$fields['amount'] = $value->amount;
+				$fields['project_id'] = session()->get('project_id');
+				$fields['user_id'] = session()->get('user_id');
+				$fields['comment'] = '';
+
+				$dailyexpensedetail = new DailyExpenseDetailModel();
+				$dailyexpensedetail->save($fields);
+			}
 
 			//truncate tmp_expense_detail
+			$builder = $db->table('tmp_expense_detail');
+			$builder->truncate();
 
-
+			// $response['success'] = true;
+			// $response['messages'] = $filesUploaded . " Voucher(s) Uploaded";
 
 			print $filesUploaded . " Voucher(s) Uploaded";
 
 		} else {
-			$response['success'] = false;
-			$response['messages'] = "There is no file selected";
+			// $response['success'] = false;
+			// $response['messages'] = "There is no file selected";
 
 			print "There is no file selected";
 		}
 
-		//return $this->response->setJSON($response);
+		// return $this->response->setJSON($response);
 	}
 
 	public function getOne()
