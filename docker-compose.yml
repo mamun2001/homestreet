@@ -1,33 +1,39 @@
-version: '3.7'
+version: "3.7"
 services:
   php:
     build:
-          context: .
-          dockerfile: DockerFile
-    image: php:7.4-apache
+      context: .
+      dockerfile: DockerFile
+    image: php:8.1-apache
+
     ports:
       - 8080:80
+
     volumes:
-      - ./www:/var/www/html    
-    
+      - ./www:/var/www/html
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   mysql:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: 'secret'
-      MYSQL_USER: 'mukesh'
-      MYSQL_PASSWORD: 'chapagain'
-      MYSQL_DATABASE: 'blog'
+      MYSQL_ROOT_PASSWORD: "secret"
+      MYSQL_USER: "mukesh"
+      MYSQL_PASSWORD: "chapagain"
+      MYSQL_DATABASE: "blog"
     volumes:
       - ./data/db:/var/lib/mysql
     ports:
       - :3306
-    
+
   phpmyadmin:
-      image: phpmyadmin
-      restart: always
-      ports:
-        - '8090:80'
-      links:
-        - mysql:db
-      environment:
-        - PMA_ARBITRARY=1
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8090:80"
+    links:
+      - mysql:db
+    environment:
+      - PMA_ARBITRARY=1
