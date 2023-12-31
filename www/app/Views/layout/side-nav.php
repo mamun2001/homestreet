@@ -11,24 +11,58 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a href="<?= route_to('requisition'); ?>"
-                class="nav-link <?= (current_url() == base_url('requisition')) ? 'active' : '' ?>">
-                <i class="nav-icon fas fa-home"></i>
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                    Requisition
+                    Admin
+                    <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
-        </li>
 
-        <li class="nav-item">
-            <a href="<?= route_to('voucher'); ?>"
-                class="nav-link <?= (current_url() == base_url('voucher')) ? 'active' : '' ?>">
-                <i class="nav-icon fas fa-home"></i>
-                <p>
-                    Upload Voucher
-                </p>
-            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="<?= route_to('requisition/admin'); ?>"
+                        class="nav-link <?= (current_url() == base_url('requisition')) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Requisition List
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= route_to('voucher'); ?>"
+                        class="nav-link <?= (current_url() == base_url('voucher')) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Uploaded Voucher List
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= route_to('user'); ?>"
+                        class="nav-link <?= (current_url() == base_url('user')) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Users
+                        </p>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="<?= route_to('userprojects'); ?>"
+                        class="nav-link <?= (current_url() == base_url('userprojects')) ? 'active' : '' ?>">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            User Projects
+                        </p>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li class="nav-item has-treeview">
@@ -71,14 +105,6 @@
                     </a>
                 </li>
 
-                <!--
-                <li class="nav-item">
-                    <a href="<?= route_to('deed'); ?>" class="nav-link <?= (current_url() == base_url('deed')) ? 'active' : '' ?>">
-                <i class="nav-icon fas fa-user"></i>
-                <p>
-                    Subcontract Deed
-                </p>
--->
                 </a>
         </li>
 
@@ -191,50 +217,6 @@
             </a>
         </li>
     </ul>
-    </li>
-
-    <li class="nav-item has-treeview">
-        <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-                Admin
-                <i class="right fas fa-angle-left"></i>
-            </p>
-        </a>
-
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="<?= route_to('user'); ?>"
-                    class="nav-link <?= (current_url() == base_url('user')) ? 'active' : '' ?>">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>
-                        Users
-                    </p>
-                </a>
-            </li>
-        </ul>
-
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="<?= route_to('userprojects'); ?>"
-                    class="nav-link <?= (current_url() == base_url('userprojects')) ? 'active' : '' ?>">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>
-                        User Projects
-                    </p>
-                </a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="nav-item">
-        <a href="<?= route_to('user.profile'); ?>"
-            class="nav-link <?= (current_url() == base_url('user/profile')) ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-user"></i>
-            <p>
-                Profile
-            </p>
-        </a>
     </li>
 
     <li class="nav-item">

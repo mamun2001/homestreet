@@ -40,7 +40,6 @@ class Login extends Controller
             $data['validation'] = $this->validator;
             echo view('register', $data);
         }
-
     }
 
     public function login()
@@ -94,5 +93,4 @@ class Login extends Controller
         $session = session();
         echo "Welcome back, " . $session->get('user_name');
     }
-
 }

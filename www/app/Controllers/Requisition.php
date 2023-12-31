@@ -40,23 +40,68 @@ class Requisition extends BaseController
         return view('requisition', $data);
     }
 
+    public function admin()
+    {
+        $data = [
+            'controller' => 'requisition',
+            'title' => 'Requisition'
+        ];
+
+        return view('requisition-admin', $data);
+    }
+
+    public function getAllAdmin()
+    {
+        $response = array();
+        $data['data'] = array();
+
+        $db = \Config\Database::connect();
+        // $builder = $db->table('requisition');
+        // $builder->select('requisition.*,projects.*');
+        // $builder->join('projects', 'requisition.project_id=projects.id', 'inner');
+        // $result = $builder->orderBy('requisition.id', 'desc')->get()->getResult();
+
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id');
+        $result = $query->getResult();
+
+        foreach ($result as $key => $value) {
+            $ops = '<div class="btn-group">';
+            $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+            $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+            $ops .= '</div>';
+
+            $data['data'][$key] = array(
+                $value->id,
+                $value->project_name,
+                $value->requested_amount,
+                $value->submit_date_time,
+                $value->recieved_amount,
+                $value->recieve_date_time,
+                $value->status,
+                $value->comment,
+
+                $ops,
+            );
+        }
+
+        return $this->response->setJSON($data);
+    }
+
     public function getAll()
     {
         $response = array();
         $data['data'] = array();
 
         $db = \Config\Database::connect();
-        $builder = $db->table('requisition');
-        $builder->select('requisition.*,projects.*');
-        $builder->join('projects', 'projects.id = requisition.project_id', 'inner');        
-        $result = $builder->orderBy('requisition.id', 'desc')->get()->getResult();
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id');
+        $result = $query->getResult();
 
         //$result = $this->requisitionModel->select('id, project_id, requested_amount, submit_date_time, recieved_amount, recieve_date_time, status, comment')->orderBy('id', 'desc')->findAll();
 
         foreach ($result as $key => $value) {
             $ops = '<div class="btn-group">';
-            $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
-            $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+            // $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+            // $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
             $ops .= '</div>';
 
             $data['data'][$key] = array(

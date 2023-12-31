@@ -50,7 +50,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+            <img src="https://adminlte.io/themes/v3/dist/img/avatar5.png" class="img-circle elevation-2"
               alt="User Image">
           </div>
           <div class="info">
@@ -101,7 +101,7 @@
       <div class="float-right d-none d-sm-block">
         <b>Version</b> 3.0.3
       </div>
-      <strong>Copyright &copy; 2014-2019 <a href="<?= base_url(); ?>">SleepingCat</a>.</strong> All rights
+      <strong>Copyright &copy; 2023-2025 <a href="<?= base_url(); ?>">SleepingCat</a>.</strong> All rights
       reserved.
     </footer>
 

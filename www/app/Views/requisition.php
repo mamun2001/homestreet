@@ -1,4 +1,4 @@
-<?= $this->extend('layout/layout-a'); ?>
+<?= $this->extend('layout/layout-u'); ?>
 <?= $this->section('content'); ?>
 
 <!-- Main content -->
@@ -49,7 +49,7 @@
 								<th>Recieved amount</th>
 								<th>Recieve date time</th>
 								<th>Status</th>
-								<th>Comment</th>								
+								<th>Comment</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -297,9 +297,9 @@
 		});
 	});
 
-	$(function () {		
-		$('#upload_btn').on('click', function () {			
-			var formData = new FormData();						
+	$(function () {
+		$('#upload_btn').on('click', function () {
+			var formData = new FormData();
 			formData.append("requestedAmount", $('#req_amount').val());
 			$.ajax({
 				url: '<?php echo base_url('requisition/add'); ?>',

@@ -1,4 +1,4 @@
-<?= $this->extend('layout/layout-a'); ?>
+<?= $this->extend('layout/layout-u'); ?>
 <?= $this->section('content'); ?>
 <?php //print_r($_SESSION); ?>
 <!-- Main content -->
