@@ -56,12 +56,8 @@ class Requisition extends BaseController
         $data['data'] = array();
 
         $db = \Config\Database::connect();
-        // $builder = $db->table('requisition');
-        // $builder->select('requisition.*,projects.*');
-        // $builder->join('projects', 'requisition.project_id=projects.id', 'inner');
-        // $result = $builder->orderBy('requisition.id', 'desc')->get()->getResult();
-
-        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id');
+        
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id order by r.id desc');
         $result = $query->getResult();
 
         foreach ($result as $key => $value) {
@@ -93,7 +89,7 @@ class Requisition extends BaseController
         $data['data'] = array();
 
         $db = \Config\Database::connect();
-        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id');
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id order by r.id desc');
         $result = $query->getResult();
 
         //$result = $this->requisitionModel->select('id, project_id, requested_amount, submit_date_time, recieved_amount, recieve_date_time, status, comment')->orderBy('id', 'desc')->findAll();
