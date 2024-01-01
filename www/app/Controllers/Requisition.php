@@ -10,7 +10,6 @@ use App\Models\UserprojectsModel;
 
 class Requisition extends BaseController
 {
-
     protected $requisitionModel;
     protected $userProjectsModel;
     protected $validation;
@@ -56,7 +55,7 @@ class Requisition extends BaseController
         $data['data'] = array();
 
         $db = \Config\Database::connect();
-        
+
         $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id order by r.id desc');
         $result = $query->getResult();
 
