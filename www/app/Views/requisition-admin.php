@@ -11,9 +11,14 @@
 						<div class="col-md-8 mt-2">
 							<h3 class="card-title">Requisition List</h3>
 						</div>
-						<!-- <div class="col-md-4">
-				  <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"> <i class="fa fa-plus"></i> Add</button>
-				</div> -->
+						<div class="col-md-4 text-right">
+							<div class="btn-group right">
+								<button type="button" class="btn btn-success" id="approvedbutton" onclick="approved()"
+									title="Pending">Approved</button>
+								<button type="button" class="btn btn-warning" id="pendingbutton" onclick="pending()"
+									title="Pending">Pending</button>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -41,7 +46,7 @@
 								<th>Recieved amount</th>
 								<th>Recieve date time</th>
 								<th>Status</th>
-								<th>Comment</th>
+								<th>Description</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -161,65 +166,62 @@
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="text-center bg-info p-3">
-				<h4 class="modal-title text-white" id="info-header-modalLabel">Update</h4>
+				<h4 class="modal-title text-white" id="info-header-modalLabel">Approve Requisition</h4>
 			</div>
 			<div class="modal-body">
 				<form id="edit-form" class="pl-3 pr-3">
 					<div class="row">
 						<input type="hidden" id="id" name="id" class="form-control" placeholder="Id" maxlength="11"
 							required>
+						<input type="hidden" id="projectId" name="projectId" class="form-control"
+							placeholder="Project id" maxlength="11" number="true" required>
+						<input type="hidden" id="userId" name="userId" class="form-control" placeholder="User id"
+							maxlength="11" number="true" required>
 					</div>
 					<div class="row">
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<div class="form-group">
 								<label for="projectId"> Project id: <span class="text-danger">*</span> </label>
-								<input type="number" id="projectId" name="projectId" class="form-control"
-									placeholder="Project id" maxlength="11" number="true" required>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="userId"> User id: <span class="text-danger">*</span> </label>
-								<input type="number" id="userId" name="userId" class="form-control"
-									placeholder="User id" maxlength="11" number="true" required>
 							</div>
-						</div>
+						</div> -->
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="requestedAmount"> Requested amount: <span class="text-danger">*</span>
 								</label>
 								<input type="number" id="requestedAmount" name="requestedAmount" class="form-control"
-									placeholder="Requested amount" maxlength="11" number="true" required>
+									placeholder="Requested amount" maxlength="11" number="true" required readonly>
 							</div>
 						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="submitDateTime"> Submit Date Time: <span class="text-danger">*</span>
+								</label>
+								<input type="text" id="submitDateTime" name="submitDateTime" class="form-control"
+									required readonly>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="status"> Status: <span class="text-danger">*</span> </label>
+								<input type="text" id="status" name="status" class="form-control" placeholder="Status"
+									maxlength="150" required readonly>
+							</div>
+						</div>
+
 					</div>
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="submitDateTime"> Submit date time: <span class="text-danger">*</span>
-								</label>
-								<input type="date" id="submitDateTime" name="submitDateTime" class="form-control"
-									dateISO="true" required>
+								<label for="comment"> Description: <span class="text-danger">*</span> </label>
+								<input type="text" id="comment" name="comment" class="form-control"
+									placeholder="Description" maxlength="500" readonly>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="recievedAmount"> Recieved amount: <span class="text-danger">*</span>
-								</label>
-								<input type="number" id="recievedAmount" name="recievedAmount" class="form-control"
-									placeholder="Recieved amount" maxlength="11" number="true" required>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="recieveDateTime"> Recieve date time: <span class="text-danger">*</span>
-								</label>
-								<input type="date" id="recieveDateTime" name="recieveDateTime" class="form-control"
-									dateISO="true" required>
-							</div>
-						</div>
-					</div>
-					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="recievedBy"> Recieved by: <span class="text-danger">*</span> </label>
@@ -227,18 +229,23 @@
 									placeholder="Recieved by" maxlength="11" number="true" required>
 							</div>
 						</div>
-						<div class="col-md-4">
+
+						<!-- <div class="col-md-4">
 							<div class="form-group">
-								<label for="status"> Status: <span class="text-danger">*</span> </label>
-								<input type="text" id="status" name="status" class="form-control" placeholder="Status"
-									maxlength="150" required>
+								<label for="recieveDateTime"> Recieve date time: <span class="text-danger">*</span>
+								</label>
+								<input type="date" id="recieveDateTime" name="recieveDateTime" class="form-control"
+									dateISO="true" required>
 							</div>
-						</div>
+						</div> -->
+					</div>
+					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="comment"> Comment: <span class="text-danger">*</span> </label>
-								<input type="text" id="comment" name="comment" class="form-control"
-									placeholder="Comment" maxlength="500" required>
+								<label for="recievedAmount"> Approved Amount: <span class="text-danger">*</span>
+								</label>
+								<input type="number" id="recievedAmount" name="recievedAmount" class="form-control"
+									placeholder="Recieved amount" maxlength="11" number="true" required>
 							</div>
 						</div>
 					</div>
@@ -247,7 +254,7 @@
 
 					<div class="form-group text-center">
 						<div class="btn-group">
-							<button type="submit" class="btn btn-success" id="edit-form-btn">Update</button>
+							<button type="submit" class="btn btn-success" id="edit-form-btn">Submit</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 						</div>
 					</div>

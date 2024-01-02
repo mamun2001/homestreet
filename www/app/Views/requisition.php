@@ -21,9 +21,15 @@
 					<form id="upload-form" class="row mt-3">
 						<!-- <input type="hidden" name="subcontractorid" id="subcontractorid" value=""> -->
 
-						<div class="col-md-4 ml-3">
+						<div class="col-md-2 ml-3">
 							<input type="number" id="req_amount" name="req_amount" class="form-control"
 								placeholder="Requisition Amount" maxlength="11" required>
+						</div>
+
+						<div class="col-md-2 mb-3">
+							<textarea name="comment" id="comment" class="form-control" placeholder="Description"
+								rows="3"></textarea>
+							<!-- <input id="comment" name="comment" class="form-control" placeholder="Description"> -->
 						</div>
 
 						<!-- <div class="col-md-4">
@@ -49,7 +55,7 @@
 								<th>Recieved amount</th>
 								<th>Recieve date time</th>
 								<th>Status</th>
-								<th>Comment</th>
+								<th>Description</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -301,6 +307,7 @@
 		$('#upload_btn').on('click', function () {
 			var formData = new FormData();
 			formData.append("requestedAmount", $('#req_amount').val());
+			formData.append("comment", $('#comment').val());
 			$.ajax({
 				url: '<?php echo base_url('requisition/add'); ?>',
 				dataType: 'text',

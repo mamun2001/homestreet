@@ -60,10 +60,14 @@ class Requisition extends BaseController
         $result = $query->getResult();
 
         foreach ($result as $key => $value) {
-            $ops = '<div class="btn-group">';
-            $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
-            $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
-            $ops .= '</div>';
+            $ops = "";
+
+            if ($value->status == "Pending") {
+                $ops = '<div class="btn-group">';
+                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+                $ops .= '</div>';
+            }
 
             $data['data'][$key] = array(
                 $value->id,
@@ -144,7 +148,7 @@ class Requisition extends BaseController
         // $fields['recieve_date_time'] = $this->request->getPost('recieveDateTime');
         // $fields['recieved_by'] = $this->request->getPost('recievedBy');
         $fields['status'] = "Pending";
-        // $fields['comment'] = $this->request->getPost('comment');
+        $fields['comment'] = $this->request->getPost('comment');
 
         $this->validation->setRules([
             'requested_amount' => ['label' => 'Requested amount', 'rules' => 'required|numeric|max_length[11]'],
@@ -175,27 +179,27 @@ class Requisition extends BaseController
         $response = array();
 
         $fields['id'] = $this->request->getPost('id');
-        $fields['project_id'] = $this->request->getPost('projectId');
-        $fields['user_id'] = $this->request->getPost('userId');
-        $fields['requested_amount'] = $this->request->getPost('requestedAmount');
-        $fields['submit_date_time'] = $this->request->getPost('submitDateTime');
+        // $fields['project_id'] = $this->request->getPost('projectId');
+        // $fields['user_id'] = $this->request->getPost('userId');
+        // $fields['requested_amount'] = $this->request->getPost('requestedAmount');
+        // $fields['submit_date_time'] = $this->request->getPost('submitDateTime');
         $fields['recieved_amount'] = $this->request->getPost('recievedAmount');
-        $fields['recieve_date_time'] = $this->request->getPost('recieveDateTime');
-        $fields['recieved_by'] = $this->request->getPost('recievedBy');
-        $fields['status'] = $this->request->getPost('status');
-        $fields['comment'] = $this->request->getPost('comment');
+        $fields['recieve_date_time'] = date("Y-m-d H:i:s");
+        // $fields['recieved_by'] = $this->request->getPost('recievedBy');
+        $fields['status'] = "Approved";
+        // $fields['comment'] = $this->request->getPost('comment');
 
 
         $this->validation->setRules([
-            'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
-            'user_id' => ['label' => 'User id', 'rules' => 'required|numeric|max_length[11]'],
-            'requested_amount' => ['label' => 'Requested amount', 'rules' => 'required|numeric|max_length[11]'],
-            'submit_date_time' => ['label' => 'Submit date time', 'rules' => 'required|valid_date'],
+            // 'project_id' => ['label' => 'Project id', 'rules' => 'required|numeric|max_length[11]'],
+            // 'user_id' => ['label' => 'User id', 'rules' => 'required|numeric|max_length[11]'],
+            // 'requested_amount' => ['label' => 'Requested amount', 'rules' => 'required|numeric|max_length[11]'],
+            // 'submit_date_time' => ['label' => 'Submit date time', 'rules' => 'required|valid_date'],
             'recieved_amount' => ['label' => 'Recieved amount', 'rules' => 'required|numeric|max_length[11]'],
             'recieve_date_time' => ['label' => 'Recieve date time', 'rules' => 'required|valid_date'],
-            'recieved_by' => ['label' => 'Recieved by', 'rules' => 'required|numeric|max_length[11]'],
+            // 'recieved_by' => ['label' => 'Recieved by', 'rules' => 'required|numeric|max_length[11]'],
             'status' => ['label' => 'Status', 'rules' => 'required|max_length[150]'],
-            'comment' => ['label' => 'Comment', 'rules' => 'required|max_length[500]'],
+            // 'comment' => ['label' => 'Comment', 'rules' => 'required|max_length[500]'],
 
         ]);
 
