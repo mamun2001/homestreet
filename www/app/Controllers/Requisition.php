@@ -69,18 +69,233 @@ class Requisition extends BaseController
                 $ops .= '</div>';
             }
 
-            $data['data'][$key] = array(
-                $value->id,
-                $value->project_name,
-                $value->requested_amount,
-                $value->submit_date_time,
-                $value->recieved_amount,
-                $value->recieve_date_time,
-                $value->status,
-                $value->comment,
+            if ($value->recieve_date_time == "0000-00-00 00:00:00") {
 
-                $ops,
-            );
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    "",
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+
+            } else {
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    $value->recieve_date_time,
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+            }
+        }
+
+        return $this->response->setJSON($data);
+    }
+
+    public function getAllApproved()
+    {
+        $response = array();
+        $data['data'] = array();
+
+        $db = \Config\Database::connect();
+
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id where r.status="Approved" order by r.id desc');
+        $result = $query->getResult();
+
+        foreach ($result as $key => $value) {
+            $ops = "";
+
+            if ($value->recieve_date_time == "0000-00-00 00:00:00") {
+
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    "",
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+
+            } else {
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    $value->recieve_date_time,
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+            }
+        }
+
+        return $this->response->setJSON($data);
+    }
+    public function getAllApprovedUser()
+    {
+        $response = array();
+        $data['data'] = array();
+
+        $db = \Config\Database::connect();
+
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id where r.status="Approved" order by r.id desc');
+        $result = $query->getResult();
+
+        foreach ($result as $key => $value) {
+            $ops = "";
+
+            if ($value->status == "Approved") {
+                $ops = '<div class="btn-group">';
+                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="receive(' . $value->id . ')"><i></i>Receive</button>';
+                $ops .= '</div>';
+            }
+
+            if ($value->recieve_date_time == "0000-00-00 00:00:00") {
+
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    "",
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+
+            } else {
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    $value->recieve_date_time,
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+            }
+        }
+
+        return $this->response->setJSON($data);
+    }
+    public function getAllPending()
+    {
+        $response = array();
+        $data['data'] = array();
+
+        $db = \Config\Database::connect();
+
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id where r.status="Pending" order by r.id desc');
+        $result = $query->getResult();
+
+        foreach ($result as $key => $value) {
+            $ops = "";
+
+            if ($value->status == "Pending") {
+                $ops = '<div class="btn-group">';
+                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+                $ops .= '</div>';
+            }
+
+            if ($value->recieve_date_time == "0000-00-00 00:00:00") {
+
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    "",
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+
+            } else {
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    $value->recieve_date_time,
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+            }
+        }
+
+        return $this->response->setJSON($data);
+    }
+    public function getAllPendingUser()
+    {
+        $response = array();
+        $data['data'] = array();
+
+        $db = \Config\Database::connect();
+
+        $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id where r.status="Pending" order by r.id desc');
+        $result = $query->getResult();
+
+        foreach ($result as $key => $value) {
+            $ops = "";
+
+            if ($value->recieve_date_time == "0000-00-00 00:00:00") {
+
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    "",
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+
+            } else {
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    $value->recieve_date_time,
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+            }
         }
 
         return $this->response->setJSON($data);
@@ -95,26 +310,45 @@ class Requisition extends BaseController
         $query = $db->query('SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id order by r.id desc');
         $result = $query->getResult();
 
-        //$result = $this->requisitionModel->select('id, project_id, requested_amount, submit_date_time, recieved_amount, recieve_date_time, status, comment')->orderBy('id', 'desc')->findAll();
-
         foreach ($result as $key => $value) {
-            $ops = '<div class="btn-group">';
-            // $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
-            // $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
-            $ops .= '</div>';
+            $ops = "";
 
-            $data['data'][$key] = array(
-                $value->id,
-                $value->project_name,
-                $value->requested_amount,
-                $value->submit_date_time,
-                $value->recieved_amount,
-                $value->recieve_date_time,
-                $value->status,
-                $value->comment,
+            if ($value->status == "Approved") {
+                $ops = '<div class="btn-group">';
+                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="receive(' . $value->id . ')"><i></i>Receive</button>';
+                // $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+                $ops .= '</div>';
+            }
 
-                $ops,
-            );
+            if ($value->recieve_date_time == "0000-00-00 00:00:00") {
+
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    "",
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+
+            } else {
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    $value->requested_amount,
+                    $value->submit_date_time,
+                    $value->recieved_amount,
+                    $value->recieve_date_time,
+                    $value->status,
+                    $value->comment,
+
+                    $ops,
+                );
+            }
         }
 
         return $this->response->setJSON($data);
@@ -133,6 +367,43 @@ class Requisition extends BaseController
         }
     }
 
+    public function receive()
+    {
+        $response = array();
+        $fields['id'] = $this->request->getPost('id');
+        $fields['recieve_date_time'] = date("Y-m-d H:i:s");
+        $fields['recieved_by'] = session()->get('user_id');
+        $fields['status'] = "Recieved";
+
+        $this->validation->setRules([
+            'recieve_date_time' => ['label' => 'Recieve date time', 'rules' => 'required|valid_date'],
+            'recieved_by' => ['label' => 'Recieved by', 'rules' => 'required|numeric|max_length[11]'],
+            'status' => ['label' => 'Status', 'rules' => 'required|max_length[150]'],
+        ]);
+
+        if ($this->validation->run($fields) == FALSE) {
+
+            $response['success'] = false;
+            $response['messages'] = $this->validation->listErrors();
+
+        } else {
+
+            if ($this->requisitionModel->update($fields['id'], $fields)) {
+
+                $response['success'] = true;
+                $response['messages'] = 'Successfully updated';
+
+            } else {
+
+                $response['success'] = false;
+                $response['messages'] = 'Update error!';
+
+            }
+        }
+
+        return $this->response->setJSON($response);
+
+    }
     public function add()
     {
         $response = array();
@@ -184,7 +455,7 @@ class Requisition extends BaseController
         // $fields['requested_amount'] = $this->request->getPost('requestedAmount');
         // $fields['submit_date_time'] = $this->request->getPost('submitDateTime');
         $fields['recieved_amount'] = $this->request->getPost('recievedAmount');
-        $fields['recieve_date_time'] = date("Y-m-d H:i:s");
+        // $fields['recieve_date_time'] = date("Y-m-d H:i:s");
         // $fields['recieved_by'] = $this->request->getPost('recievedBy');
         $fields['status'] = "Approved";
         // $fields['comment'] = $this->request->getPost('comment');
@@ -196,7 +467,7 @@ class Requisition extends BaseController
             // 'requested_amount' => ['label' => 'Requested amount', 'rules' => 'required|numeric|max_length[11]'],
             // 'submit_date_time' => ['label' => 'Submit date time', 'rules' => 'required|valid_date'],
             'recieved_amount' => ['label' => 'Recieved amount', 'rules' => 'required|numeric|max_length[11]'],
-            'recieve_date_time' => ['label' => 'Recieve date time', 'rules' => 'required|valid_date'],
+            // 'recieve_date_time' => ['label' => 'Recieve date time', 'rules' => 'required|valid_date'],
             // 'recieved_by' => ['label' => 'Recieved by', 'rules' => 'required|numeric|max_length[11]'],
             'status' => ['label' => 'Status', 'rules' => 'required|max_length[150]'],
             // 'comment' => ['label' => 'Comment', 'rules' => 'required|max_length[500]'],

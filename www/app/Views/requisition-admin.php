@@ -13,10 +13,11 @@
 						</div>
 						<div class="col-md-4 text-right">
 							<div class="btn-group right">
-								<button type="button" class="btn btn-success" id="approvedbutton" onclick="approved()"
-									title="Pending">Approved</button>
-								<button type="button" class="btn btn-warning" id="pendingbutton" onclick="pending()"
+								<button type="button" class="btn btn-success" id="approvedbutton"
+									title="Approved">Approved</button>
+								<button type="button" class="btn btn-warning" id="pendingbutton"
 									title="Pending">Pending</button>
+								<button type="button" class="btn btn-info" id="allbutton" title="All">All</button>
 							</div>
 						</div>
 					</div>
@@ -41,10 +42,10 @@
 							<tr>
 								<th>Id</th>
 								<th>Project Name</th>
-								<th>Requested amount</th>
-								<th>Submit date time</th>
-								<th>Recieved amount</th>
-								<th>Recieve date time</th>
+								<th>Requested Amount</th>
+								<th>Submit Date Time</th>
+								<th>Recieved Amount</th>
+								<th>Recieved Date Time</th>
 								<th>Status</th>
 								<th>Description</th>
 								<th></th>
@@ -218,17 +219,19 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="comment"> Description: <span class="text-danger">*</span> </label>
-								<input type="text" id="comment" name="comment" class="form-control"
-									placeholder="Description" maxlength="500" readonly>
+								<textarea id="comment" name="comment" class="form-control" placeholder="Description"
+									rows="3" readonly></textarea>
+								<!-- <input type="text" id="comment" name="comment" class="form-control"
+									placeholder="Description" maxlength="500" readonly> -->
 							</div>
 						</div>
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<div class="form-group">
 								<label for="recievedBy"> Recieved by: <span class="text-danger">*</span> </label>
 								<input type="number" id="recievedBy" name="recievedBy" class="form-control"
 									placeholder="Recieved by" maxlength="11" number="true" required>
 							</div>
-						</div>
+						</div> -->
 
 						<!-- <div class="col-md-4">
 							<div class="form-group">
@@ -238,8 +241,7 @@
 									dateISO="true" required>
 							</div>
 						</div> -->
-					</div>
-					<div class="row">
+
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="recievedAmount"> Approved Amount: <span class="text-danger">*</span>
@@ -248,7 +250,9 @@
 									placeholder="Recieved amount" maxlength="11" number="true" required>
 							</div>
 						</div>
+
 					</div>
+
 					<div class="row">
 					</div>
 
@@ -292,6 +296,13 @@
 				"type": "POST",
 				"dataType": "json",
 				async: "true"
+			},
+			"createdRow": function (row, data, dataIndex) {
+				if (data[6] == 'Pending') {
+					$(row).css("background-color", "LightCoral");
+				} else if (data[6] == 'Approved') {
+					$(row).css("background-color", "LightGreen");
+				}
 			}
 		});
 	});
@@ -327,6 +338,46 @@
 		});
 	});
 
+	$(function () {
+		datatable = $("#data_table").DataTable();
+		$('#approvedbutton').on('click', function () {
+			$.ajax({
+				url: '<?php echo base_url('requisition/getallapproved'); ?>',
+				dataType: 'json',
+				type: 'post',
+				success: function (response) {
+					datatable.clear().rows.add(response['data']).draw();
+				},
+				error: function (response) {
+					$('#message').html(response);
+				}
+			});
+		});
+	});
+
+	$(function () {
+		datatable = $("#data_table").DataTable();
+		$('#pendingbutton').on('click', function () {
+			$.ajax({
+				url: '<?php echo base_url('requisition/getAllPending'); ?>',
+				dataType: 'json',
+				type: 'post',
+				success: function (response) {
+					datatable.clear().rows.add(response['data']).draw();
+				},
+				error: function (response) {
+					$('#message').html(response);
+				}
+			});
+		});
+	});
+
+	$(function () {
+		$('#allbutton').on('click', function () {
+			$('#data_table').DataTable().ajax.reload(null, false).draw(false);
+		});
+	});
+
 	function add() {
 		// reset the form 
 		$("#add-form")[0].reset();
@@ -356,13 +407,10 @@
 					error.insertAfter(element);
 				}
 			},
-
 			submitHandler: function (form) {
-
 				var form = $('#add-form');
 				// remove the text-danger
 				$(".text-danger").remove();
-
 				$.ajax({
 					url: '<?php echo base_url($controller . '/add') ?>',
 					type: 'post',
@@ -372,9 +420,7 @@
 						$('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
 					},
 					success: function (response) {
-
 						if (response.success === true) {
-
 							Swal.fire({
 								position: 'bottom-end',
 								icon: 'success',
@@ -385,20 +431,15 @@
 								$('#data_table').DataTable().ajax.reload(null, false).draw(false);
 								$('#add-modal').modal('hide');
 							})
-
 						} else {
-
 							if (response.messages instanceof Object) {
 								$.each(response.messages, function (index, value) {
 									var id = $("#" + index);
-
 									id.closest('.form-control')
 										.removeClass('is-invalid')
 										.removeClass('is-valid')
 										.addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
 									id.after(value);
-
 								});
 							} else {
 								Swal.fire({
@@ -408,13 +449,11 @@
 									showConfirmButton: false,
 									timer: 1500
 								})
-
 							}
 						}
 						$('#add-form-btn').html('Add');
 					}
 				});
-
 				return false;
 			}
 		});
@@ -434,18 +473,16 @@
 				$("#edit-form")[0].reset();
 				$(".form-control").removeClass('is-invalid').removeClass('is-valid');
 				$('#edit-modal').modal('show');
-
 				$("#edit-form #id").val(response.id);
 				$("#edit-form #projectId").val(response.project_id);
 				$("#edit-form #userId").val(response.user_id);
 				$("#edit-form #requestedAmount").val(response.requested_amount);
 				$("#edit-form #submitDateTime").val(response.submit_date_time);
 				$("#edit-form #recievedAmount").val(response.recieved_amount);
-				$("#edit-form #recieveDateTime").val(response.recieve_date_time);
+				// $("#edit-form #recieveDateTime").val(response.recieve_date_time);
 				$("#edit-form #recievedBy").val(response.recieved_by);
 				$("#edit-form #status").val(response.status);
 				$("#edit-form #comment").val(response.comment);
-
 				// submit the edit from 
 				$.validator.setDefaults({
 					highlight: function (element) {
@@ -470,7 +507,6 @@
 							error.insertAfter(element);
 						}
 					},
-
 					submitHandler: function (form) {
 						var form = $('#edit-form');
 						$(".text-danger").remove();
@@ -483,9 +519,7 @@
 								$('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
 							},
 							success: function (response) {
-
 								if (response.success === true) {
-
 									Swal.fire({
 										position: 'bottom-end',
 										icon: 'success',
@@ -496,20 +530,15 @@
 										$('#data_table').DataTable().ajax.reload(null, false).draw(false);
 										$('#edit-modal').modal('hide');
 									})
-
 								} else {
-
 									if (response.messages instanceof Object) {
 										$.each(response.messages, function (index, value) {
 											var id = $("#" + index);
-
 											id.closest('.form-control')
 												.removeClass('is-invalid')
 												.removeClass('is-valid')
 												.addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
 											id.after(value);
-
 										});
 									} else {
 										Swal.fire({
@@ -519,18 +548,15 @@
 											showConfirmButton: false,
 											timer: 1500
 										})
-
 									}
 								}
 								$('#edit-form-btn').html('Update');
 							}
 						});
-
 						return false;
 					}
 				});
 				$('#edit-form').validate();
-
 			}
 		});
 	}
@@ -546,7 +572,6 @@
 			confirmButtonText: 'Confirm',
 			cancelButtonText: 'Cancel'
 		}).then((result) => {
-
 			if (result.value) {
 				$.ajax({
 					url: '<?php echo base_url($controller . '/remove') ?>',
@@ -556,7 +581,6 @@
 					},
 					dataType: 'json',
 					success: function (response) {
-
 						if (response.success === true) {
 							Swal.fire({
 								position: 'bottom-end',
@@ -575,8 +599,6 @@
 								showConfirmButton: false,
 								timer: 1500
 							})
-
-
 						}
 					}
 				});

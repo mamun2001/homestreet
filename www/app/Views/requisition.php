@@ -11,9 +11,15 @@
 						<div class="col-md-8 mt-2">
 							<h3 class="card-title">Requisition</h3>
 						</div>
-						<!-- <div class="col-md-4">
-				  <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"> <i class="fa fa-plus"></i> Add</button>
-				</div> -->
+						<div class="col-md-4 text-right">
+							<div class="btn-group right">
+								<button type="button" class="btn btn-success" id="approvedbutton"
+									title="Approved">Approved</button>
+								<button type="button" class="btn btn-warning" id="pendingbutton"
+									title="Pending">Pending</button>
+								<button type="button" class="btn btn-info" id="allbutton" title="All">All</button>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -50,10 +56,10 @@
 							<tr>
 								<th>Id</th>
 								<th>Project Name</th>
-								<th>Requested amount</th>
-								<th>Submit date time</th>
-								<th>Recieved amount</th>
-								<th>Recieve date time</th>
+								<th>Requested Amount</th>
+								<th>Submit Date Time</th>
+								<th>Recieved Amount</th>
+								<th>Recieve Date Time</th>
 								<th>Status</th>
 								<th>Description</th>
 								<th></th>
@@ -299,6 +305,13 @@
 				"type": "POST",
 				"dataType": "json",
 				async: "true"
+			},
+			"createdRow": function (row, data, dataIndex) {
+				if (data[6] == 'Pending') {
+					$(row).css("background-color", "LightCoral");
+				} else if (data[6] == 'Approved') {
+					$(row).css("background-color", "LightGreen");
+				}
 			}
 		});
 	});
@@ -332,6 +345,78 @@
 					$('#message').html(response);
 				}
 			});
+		});
+	});
+
+	function receive(id) {
+		$.ajax({
+			url: '<?php echo base_url('requisition/receive') ?>',
+			type: 'post',
+			data: {
+				id: id
+			},
+			dataType: 'json',
+			success: function (response) {
+				if (response.success === true) {
+					Swal.fire({
+						position: 'bottom-end',
+						icon: 'success',
+						title: response.messages,
+						showConfirmButton: false,
+						timer: 1500
+					}).then(function () {
+						$('#data_table').DataTable().ajax.reload(null, false).draw(false);
+					})
+				} else {
+					Swal.fire({
+						position: 'bottom-end',
+						icon: 'error',
+						title: response.messages,
+						showConfirmButton: false,
+						timer: 1500
+					})
+				}
+			}
+		});
+	}
+
+	$(function () {
+		datatable = $("#data_table").DataTable();
+		$('#approvedbutton').on('click', function () {
+			$.ajax({
+				url: '<?php echo base_url('requisition/getallapproveduser'); ?>',
+				dataType: 'json',
+				type: 'post',
+				success: function (response) {
+					datatable.clear().rows.add(response['data']).draw();
+				},
+				error: function (response) {
+					$('#message').html(response);
+				}
+			});
+		});
+	});
+
+	$(function () {
+		datatable = $("#data_table").DataTable();
+		$('#pendingbutton').on('click', function () {
+			$.ajax({
+				url: '<?php echo base_url('requisition/getAllPendinguser'); ?>',
+				dataType: 'json',
+				type: 'post',
+				success: function (response) {
+					datatable.clear().rows.add(response['data']).draw();
+				},
+				error: function (response) {
+					$('#message').html(response);
+				}
+			});
+		});
+	});
+
+	$(function () {
+		$('#allbutton').on('click', function () {
+			$('#data_table').DataTable().ajax.reload(null, false).draw(false);
 		});
 	});
 
