@@ -8,6 +8,8 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use CodeIgniter\Filters\isAdmin;
+use CodeIgniter\Filters\isUser;
 
 class Filters extends BaseConfig
 {
@@ -22,6 +24,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'authGuard'     => \App\Filters\AuthGuard::class,
+        'isAdmin'     => \App\Filters\isAdmin::class,
+        'isUser'     => \App\Filters\isUser::class,
     ];
 
     /**
