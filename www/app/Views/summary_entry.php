@@ -1,22 +1,18 @@
-<?= $this->extend('layout/layout-a'); ?>
+<?= $this->extend('layout/layout-u'); ?>
 <?= $this->section('content'); ?>
 
-<div class="container">
+<section class="content">
 	<div class="card">
 		<div class="card-header">
 			<div class="row">
 				<div class="col-md-8 mt-2">
-					<h3 class="card-title">Daily Expense Summery Entry</h3>
+					<h3 class="card-title">Voucher List</h3>
 				</div>
-				<!-- <div class="col-md-4">
-					<a class="btn btn-block btn-success" href="<?= route_to('subcontractor'); ?>"
-						title="Go Back To List">Go Back To List</a>
-				</div> -->
 			</div>
 		</div>
 
 		<div class="card-body">
-			<div class="container border mt-3 mb-3">
+			<!-- <div class="container border mt-3 mb-3">
 				<form id="upload-form" class="row mt-3">
 					<div class="col-md-4">
 						<input type="text" id="amount" name="amount" class="form-control" placeholder="Amount"
@@ -29,7 +25,7 @@
 						<button class="btn btn-success" id="upload_btn" type="button">Upload</button>
 					</div>
 				</form>
-			</div>
+			</div> -->
 
 			<table id="data_table" class="table table-bordered table-striped">
 				<thead>
@@ -46,7 +42,7 @@
 			</table>
 		</div>
 	</div>
-</div>
+</section>
 
 <script type="text/javascript">
 	$(function () {
@@ -76,7 +72,7 @@
 			var totalFilesLen = document.getElementById('files').files.length;
 			for (var i = 0; i < totalFilesLen; i++) {
 				formData.append("files[]", document.getElementById('files').files[i]);
-			}			
+			}
 			formData.append("amount", $('#amount').val());
 			$.ajax({
 				url: '<?php echo base_url('UploadVoucher/doupload'); ?>',
@@ -88,7 +84,7 @@
 				type: 'post',
 				success: function (response) {
 					$("#upload-form")[0].reset();
-					alert(response.messages);					
+					alert(response.messages);
 					Swal.fire({
 						position: 'bottom-end',
 						icon: 'success',

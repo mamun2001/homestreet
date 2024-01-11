@@ -51,75 +51,75 @@ $routes->group('user', static function ($routes) {
 
 // $routes->get('districts-adel', 'Districts::index');
 
-$routes->get('districts', 'DistrictsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('districts/(:any)', 'DistrictsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('districts/(:any)', 'DistrictsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('districts', 'DistrictsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('districts/(:any)', 'DistrictsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('districts/(:any)', 'DistrictsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('divisions', 'DivisionsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('divisions/(:any)', 'DivisionsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('divisions/(:any)', 'DivisionsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('divisions', 'DivisionsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('divisions/(:any)', 'DivisionsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('divisions/(:any)', 'DivisionsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('projects', 'ProjectsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('projects/(:any)', 'ProjectsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('projects/(:any)', 'ProjectsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('projects', 'ProjectsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('projects/(:any)', 'ProjectsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('projects/(:any)', 'ProjectsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('projectsbill', 'ProjectsBillController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('projectsbill/(:any)', 'ProjectsBillController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('projectsbill/(:any)', 'ProjectsBillController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('projectsbill', 'ProjectsBillController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('projectsbill/(:any)', 'ProjectsBillController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('projectsbill/(:any)', 'ProjectsBillController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('items', 'ItemsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('items/(:any)', 'ItemsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('items/(:any)', 'ItemsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('items', 'ItemsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('items/(:any)', 'ItemsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('items/(:any)', 'ItemsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('categories', 'CategoriesController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('categories/(:any)', 'CategoriesController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('categories/(:any)', 'CategoriesController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('categories', 'CategoriesController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('categories/(:any)', 'CategoriesController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('categories/(:any)', 'CategoriesController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('units', 'UnitsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('units/(:any)', 'UnitsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('units/(:any)', 'UnitsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('units', 'UnitsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('units/(:any)', 'UnitsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('units/(:any)', 'UnitsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('sizes', 'SizesController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('sizes/(:any)', 'SizesController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('sizes/(:any)', 'SizesController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('sizes', 'SizesController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('sizes/(:any)', 'SizesController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('sizes/(:any)', 'SizesController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('brands', 'BrandsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('brands/(:any)', 'BrandsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('brands/(:any)', 'BrandsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('brands', 'BrandsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('brands/(:any)', 'BrandsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('brands/(:any)', 'BrandsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('models', 'ModelsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('models/(:any)', 'ModelsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('models/(:any)', 'ModelsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('models', 'ModelsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('models/(:any)', 'ModelsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('models/(:any)', 'ModelsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('expenseheads', 'ExpenseHeadsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('expenseheads/(:any)', 'ExpenseHeadsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('expenseheads/(:any)', 'ExpenseHeadsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('expenseheads', 'ExpenseHeadsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('expenseheads/(:any)', 'ExpenseHeadsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('expenseheads/(:any)', 'ExpenseHeadsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('user', 'UserController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('user/(:any)', 'UserController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('user/(:any)', 'UserController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('user', 'UserController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('user/(:any)', 'UserController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('user/(:any)', 'UserController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('userprojects', 'UserProjectsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('userprojects/(:any)', 'UserProjectsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('userprojects/(:any)', 'UserProjectsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('userprojects', 'UserProjectsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('userprojects/(:any)', 'UserProjectsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('userprojects/(:any)', 'UserProjectsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
 //$routes->get('subcontractor', 'SubcontractorController::index');
 //$routes->get('subcontractor/(:any)', 'SubcontractorController::index/$1');
 //$routes->post('subcontractor/(:any)', 'SubcontractorController::index/$1');
 
-$routes->get('subcontractor', 'Subcontractors::index', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('subcontractor', 'Subcontractors::index', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('requisition', 'Requisition::index', ['filter' => ['authGuard','isUser']]);
-$routes->post('requisition/add', 'Requisition::add', ['filter' => ['authGuard','isUser']]);
-$routes->get('requisition/getall', 'Requisition::getAll', ['filter' => ['authGuard','isUser']]);
-$routes->get('requisition/admin', 'Requisition::admin', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('requisition', 'Requisition::index', ['filter' => ['authGuard', 'isUser']]);
+$routes->post('requisition/add', 'Requisition::add', ['filter' => ['authGuard', 'isUser']]);
+$routes->get('requisition/getall', 'Requisition::getAll', ['filter' => ['authGuard', 'isUser']]);
+$routes->get('requisition/admin', 'Requisition::admin', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('subcontract', 'ProjectSubcontractsController::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->get('subcontract/(:any)', 'ProjectSubcontractsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('subcontract/(:any)', 'ProjectSubcontractsController::index/$1', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('subcontract', 'ProjectSubcontractsController::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('subcontract/(:any)', 'ProjectSubcontractsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('subcontract/(:any)', 'ProjectSubcontractsController::index/$1', ['filter' => ['authGuard', 'isAdmin']]);
 
-$routes->get('deed', 'Deed::index', ['filter' => ['authGuard','isAdmin']]);
-$routes->post('deed/add', 'Deed::add', ['filter' => ['authGuard','isAdmin']]);
+$routes->get('deed', 'Deed::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('deed/add', 'Deed::add', ['filter' => ['authGuard', 'isAdmin']]);
 
 // $routes->get('deed', 'DeedController::index');
 // $routes->get('deed/(:any)', 'DeedController::index/$1');
@@ -137,10 +137,11 @@ $routes->post('upload/getOne', 'Upload::getOne', ['filter' => 'authGuard']);
 $routes->get('projectfilesupload', 'ProjectFilesUpload::index', ['filter' => 'authGuard']);
 $routes->post('projectfilesupload', 'ProjectFilesUpload::index', ['filter' => 'authGuard']);
 $routes->get('projectfilesupload/(:any)', 'ProjectFilesUpload::index/$1', ['filter' => 'authGuard']);
-$routes->post('projectfilesdoupload', 'ProjectFilesUpload::doupload', ['filter' => 'authGuard']);
+$routes->post('projectfilesupload/doupload', 'ProjectFilesUpload::doupload', ['filter' => 'authGuard']);
 $routes->post('projectfilesupload/getOne', 'ProjectFilesUpload::getOne', ['filter' => 'authGuard']);
 
-$routes->get('voucher', 'UploadVoucher::index', ['filter' => 'authGuard']);
+$routes->get('voucher', 'UploadVoucher::index', ['filter' => ['authGuard', 'isUser']]);
+$routes->get('voucher/voucherList', 'UploadVoucher::voucherList', ['filter' => ['authGuard', 'isUser']]);
 // $routes->post('voucher', 'UploadVoucher::index', ['filter' => 'authGuard']);
 $routes->get('voucher/(:any)', 'UploadVoucher::index/$1', ['filter' => 'authGuard']);
 $routes->post('voucherupload', 'UploadVoucher::doupload', ['filter' => 'authGuard']);

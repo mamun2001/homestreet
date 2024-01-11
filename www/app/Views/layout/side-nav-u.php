@@ -32,6 +32,16 @@
         </li>
 
         <li class="nav-item">
+            <a href="<?= route_to('voucher/voucherList'); ?>"
+                class="nav-link <?= (current_url() == base_url('voucher/voucherList')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                    Voucher List
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a href="<?= route_to('logout'); ?>"
                 class="nav-link <?= (current_url() == base_url('user/profile')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
