@@ -143,7 +143,8 @@ $routes->post('projectfilesupload/getOne', 'ProjectFilesUpload::getOne', ['filte
 $routes->get('voucher', 'UploadVoucher::index', ['filter' => ['authGuard', 'isUser']]);
 $routes->get('voucher/voucherList', 'UploadVoucher::voucherList', ['filter' => ['authGuard', 'isUser']]);
 // $routes->post('voucher', 'UploadVoucher::index', ['filter' => 'authGuard']);
-$routes->get('voucher/(:any)', 'UploadVoucher::index/$1', ['filter' => 'authGuard']);
+$routes->get('voucher/(:any)', 'UploadVoucher::index/$1', ['filter' => ['authGuard', 'isUser']]);
+$routes->get('showVouchers/(:any)', 'UploadVoucher::showVouchers/$1', ['filter' => ['authGuard', 'isUser']]);
 $routes->post('voucherupload', 'UploadVoucher::doupload', ['filter' => 'authGuard']);
 $routes->post('voucher/getOne', 'UploadVoucher::getOne', ['filter' => 'authGuard']);
 

@@ -4,8 +4,6 @@ namespace App\Controllers;
 use App\Models\ProjectsModel;
 use App\Models\ProjectFilesModel;
 
-
-
 class ProjectFilesUpload extends BaseController
 {
 	protected $projectfilesModel;
@@ -28,7 +26,7 @@ class ProjectFilesUpload extends BaseController
 		// $builder->where('projects.id', $id);
 		//$result = $builder->orderBy('projects.id', 'asc')->get()->getResult();
 
-		$query = $db->query("select projects.id, projects.project_name,districts.district from projects INNER JOIN districts on districts.id=projects.project_location where projects.id=" . $id);
+		$query = $db->query("SELECT projects.id, projects.project_name,districts.district from projects INNER JOIN districts on districts.id=projects.project_location where projects.id=" . $id);
 		$data['data'] = $query->getResult();
 
 		// print_r($data['data']);
@@ -91,7 +89,7 @@ class ProjectFilesUpload extends BaseController
 		foreach ($result as $key => $value) {
 			$ops = '<div class="btn-group">';
 			$ops .= '	<a class="btn btn-sm btn-warning" target="_blank" href="' . base_url($value->filepath) . '"><i class="fa fa-eye"></i></a>';
-			$ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+			// $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
 			$ops .= '</div>';
 
 			$data['data'][$key] = array(

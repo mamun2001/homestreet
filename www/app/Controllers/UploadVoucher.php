@@ -178,11 +178,81 @@ class UploadVoucher extends BaseController
 			'controller' => 'UploadVoucher',
 			'title' => 'UploadVoucher'
 		];
-
+		
 		return view('summary_entry', $data);
 	}
 
+	public function showVouchers($id=0){
+		$data['data'] = array();
+
+		$db = \Config\Database::connect();		
+		$query = $db->query("SELECT d.id,p.project_name,u.full_name,d.amount,d.date_time,d.comment FROM daily_expense_summary d INNER JOIN projects p ON d.project_id=p.id INNER JOIN tbl_user u ON d.user_id=u.id WHERE d.id=" . $id);
+		$data['data'] = $query->getResult();
+
+		return view('showvoucher', $data);
+	}
+	
 	public function getAll()
+	{
+		$response = array();
+		$data['data'] = array();
+		$id = $this->request->getPost('id');
+		$VouchersModel= new VouchersModel();
+		$result = $VouchersModel->where('summery_id', $id)->findAll();
+
+		foreach ($result as $key => $value) {
+			$ops = '<div class="btn-group">';
+			$ops .= '	<a class="btn btn-sm btn-warning" target="_blank" href="' . base_url($value->file_path) . '"><i class="fa fa-eye"></i></a>';
+			// $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+			$ops .= '</div>';
+
+			$parts=explode('/',$value->file_path,3);
+
+			$data['data'][$key] = array(
+				$value->id,
+				$parts[2],
+
+				$ops,
+			);
+		}
+
+		return $this->response->setJSON($data);
+	}
+
+	public function getAllforUser()
+	{
+		$response = array();
+		$data['data'] = array();
+
+		$db = \Config\Database::connect();
+		$builder = $db->table('daily_expense_summary d');
+		$builder->select('d.id,p.project_name,u.full_name,d.amount,d.date_time,d.comment');
+		$builder->join('projects p', 'p.id = d.project_id', 'inner');
+		$builder->join('tbl_user u', 'u.id = d.user_id', 'inner');
+		$result = $builder->orderBy('d.id', 'desc')->get()->getResult();
+
+		foreach ($result as $key => $value) {
+			$ops = '<div class="btn-group">';
+			$ops .= '	<a class="btn btn-sm btn-warning" href="' . base_url("showVouchers/" . $value->id) . '" onclick="files(' . $value->id . ')"><i class="fa fa-file"></i></a>';
+			// $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
+			$ops .= '</div>';
+
+			$data['data'][$key] = array(
+				$value->id,
+				$value->project_name,
+				// $value->full_name,
+				$value->amount,
+				$value->date_time,
+				$value->comment,
+
+				$ops,
+			);
+		}
+
+		return $this->response->setJSON($data);
+	}
+
+	public function getAllforAdmin()
 	{
 		$response = array();
 		$data['data'] = array();

@@ -11,28 +11,13 @@
 			</div>
 		</div>
 
-		<div class="card-body">
-			<!-- <div class="container border mt-3 mb-3">
-				<form id="upload-form" class="row mt-3">
-					<div class="col-md-4">
-						<input type="text" id="amount" name="amount" class="form-control" placeholder="Amount"
-							maxlength="250" required>
-					</div>
-					<div class="col-md-4">
-						<input type="file" id="files" name="files[]" class="form-control" multiple="multiple">
-					</div>
-					<div class="form-group text-center mb-3">
-						<button class="btn btn-success" id="upload_btn" type="button">Upload</button>
-					</div>
-				</form>
-			</div> -->
-
+		<div class="card-body">			
 			<table id="data_table" class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Project</th>
-						<th>User Name</th>
+						<!-- <th>User Name</th> -->
 						<th>Amount</th>
 						<th>Date</th>
 						<th>Comment</th>
@@ -55,7 +40,7 @@
 			"autoWidth": false,
 			"responsive": true,
 			"ajax": {
-				"url": '<?php echo base_url('UploadVoucher/getAll') ?>',
+				"url": '<?php echo base_url('UploadVoucher/getAllforUser') ?>',
 				"type": "POST",
 				"data": {
 					"id": $('#subcontractorid').val()
