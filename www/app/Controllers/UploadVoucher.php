@@ -182,6 +182,16 @@ class UploadVoucher extends BaseController
 		return view('summary_entry', $data);
 	}
 
+	public function voucherListAdmin()
+	{
+		$data = [
+			'controller' => 'UploadVoucher',
+			'title' => 'UploadVoucher'
+		];
+		
+		return view('vouchers-admin', $data);
+	}
+
 	public function showVouchers($id=0){
 		$data['data'] = array();
 
@@ -266,7 +276,8 @@ class UploadVoucher extends BaseController
 
 		foreach ($result as $key => $value) {
 			$ops = '<div class="btn-group">';
-			// $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
+			$ops .= '	<a class="btn btn-sm btn-warning" href="' . base_url("showVouchers/" . $value->id) . '" onclick="files(' . $value->id . ')"><i class="fa fa-file"></i></a>';
+			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
 			// $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
 			$ops .= '</div>';
 

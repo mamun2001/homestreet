@@ -32,11 +32,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= route_to('voucher'); ?>"
-                        class="nav-link <?= (current_url() == base_url('voucher')) ? 'active' : '' ?>">
+                    <a href="<?= route_to('voucher/admin'); ?>"
+                        class="nav-link <?= (current_url() == base_url('voucher/admin')) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
-                            Uploaded Voucher List
+                            Voucher List
                         </p>
                     </a>
                 </li>

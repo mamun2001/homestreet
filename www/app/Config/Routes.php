@@ -142,6 +142,7 @@ $routes->post('projectfilesupload/getOne', 'ProjectFilesUpload::getOne', ['filte
 
 $routes->get('voucher', 'UploadVoucher::index', ['filter' => ['authGuard', 'isUser']]);
 $routes->get('voucher/voucherList', 'UploadVoucher::voucherList', ['filter' => ['authGuard', 'isUser']]);
+$routes->get('voucher/admin', 'UploadVoucher::voucherListAdmin', ['filter' => ['authGuard', 'isAdmin']]);
 // $routes->post('voucher', 'UploadVoucher::index', ['filter' => 'authGuard']);
 $routes->get('voucher/(:any)', 'UploadVoucher::index/$1', ['filter' => ['authGuard', 'isUser']]);
 $routes->get('showVouchers/(:any)', 'UploadVoucher::showVouchers/$1', ['filter' => ['authGuard', 'isUser']]);
