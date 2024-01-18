@@ -178,7 +178,7 @@ class UploadVoucher extends BaseController
 			'controller' => 'UploadVoucher',
 			'title' => 'UploadVoucher'
 		];
-		
+
 		return view('summary_entry', $data);
 	}
 
@@ -188,26 +188,38 @@ class UploadVoucher extends BaseController
 			'controller' => 'UploadVoucher',
 			'title' => 'UploadVoucher'
 		];
-		
+
 		return view('vouchers-admin', $data);
 	}
 
-	public function showVouchers($id=0){
+	public function showVouchers($id = 0)
+	{
 		$data['data'] = array();
 
-		$db = \Config\Database::connect();		
+		$db = \Config\Database::connect();
 		$query = $db->query("SELECT d.id,p.project_name,u.full_name,d.amount,d.date_time,d.comment FROM daily_expense_summary d INNER JOIN projects p ON d.project_id=p.id INNER JOIN tbl_user u ON d.user_id=u.id WHERE d.id=" . $id);
 		$data['data'] = $query->getResult();
 
 		return view('showvoucher', $data);
 	}
-	
+
+	public function showVouchersAdmin($id = 0)
+	{
+		$data['data'] = array();
+
+		$db = \Config\Database::connect();
+		$query = $db->query("SELECT d.id,p.project_name,u.full_name,d.amount,d.date_time,d.comment FROM daily_expense_summary d INNER JOIN projects p ON d.project_id=p.id INNER JOIN tbl_user u ON d.user_id=u.id WHERE d.id=" . $id);
+		$data['data'] = $query->getResult();
+
+		return view('showvoucher-admin', $data);
+	}
+
 	public function getAll()
 	{
 		$response = array();
 		$data['data'] = array();
 		$id = $this->request->getPost('id');
-		$VouchersModel= new VouchersModel();
+		$VouchersModel = new VouchersModel();
 		$result = $VouchersModel->where('summery_id', $id)->findAll();
 
 		foreach ($result as $key => $value) {
@@ -216,7 +228,7 @@ class UploadVoucher extends BaseController
 			// $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
 			$ops .= '</div>';
 
-			$parts=explode('/',$value->file_path,3);
+			$parts = explode('/', $value->file_path, 3);
 
 			$data['data'][$key] = array(
 				$value->id,
@@ -276,7 +288,7 @@ class UploadVoucher extends BaseController
 
 		foreach ($result as $key => $value) {
 			$ops = '<div class="btn-group">';
-			$ops .= '	<a class="btn btn-sm btn-warning" href="' . base_url("showVouchers/" . $value->id) . '" onclick="files(' . $value->id . ')"><i class="fa fa-file"></i></a>';
+			$ops .= '	<a class="btn btn-sm btn-warning" href="' . base_url("showVouchersAdmin/" . $value->id) . '" onclick="files(' . $value->id . ')"><i class="fa fa-file"></i></a>';
 			$ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
 			// $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
 			$ops .= '</div>';

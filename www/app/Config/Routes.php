@@ -146,6 +146,7 @@ $routes->get('voucher/admin', 'UploadVoucher::voucherListAdmin', ['filter' => ['
 // $routes->post('voucher', 'UploadVoucher::index', ['filter' => 'authGuard']);
 $routes->get('voucher/(:any)', 'UploadVoucher::index/$1', ['filter' => ['authGuard', 'isUser']]);
 $routes->get('showVouchers/(:any)', 'UploadVoucher::showVouchers/$1', ['filter' => ['authGuard', 'isUser']]);
+$routes->get('showVouchersAdmin/(:any)', 'UploadVoucher::showVouchersAdmin/$1', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('voucherupload', 'UploadVoucher::doupload', ['filter' => 'authGuard']);
 $routes->post('voucher/getOne', 'UploadVoucher::getOne', ['filter' => 'authGuard']);
 
