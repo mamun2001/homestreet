@@ -9,6 +9,15 @@ use App\Models\DailyExpenseDetailModel;
 
 class UploadVoucher extends BaseController
 {
+	protected $summaryentryModel;
+    protected $validation;
+	
+	public function __construct()
+	{
+	    $this->summaryentryModel = new SummaryentryModel();
+       	$this->validation =  \Config\Services::validation();		
+	}
+
 	public function index($id = 0)
 	{
 		$data = [
@@ -160,16 +169,42 @@ class UploadVoucher extends BaseController
 
 	public function getOne()
 	{
-		$response = array();
-		$subcontractorfilesModel = new subcontractorfilesModel();
-		$id = $this->request->getPost('id');
-
-		if ($this->validation->check($id, 'required|numeric')) {
-			$data = $subcontractorfilesModel->where('subcontractorid', $id)->findAll();
-			return $this->response->setJSON($data);
-		} else {
+		$response = array();		
+		$id = $this->request->getPost('id');		
+		if ($this->validation->check($id, 'required|numeric')) {			
+			$data = $this->summaryentryModel->where('id' ,$id)->first();
+			return $this->response->setJSON($data);					
+		} else {			
 			throw new \CodeIgniter\Exceptions\PageNotFoundException();
+		}	
+	}
+
+	public function edit()
+	{
+		$response = array();
+
+		$fields['id'] = $this->request->getPost('id');
+		$fields['comment'] = $this->request->getPost('comment');
+		$Summaryentry = new SummaryentryModel();
+
+		$this->validation->setRules([			
+			'comment' => ['label' => 'Comment', 'rules' => 'max_length[500]'],
+		]);
+
+		if ($this->validation->run($fields) == FALSE) {
+			$response['success'] = false;
+			$response['messages'] = $this->validation->listErrors();
+		} else {
+			if ($Summaryentry->update($fields['id'], $fields)) {
+				$response['success'] = true;
+				$response['messages'] = 'Successfully updated';
+			} else {
+				$response['success'] = false;
+				$response['messages'] = 'Update error!';
+			}
 		}
+
+		return $this->response->setJSON($response);
 	}
 
 	public function voucherList()
