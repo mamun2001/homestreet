@@ -33,7 +33,18 @@ class Home extends BaseController
 
             return view('dashboard/admin', $data);
         } else {
-            return view('dashboard/home');
+            $data['pending'] = array();
+            $dat = $this->requisitionModel->where('status', 'Approved')->findAll();
+            $data['approved'] = count($dat);
+
+            $userId = session()->get('user_id');
+            $date = date_create(date("Y-m-d"));
+            date_sub($date, date_interval_create_from_date_string("7 days"));
+            $dt = date_format($date, "Y-m-d");
+            $sum = $this->summaryentryModel->where('date(date_time)>=', $dt)->where('user_id', $userId)->findAll();
+            $data['vouchers'] = count($sum);
+
+            return view('dashboard/user', $data);
         }
     }
 }
