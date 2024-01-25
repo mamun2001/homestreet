@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use \CodeIgniter\Controller;
-
 use \Hermawan\DataTables\DataTable;
 
 class UsersController extends Controller

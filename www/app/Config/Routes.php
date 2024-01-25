@@ -155,7 +155,11 @@ $routes->get('projectfiles', 'ProjectFiles::index', ['filter' => 'authGuard']);
 $routes->get('/', 'Login::index');
 $routes->post('save', 'Login::save');
 $routes->get('login', 'Login::login');
+$routes->get('changepassword', 'Login::changePassword',['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('changepass', 'Login::changePasswordUser',['filter' => ['authGuard', 'isUser']]);
 $routes->post('postLogin', 'Login::auth');
+$routes->post('passchange', 'Login::passChange');
+$routes->post('passchangeUser', 'Login::passchangeUser');
 $routes->get('logout', 'Login::logout');
 
 /*

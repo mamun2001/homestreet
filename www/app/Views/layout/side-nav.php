@@ -23,7 +23,7 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="<?= route_to('requisition/admin'); ?>"
-                        class="nav-link <?= (current_url() == base_url('requisition')) ? 'active' : '' ?>">
+                        class="nav-link <?= (current_url() == base_url('requisition/admin')) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Requisition List
@@ -219,6 +219,16 @@
     </ul>
     </li>
 
+    <li class="nav-item">
+        <a href="<?= route_to('changepassword'); ?>"
+            class="nav-link <?= (current_url() == base_url('changepassword')) ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+                Change Password
+            </p>
+        </a>
+    </li>
+    
     <li class="nav-item">
         <a href="<?= route_to('logout'); ?>"
             class="nav-link <?= (current_url() == base_url('user/profile')) ? 'active' : '' ?>">

@@ -81,11 +81,82 @@ class Login extends Controller
         }
     }
 
+    public function passchange()
+    {
+        $session = session();
+        $model = new UsersModel();
+        $fields['id'] = session()->get('user_id');
+
+        $cur_password = $this->request->getPost('cur_password');
+        $new_password = $this->request->getPost('new_password');
+        $con_new_password = $this->request->getPost('con_new_password');
+
+        $data = $model->where('id', $fields['id'])->first();
+
+        if ($new_password == $con_new_password) {
+            if ($data) {
+                if (md5($cur_password) == $data['password']) {
+                    $fields['password'] = md5($new_password);
+                    $model->update($fields['id'], $fields);
+                    return redirect()->to('/');
+                } else {
+                    $session->setFlashdata('msg', 'Wrong Current Password');
+                    return redirect()->to('/changepassword');
+                }
+            } else {
+                $session->setFlashdata('msg', 'User not Found');
+                return redirect()->to('/changepassword');
+            }
+        } else {
+            $session->setFlashdata('msg', 'New passwords do not match');
+            return redirect()->to('/changepassword');
+        }
+    }
+    public function passchangeUser()
+    {
+        $session = session();
+        $model = new UsersModel();
+        $fields['id'] = session()->get('user_id');
+
+        $cur_password = $this->request->getPost('cur_password');
+        $new_password = $this->request->getPost('new_password');
+        $con_new_password = $this->request->getPost('con_new_password');
+
+        $data = $model->where('id', $fields['id'])->first();
+
+        if ($new_password == $con_new_password) {
+            if ($data) {
+                if (md5($cur_password) == $data['password']) {
+                    $fields['password'] = md5($new_password);
+                    $model->update($fields['id'], $fields);
+                    return redirect()->to('/');
+                } else {
+                    $session->setFlashdata('msg', 'Wrong Current Password');
+                    return redirect()->to('/changepass');
+                }
+            } else {
+                $session->setFlashdata('msg', 'User not Found');
+                return redirect()->to('/changepass');
+            }
+        } else {
+            $session->setFlashdata('msg', 'New passwords do not match');
+            return redirect()->to('/changepass');
+        }
+    }
+
     public function logout()
     {
         $session = session();
         $session->destroy();
         return redirect()->to('/login');
+    }
+    public function changePassword()
+    {
+        return view('chngpass');
+    }
+    public function changePasswordUser()
+    {
+        return view('chngpass-u');
     }
 
     public function dashboard()

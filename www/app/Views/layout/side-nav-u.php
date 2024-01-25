@@ -42,6 +42,16 @@
         </li>
 
         <li class="nav-item">
+            <a href="<?= route_to('changepass'); ?>"
+                class="nav-link <?= (current_url() == base_url('changepass')) ? 'active' : '' ?>">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Change Password
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a href="<?= route_to('logout'); ?>"
                 class="nav-link <?= (current_url() == base_url('user/profile')) ? 'active' : '' ?>">
                 <i class="nav-icon fas fa-user"></i>
