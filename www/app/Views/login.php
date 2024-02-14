@@ -41,7 +41,7 @@
             <div class="col-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title mb-4">Sign In</h5>
+                        <h5 class="card-title mb-4">HomeStreet</h5>
                         <?php if (session()->getFlashdata('msg')): ?>
                             <div class="alert alert-danger">
                                 <?= session()->getFlashdata('msg') ?>
