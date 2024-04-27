@@ -75,8 +75,8 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="<?= route_to('fr'); ?>"
-                        class="nav-link <?= (current_url() == base_url('fr')) ? 'active' : '' ?>">
+                    <a href="<?= route_to('reports'); ?>"
+                        class="nav-link <?= (current_url() == base_url('reports')) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Fund Requisition

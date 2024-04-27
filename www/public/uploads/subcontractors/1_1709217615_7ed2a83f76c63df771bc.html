@@ -1,0 +1,525 @@
+
+<!-- saved from url=(0045)http://www.kallal.ca/Articles/split/index.htm -->
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+
+<link rel="File-List" href="http://www.kallal.ca/Articles/split/index_files/filelist.xml">
+<title>Split your database</title>
+<!--[if !mso]>
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+</style>
+<![endif]--><!--[if gte mso 9]>
+<xml><o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]-->
+</head>
+
+<body bgcolor="#ADA990">
+
+<table width="100%" bgcolor="#003366" border="0">
+  
+  <tbody><tr>
+    <td width="100%"><font color="#ffffff" size="6">HCS Consulting Group.</font></td></tr></tbody></table>
+<table width="100%" bgcolor="#cccc99" border="0">
+  
+  <tbody><tr>
+    <td width="100%"><font><b>     We make Complex Systems simple</b></font></td></tr></tbody></table>
+<p class="MsoNormal"><font size="5">Splitting a access database, or how to run 
+ms-access in a multi-user mode.</font></p>
+        <p>By Albert D. Kallal<br><em>Friday, August 19, 2005</em></p> 
+        <p class="MsoNormal"><span style="font-size:13.5pt">One of the neat 
+        things about ms-access is that you can take an application you written, 
+        and turn it into a multi-user application without having to change code.
+        </span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Before we actually get into 
+how to split a database and use ms-access in a muti-user mode, I want to clear 
+up in your mind as to what this split idea is all about. Once this concept of a 
+split database is clear in your mind, then the “why” we split will become also 
+clear. </span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">&nbsp;The first thing to realize 
+when using access is that you are using a tool that creates software. This is a 
+VERY important concept here. When you use other parts of office such as word, or 
+Excel you are using an application that creates documents. So, with word, you 
+have an application part called the word program (or so called executable).&nbsp; 
+After you LOAD the program called "word"&nbsp;you THEN can consume word documents. 
+The same goes for Excel, you launch Excel, AND THEN open a document designed for 
+that application. And, not to split hairs, but when you browse through a bunch 
+of folders and then finally click on a word document you found, what actually 
+occurs is the APPLICATION part loads first, and THEN the document part is 
+consumed by the program part.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">&nbsp;The very simple, but 
+important concept here is that software generally has two parts.</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal" align="center"><font size="4">1 - &nbsp;The program part, or 
+software part</font></p>
+<p class="MsoNormal" align="center"><font size="4">2 -&nbsp;The data part.</font></p>
+<p align="center"><span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1029" type="#_x0000_t75" style='width:6in;
+ height:171pt'>
+ <v:imagedata src="index_files/image001.emz" o:title=""/>
+</v:shape><![endif]--><!--[if !vml]--><img border="0" width="576" height="228" src="./Split your database_files/image002.gif" v:shapes="_x0000_s1029"><!--[endif]--><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185884044">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p align="center"><span style="font-size: 12.0pt; font-family: Times New Roman">
+<!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185877187">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Some of you are wondering 
+why the above simple and important concept needs to be pointed out? It turns out 
+that a good number of systems administers and general users of computers have 
+NOT thought about this common concept in software. It is not a hard concept to 
+grasp that software has a data part + application part. In most organizations, 
+installing the software on EACH desktop computer is not even given a second 
+thought. So, if you want to use word, you install word on EACH computer. If you 
+want to use Excel, then again, it is common knowledge, and common sense that you 
+install the application on the workstation. Often, you will share some documents 
+on a server, and allow users to open those documents. Note carefully how even in 
+this case, the software (application part) is STILL INSTALLED on the 
+workstation. Sure, you can put the DATA PART, or so called document part on a 
+shared server folder. However, you STILL installed the software part on each 
+computer.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">So, for a typical network 
+when you share data, you have one computer that is your server, and you share 
+folders to computers on your network.</span>&nbsp;</p>
+<p align="center"><span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shape
+ id="_x0000_s1028" type="#_x0000_t75" style='width:6in;height:217.5pt'>
+ <v:imagedata src="index_files/image003.emz" o:title=""/>
+</v:shape><![endif]--><!--[if !vml]--><img border="0" width="576" height="290" src="./Split your database_files/image004.gif" v:shapes="_x0000_s1028"><!--[endif]--><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185878597">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p align="center"><span style="font-size: 12.0pt; font-family: Times New Roman">
+<!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185878547">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p align="left"><span style="font-size:13.5pt">In the above example, 
+applications on each workstation can open their respective documents (data 
+parts) that are placed on the server.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">There are good many reasons 
+as to why we install the software part on EACH workstation. A few reasons are:</span></p>
+<ul type="disc" style="margin-bottom: 0in">
+  <li class="MsoNormal"><span style="font-size:13.5pt">The software now does not 
+  have to travel across the network each time it is used. It would be a waste of 
+  network resources if applications such as word etc. had to be loaded across 
+  the network and use up precious network bandwidth. Remember, networks are MUCH 
+  slower then your hard disk to load files. Remember, the network is a shared 
+  resource. If&nbsp;you have two users on the network pulling data, then you have 1/2 
+  the amount of resources available. You must treat your network with the utmost 
+  respect, as it is a delicate and precious (limited) resource. When you have 4 
+  people on the same network, you have 1/4 the amount of performance. You MUST 
+  thus be very careful. Imagine how slow things would be if all users loaded 
+  their software from the network each time? <br>
+  &nbsp;</span></li>
+  <li class="MsoNormal"><span style="font-size:13.5pt">If one user makes a 
+  change to their printer setup or just a general change to their settings, they 
+  have their OWN copy of the application to play with, and NOT interfere with 
+  other users on the network. Can you imagine two users fighting over how their 
+  excel sheet should be laid out at the same time!!<br>
+  &nbsp;</span></li>
+  <li class="MsoNormal"><span style="font-size:13.5pt">If a user's software 
+  crashes, then no other users are affected. Can you imagine if word were to 
+  freeze up, or lock on your computer and everyone else in the building also 
+  experienced a freeze up or lock up. Again, it makes sense to install the 
+  application part on each pc as to ISOLATE individual’s problems that might 
+  occur in the application. So, installing software on each PC is a MUST DO from 
+  a reliability point of view. You don't want to allow ONE user's problem to 
+  become the problem of everyone else. This is again why we split a database in 
+  ms-access in multi-user mode (otherwise you will get NO reliability).</span></li>
+</ul>
+<p class="MsoNormal"><span style="font-size:13.5pt">I could add MANY more 
+reasons to the above list, but suffice to say that it makes a lot of sense to 
+install the software on each computer. I don’t think there are too many people 
+that have trouble understanding the above concepts. </span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">However, when it comes to 
+ms-access, the above concepts for some strange reason are complete ignored. 
+Users all of a sudden get some type of freeze in the brain, and all of a sudden 
+compete ignore how they deployed software on their computers for that last 15 
+years!</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Ok, so what do applications 
+and the data part that applications consume have to do with ms-access? It turns 
+out that ms-access is MUCH more then just a data file. Ms-access is a software 
+development tool. You might write a letter in word, but in ms-access in addition 
+to typing in data, or text like word, you ALSO CREATE SOFTWARE. When you start 
+using ms-access, then you have to put on a developers hat, and begin to think 
+from a developer point of view.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">You can use many different 
+kinds of tools to create software with. These tools like c++, VB, and yes even 
+ms-access are used to build forms (the user interface part), and also write 
+code. These forms + code are what we call an application. It is this application 
+part that you create that needs to be installed on each computer. &nbsp;You always 
+installed the word application on your computer. So, now that YOU ARE writing 
+software, why should you throw out all of the ideas and concepts as to how 
+software works on your computer? You can use a software tool like VB to create a 
+word processing application, and once done, you will install that application on 
+each computer. I should point out that you can also use ms-access to create a 
+word processor, or a Pac man game. Make no mistake here; ms-access is a tool 
+that allows you to create software. After you create that software, you need to 
+install that software on EACH computer like you done with everything else you 
+used.</span></p>
+<p class="MsoNormal"><span style="font-size:18.0pt">The concept of splitting a 
+database.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Ms-access is a most 
+interesting software development tool. Access lets you build software, and ALSO 
+keep the document part, or what we have been calling the data part in ONE FILE. 
+This feature is really handy since you have ONE file that is both application 
+part + data part. For a single user, this setup is very handy. Another nice 
+feature of having data + application in one part is that you don’t have to think 
+about all the above software concepts when working on your application. I mean, 
+one part is easier then two parts to deal with!! </span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p align="center"><span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shape
+ id="_x0000_s1031" type="#_x0000_t75" style='width:174.75pt;height:174.75pt'>
+ <v:imagedata src="index_files/image005.emz" o:title=""/>
+</v:shape><![endif]--><!--[if !vml]--><img border="0" width="233" height="233" src="./Split your database_files/image006.gif" v:shapes="_x0000_s1031"><!--[endif]--><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185885923">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p><span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte mso 9]>
+<xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185885906">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">This also why so many 
+budding developers start out using ms-access, as it saves people having to think 
+about the concept of a application part and a data part.&nbsp; I do believe that most 
+users can grasp the concept that Excel is an application, and that excel 
+consumes a data part (a document part if you are thinking in terms of word, or 
+excel). These same concepts must be applied when you create an ms-access 
+application.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Further, the instant you go 
+multi-user, then having two parts (data part + application part) becomes an 
+advantage. The reasons are mostly the same as why all other applications on your 
+computer split into two parts in the first place.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Ms-access has a splitter 
+tool built in. From the main menu go;</span></p>
+<p class="MsoNormal" align="center" style="text-align: center">
+<span style="font-size:13.5pt">Tools-&gt;database utilities-&gt;Database Splitter</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">After you run the splitter, 
+the above application will become two files, or those so called two parts.</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p align="center"><span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shape
+ id="_x0000_s1035" type="#_x0000_t75" style='width:431.25pt;height:145.5pt'>
+ <v:imagedata src="index_files/image007.emz" o:title=""/>
+</v:shape><![endif]--><!--[if !vml]--><img border="0" width="575" height="194" src="./Split your database_files/image008.gif" v:shapes="_x0000_s1035"><!--[endif]--><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185887490">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p align="center"><span style="font-size: 12.0pt; font-family: Times New Roman">
+<!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Visio.Drawing.11" ShapeID="_x0000_i1025" DrawAspect="Content" ObjectID="_1185886817">
+ </o:OLEObject>
+</xml><![endif]--></span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">If you look at the above, 
+the ONLY new concept you have here is linked tables. Everything else in your 
+application will function as before. Splitting a database is thus easy, and 
+requites little or no effort on your part. The only extra issue here to deal 
+with is what we call linked tables. Now when you work with your application, all 
+tables will be placed in the data only part. This data only file is commonly 
+referred to as the back end (BE). If you add new fields to a table, modify the 
+table designs, or add new tables, you MUST do all of this modifying and changing 
+in the BE (data only file). You will NOT make table (structure) changes in the 
+application part (FE). In fact, if you try to make a change to design of a table 
+in the application part, you will find it is not possible! The application part 
+is what is commonly referred to as the front end (FE).</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">What is now interesting 
+about the above setup is you can make a copy of BOTH the FE, and the BE. You can 
+even switch what BE the FE is connected to. This means you can test on test 
+data, or test dangerous deleting code on a test BE. When you are happy that the 
+test was ok, then you switch the connection back to the live, or production BE.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">To switch, or manage the 
+connection you use what is called the linked table manager in ms-access. You 
+will no doubt become quite familiar with this linking process as you will now 
+use the linked table manager to change what BE the FE connects to. Changing the 
+connection will thus become part of your development routine, and is second 
+nature to any experienced access developer.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">The linked table manger in 
+a2003 can be found via:</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">&nbsp;&nbsp;&nbsp; Tools-&gt;database 
+utilities -&gt; Linked Table manager</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Note that once you linked 
+that FE to the BE, that link remains in effect. You can now copy the front end 
+to a different location, but the linked connection will STILL continue to be 
+pointing to that BE part. This means you have to use caution here. I worked on a 
+copy of the FE, before working on this copy, I of course use the linked table 
+manager to link the FE to a test copy of the BE. I am now able to test, delete, 
+enter records and write new code etc. in this FE. This testing, and entering of 
+test data etc. does not effect the users since their FE are linked to the 
+production, or so called "live" BE. When I am done making changes to my FE, I 
+can then re-deploy the FE to all the users on the network. </span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">CAUTION CAUTION CAUTION! 
+Note that before I deploy the new FE&nbsp;to each computer I MUST REMEMBER to 
+re-connect the FE to the correct BE! I will admit that I have messed this 
+process up once. The results are very nasty, as now all uses when they run the 
+FE are connected to the WRONG BE. Any new data they enter will go into the test 
+BE, and trying to sort this mess out and move new data from the test BE to the 
+production BE is a nightmare. So, use caution here, and MAKE DOUBLE sure you 
+connected the FE to the correct BE when you deploy.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">One last thing about linking 
+the FE to the BE is that you need to always use what is called UNC path names 
+(Universal Naming Convention). All this really means is that you REALLY REALLY 
+REALLY do not want to use mapped drive letters when you link. Besides, mapped 
+letters are a 20 year throwback to the old PC DOS and CPM days when we used 
+floppy disks! (When is the last time you used a floppy disk). Don't use mapped 
+drives to a file share on the server. Drive mappings have all kinds of problems. 
+Just plugging in a USB jump drive (memory stick) into your computer and the 
+drive mappings can change. Further, you have to setup EACH pc for drive mappings 
+and that is a pain. Further, even plugging in a digital camera can change drive 
+letters. So, just avoid drive letters and mapping like the plague. Simply put, 
+don't use them, and they are horrible from a support point of view. If you do 
+risk using drive letters, then you will get a large increase in support calls 
+for your software. </span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">In other words, always use a 
+path name to the back end files. What this means is when you use the linked 
+table manger, always navigate through network places to the server, and then to 
+the folder, and then the back end mdb file. DO NOT use mapped drives, and do NOT 
+use the linked table manager to navigate to a back end by a drive letter.&nbsp; If 
+you use a mapped drive, then your path name will be something like:</span>&nbsp;</p>
+<p class="MsoNormal" align="center"><font face="Times New Roman" size="4">
+<a href="file:///E:/mydata/backend.mdb">e:\mydata\backend.mdb</a></font></p>
+<p class="MsoNormal" align="left"><font face="Times New Roman" size="4">If you 
+navigate by the network places, you will get a path name that does NOT have a 
+drive letter. The path name (UNC) will look like</font></p>
+<p class="MsoNormal" align="center"><font face="Times New Roman" size="4">
+<a href="file://servername/mydata/backend.mdb">\\servername\mydata\backend.mdb</a></font></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">One last tip:</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">&nbsp;&nbsp;&nbsp; Often after splitting 
+some people find the performance is horrible! To restore the performance make 
+sure that you FE in the startup opens up a table to the back end, and KEEPS it 
+open. By keeping open a persistent connection, then the VERY slow connection 
+process only occurs once.&nbsp; If you don't want add code to the FE to&nbsp;open a table, 
+you can create a small form in the FE that is attached to a table in the BE (you 
+then minimize it, or even set it to invisible). Either way,&nbsp;you ALWAYS want to 
+ensue that the FE has a connection to the BE in this fashion.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">To be fair, this system of 
+linked tables is little BIT more work. For example, now to add a table, you will 
+have to open the BE, add your table. Close the BE. You now have to open the FE, 
+and add a linked table to application that points to that new table. To add this 
+linked table to the FE,&nbsp;you would go to the regular table tab where we always 
+added a table. We then go new (for a new table), and select ---&gt; link table (in 
+place of design view). Since this is a few extra steps and hassle, often a 
+developer will wait until a considerable amount of time has passed before 
+splitting a database. It makes no sense if you don't have any users, and have 
+not even deployed the application for multi-user mode to split. </span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Users often ask at what 
+point in the development process do you split? Well, the answer is you just 
+know!! At the start of the development process, you are creating tables left and 
+right. And, further, at the start you have no users! After a considerable amount 
+of time, that table creating process settles down to a dull roar. In fact, after 
+a certain amount of time, if you are still adding tables to your application at 
+a high rate, then something is wrong with the design. So, as&nbsp;you near the time 
+when other users will start to use the application, then that is likely when you 
+will split. And, hopefully by that time, adding new tables will now occur at a 
+very much reduce rate. Thus the extra work of using linked tables will be of a 
+minimal cost in terms of time and effort. Note that once you split, you don't as 
+a rule un-split.</span></p>
+<p class="MsoNormal"><font face="Times New Roman" size="5">Compiling your 
+application before you install on each pc. </font></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">At this point, you could 
+deploy your FE to each workstation. However,&nbsp;you should not deploy something 
+that users can change, mess with or modify to cause damage to your application, 
+or worse the data! So, as a general rule, right before you deploy the 
+application to your users, you compile the FE mdb into an mde file (the "e" 
+stands for executable). This process of compiling removes all source code, 
+strips out extra debugging stuff, and freezes the design of the mde. It is this 
+mde that you should deploy to each workstation. That mde design can't be changed 
+by your users. It is also the way developers deploy applications to clients, but 
+those clients can't change the application.&nbsp; When you create an mde, then the 
+version of ms-access you have installed on the target pc in effect becomes your 
+runtime support files. Note that VB, or even&nbsp;VB.net applications will not run on 
+your pc unless you have the supporting runtime libraries installed. In our case, 
+that means you need ms-access installed to make the mde (or any mdb for that 
+matter) work on the target pc. While in most cases we assume that ms-access is 
+already installed on the target pc, do note that you can also purchase a royalty 
+free runtime system that allows you to package ms-access with your mde. This 
+developer’s edition of ms-access thus allows for deployment on computers that 
+have not purchased a copy of ms-access. Regardless of the royalty free runtime 
+edition, or regular edition of ms-access, you should create the mde for 
+deployment. Both editions can create mde files, and thus you should give users 
+an mde.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">From the menu go;</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Tools-&gt;database 
+utilities-&gt;make mde file</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">(Note: that while versions 
+of ms-access can often open, and use different versions of ms-access, to create 
+an mde your mdb file MUST BE in the SAME version as access you are using. So, 
+access 2003&nbsp;can open, and work with a2000, and a2002 files, but to create an mde, 
+you MUST use an mdb file of the SAME version of access that you are running. So, 
+to create an mde in a2003, the mdb file must be also that version). This means 
+you can't use access 2003 to create an mde for access 97 (however, access 2003 
+can create an access 97 mdb file...just not an mde one).</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Even if issues of users 
+changing the code, or you as developer don't care to protect your code, you 
+REALLY still should deploy the mde. The mde is the end results of your 
+application and is designed to be deployed to users. Further, this mde is 
+smaller, runs faster, and is also more reliable (can't come un-compiled, or be 
+modified by your users). To be fair, users can modify quires, but the forms, and 
+code, and reports (the application) cannot be changed. Use caution when you make 
+a mde, as you MUST keep the original mdb for further development&nbsp;(you cannot 
+reverse this process!!). So, you deploy this mde to your users..and continue to 
+work on the mdb. It probably don't need pointing out, but a mde that is not 
+split is of little use, since you can't modify the forms, and if you deploy a 
+un-split mde to your users, you will NOT be able to update the forms, reports, 
+code etc. because you also have the data tables with the application part.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">As a general rule, when you 
+deploy the mde to each user’s workstation, you will (or should) provide a 
+shortcut on the desktop (and an entry in the start menu doesn’t hurt either). 
+Remember that part about you thinking like a developer here! I mean, how do you 
+expect the user to launch your application? So, just like every other 
+application, you should provide a shortcut on the desktop for ease of use to 
+launch your application. </span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">And, while we are at this, 
+you do need to come up with a directory or location where you install this mde 
+application on the user’s workstation.</span></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">
+<a href="file:///C:/program">c:\program</a> files\Your application dir\CustomersMailingList.mde</font></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">However, in many cases, some 
+companies are now locking down their pc's very tight, and the program dir's are 
+now often read only, and we need read/write for our mde file. So, the best 
+location (at least for windows xp) is to use:</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">C:\Documents and 
+Settings\All Users\Application Data</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">So, for our above 
+application, I would likely use the following directory.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">C:\Documents and 
+Settings\All Users\Application Data\Custmailing\CustomersMailingList.mde</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Of course, we don't want the 
+user to have browse through all those directories just to launch the application 
+(you don't do that to launch word etc, but provide a shortcut).</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">So, you need to create a 
+shortcut on the desktop. Just right click on any blank area in desktop, and 
+select new-&gt;shortcut. This process is easy.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">The most common complaint 
+about splitting is now you have to go around and install a new FE each time you 
+make a change. The benefits of splitting far outweigh this ONE problem. And, the 
+solution here is to either roll your own code to check for&nbsp;a new version and 
+copy it from the server directory where the BE resides. That is what I do in my 
+startup code, and it was only a few hours of work. A better and commercial grade 
+solution is to grab Tony's free FE updater, this little gem simply updates your 
+new FE to all users on the network when you place a new version in the directory 
+where the BE is. It is a gem, and can be found here:</span></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">http://www.granite.ab.ca/access/autofe.htm</font></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">The above concepts will now 
+allow you to safely work on the next great release of your software. Further, by 
+adopting the standard way you installed all other programs on your computer, you 
+also ensue a reliable operation.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Trying to work on an 
+application and dance around users at the same time is like working on an 
+airplane while it is in flight. It is really hard to imagine how anyone can 
+develop an application that is un-split. Since users can't work while you modify 
+an un-split application, then does everyone get to go home while you work? What 
+happen when you make a simple coding mistake and then damage all of the 
+production data? It is simply too dangerous to work on the actual code while 
+users are running the application. Further, if&nbsp;you break something while users 
+are working with your application, then those users likely will not want to use 
+your software. Damaging user confidence&nbsp;can often result in people not wanting 
+to use your software. Don’t underestimate how user frustration can kill your 
+project. If your users get discouraged, then often your project will fail. 
+Remember, you now have to wear the developer’s hat here!</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">So, split your application 
+and develop in peace, and with peace of mind. Split your application so you 
+don't drag it across the precious network. And, split your application&nbsp;so it 
+runs reliably.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">I also have a few notes 
+AFTER my signature in this article that follow on using a security workgroup 
+file, but you can ignore this info if you are not using a workgroup security 
+file.</span></p>
+<p class="MsoNormal"><font size="4">One last note:</font></p>
+<p class="MsoNormal"><font size="4">Using a mdb file across a poor connection 
+can damage (corrupt) a mdb file. I explain WHY a mdb file can corrupt in the 
+following article, and also explain why you can't use a split database on a 
+wireless network.</font></p>
+<p class="MsoNormal"><font size="4"><a href="http://www.kallal.ca/Wan/Wans.html">Click on this 
+link to find out why a mdb file can corrupt, and about using ms-access on a WAN</a></font></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">
+<a href="http://www.members.shaw.ca/AlbertKallal">home</a></font></p>
+<p class="MsoNormal">Albert D. Kallal<br>
+Edmonton, Alberta Canada<br>
+<a href="mailto:kallal@msn.com">kallal@msn.com</a><br>
+<a href="http://www.members.shaw.ca/AlbertKallal">
+http://www.members.shaw.ca/AlbertKallal</a></p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal"><font face="Times New Roman" size="5">Specify options, and 
+the security file in the shortcut.</font><font face="Times New Roman" size="4">
+</font></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">While the linked table 
+manager allows you to setup the connection (link) to the BE, you have no such 
+luck when you are using a security workgroup file. So,&nbsp;if you are going to setup 
+security, and have users/logons etc. for the database, then you need to place 
+the workgroup file on the server. In these case, that security workgroup file 
+should be placed in the SAME location (directory) as the BE resides. What this 
+means is that your shortcut on the desktop needs to tell ms-access WHERE (more 
+specially what) workgroup file to use. Unfortunately, to specify a workgroup 
+file, your shortcut must now point to the msaccess.exe on your workstation, and 
+the backend file, and the workgroup file! (You need to specify all 3 in that 
+shortcut!). This file path will vary from version to version of ms-access. For 
+access 2003 an example shortcut for the above mde file would thus be:</span></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">"<a href="file:///C:/Program%20Files/Microsoft%20Office/OFFICE11/MSACCESS.EXE" style="text-decoration: none"><font color="#000000">C:\Program 
+Files\Microsoft Office\OFFICE11\MSACCESS.EXE</font></a>"</font></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">&nbsp;"C:\Documents 
+and Settings\All Users\Application Data\Custmailing\CustomersMailingList.mde"</font></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">&nbsp;/wrkgrp "\\servername\shardFolder\custordata\<a href="file:///C:/Program%20Files/RidesXP/Rides.mdw">mailing.mdw</a>"</font></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">Of course, the above goes 
+all on one line. In the shortcut properties 'target' (each part is separated by 
+a space). Note that you could deploy the workgroup file to each workstation 
+also, but then that would not allow you to add new users, or change passwords 
+without re-deploying this data file. And, since the workgroup file is just a 
+data file, then it should be shared to all users, and the sensible place is thus 
+the same location as the BE.</span></p>
+<p class="MsoNormal"><span style="font-size:13.5pt">During development, I get so 
+tired to typing in the password, that I often make a shortcut on my computer 
+that supplies the admin user and the password so I don't have to type it each 
+time. So, add to the above shortcut:</span></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">&nbsp;/User "Admin" /pwd 
+"mypassword"</font></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">The above also lets 
+me work on different projects during the day, and each shortcut thus selects the 
+workgroup file. And, for the many regular mdb files that don't have security, 
+then no prompts occur since using a shortcut means I do NOT have to join a 
+workgroup file.</font></p>
+<p class="MsoNormal"><font face="Times New Roman" size="4">Of course, all this 
+setup stuff really means that you should start setting up some install scripts, 
+and that means you want to consider using some install tools.&nbsp; That is a 
+whole another topic, and another future article!</font></p>
+
+<p class="MsoNormal">&nbsp;</p>
+
+<p class="MsoNormal"><font face="Times New Roman" size="4">
+<a href="http://www.members.shaw.ca/AlbertKallal">home</a></font></p>
+
+
+
+</body></html>

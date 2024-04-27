@@ -162,6 +162,13 @@ $routes->post('passchange', 'Login::passChange');
 $routes->post('passchangeUser', 'Login::passchangeUser');
 $routes->get('logout', 'Login::logout');
 
+//Reports
+$routes->get('reports', 'Reports::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('reports/requisition', 'Reports::RequisitionReport', ['filter' => ['authGuard', 'isAdmin']]);
+// $routes->post('requisition/add', 'Requisition::add', ['filter' => ['authGuard', 'isUser']]);
+// $routes->get('requisition/getall', 'Requisition::getAll', ['filter' => ['authGuard', 'isUser']]);
+// $routes->get('requisition/admin', 'Requisition::admin', ['filter' => ['authGuard', 'isAdmin']]);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
