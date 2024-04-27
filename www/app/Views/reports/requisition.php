@@ -24,18 +24,18 @@
 				</div>
 
 				<div class="border">
-					<form id="upload-form" class="form-inline ml-2 mt-2 mb-2">					
-					
-						<div class="col-md-3">						
-						Start Date
-							<input type="date" id="start_date" name="start_date" class="form-control" 
-							title="Start date" placeholder="yyyy-mm-dd" required>
+					<form id="upload-form" class="form-inline ml-2 mt-2 mb-2">
+
+						<div class="col-md-3">
+							Start Date
+							<input type="date" id="start_date" name="start_date" class="form-control" title="Start date"
+								placeholder="yyyy-mm-dd" required>
 						</div>
-						
-						<div class="col-md-3">						
-						End Date
-							<input type="date" id="end_date" name="end_date" class="form-control" 
-							title="End date" placeholder="yyyy-mm-dd" required>
+
+						<div class="col-md-3">
+							End Date
+							<input type="date" id="end_date" name="end_date" class="form-control" title="End date"
+								placeholder="yyyy-mm-dd" required>
 						</div>
 						<div class="form-group text-center">
 							<button class="btn btn-success" id="upload_btn" type="button">Show Report</button>
@@ -55,7 +55,7 @@
 								<th>Recieved Amount</th>
 								<th>Recieved Date Time</th>
 								<th>Status</th>
-								<th>Description</th>															
+								<th>Description</th>
 							</tr>
 						</thead>
 					</table>
@@ -326,7 +326,7 @@
 			"createdRow": function (row, data, dataIndex) {
 				if (data[0] == 'Total') {
 					$(row).css("font-weight", "bold");
-					$(row).addClass('bg-info');					
+					$(row).addClass('bg-info');
 				}
 			}
 		});
