@@ -164,7 +164,9 @@ $routes->get('logout', 'Login::logout');
 
 //Reports
 $routes->get('reports', 'Reports::index', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->get('allocation', 'Reports::Allocation', ['filter' => ['authGuard', 'isAdmin']]);
 $routes->post('reports/requisition', 'Reports::RequisitionReport', ['filter' => ['authGuard', 'isAdmin']]);
+$routes->post('reports/allocation', 'Reports::AllocationReport', ['filter' => ['authGuard', 'isAdmin']]);
 // $routes->post('requisition/add', 'Requisition::add', ['filter' => ['authGuard', 'isUser']]);
 // $routes->get('requisition/getall', 'Requisition::getAll', ['filter' => ['authGuard', 'isUser']]);
 // $routes->get('requisition/admin', 'Requisition::admin', ['filter' => ['authGuard', 'isAdmin']]);

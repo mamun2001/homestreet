@@ -84,8 +84,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= route_to('fa'); ?>"
-                        class="nav-link <?= (current_url() == base_url('fa')) ? 'active' : '' ?>">
+                    <a href="<?= route_to('allocation'); ?>"
+                        class="nav-link <?= (current_url() == base_url('allocation')) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Fund Allocation

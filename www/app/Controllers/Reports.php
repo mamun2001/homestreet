@@ -38,6 +38,15 @@ class Reports extends BaseController
 
         return view('reports/requisition', $data);
     }
+    public function Allocation()
+    {
+        $data = [
+            'controller' => 'reports',
+            'title' => 'Allocation'
+        ];
+
+        return view('reports/allocation', $data);
+    }
 
     public function RequisitionReport()
     {
@@ -54,15 +63,7 @@ class Reports extends BaseController
         ");
         $result = $query->getResult();
 
-        foreach ($result as $key => $value) {
-            // $ops = "";
-
-            // if ($value->status == "Pending") {
-            //     $ops = '<div class="btn-group">';
-            //     $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->id . ')"><i class="fa fa-edit"></i></button>';
-            //     $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->id . ')"><i class="fa fa-trash"></i></button>';
-            //     $ops .= '</div>';
-            // }
+        foreach ($result as $key => $value) {          
 
             if ($value->recieve_date_time == "0000-00-00 00:00:00") {
 
@@ -71,9 +72,9 @@ class Reports extends BaseController
                     $value->project_name,
                     $value->requested_amount,
                     $value->submit_date_time,
-                    $value->recieved_amount,
-                    "",
-                    $value->status,
+                    // $value->recieved_amount,
+                    // "",
+                    // $value->status,
                     $value->comment,
 
                     // $ops,
@@ -85,9 +86,59 @@ class Reports extends BaseController
                     $value->project_name,
                     $value->requested_amount,
                     $value->submit_date_time,
+                    // $value->recieved_amount,
+                    // $value->recieve_date_time,
+                    // $value->status,
+                    $value->comment,
+
+                    // $ops,
+                );
+            }
+        }
+
+        return $this->response->setJSON($data);
+    }
+    public function AllocationReport()
+    {
+        $response = array();
+        $startDate = $this->request->getPost('startDate');
+        $endDate = $this->request->getPost('endDate');
+
+        $data['data'] = array();
+
+        $db = \Config\Database::connect();
+
+        $query = $db->query("(SELECT r.*,p.project_name FROM `requisition` r inner JOIN projects p on r.project_id=p.id WHERE cast(r.submit_date_time AS DATE)>='".$startDate."' AND cast(r.submit_date_time AS DATE)<='".$endDate."' and r.status in ('Approved','Recieved') order by r.id) UNION ALL
+        (SELECT 'Total','','',SUM(r.requested_amount),'',SUM(r.recieved_amount),'','','','','' FROM `requisition` r inner JOIN projects p on r.project_id=p.id WHERE cast(r.submit_date_time AS DATE)>='".$startDate."' AND cast(r.submit_date_time AS DATE)<='".$endDate."' and r.status in ('Approved','Recieved'))
+        ");
+        $result = $query->getResult();
+
+        foreach ($result as $key => $value) {
+            
+            if ($value->recieve_date_time == "0000-00-00 00:00:00") {
+
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    // $value->requested_amount,
+                    // $value->submit_date_time,
+                    $value->recieved_amount,
+                    "",
+                    // $value->status,
+                    $value->comment,
+
+                    // $ops,
+                );
+
+            } else {
+                $data['data'][$key] = array(
+                    $value->id,
+                    $value->project_name,
+                    // $value->requested_amount,
+                    // $value->submit_date_time,
                     $value->recieved_amount,
                     $value->recieve_date_time,
-                    $value->status,
+                    // $value->status,
                     $value->comment,
 
                     // $ops,

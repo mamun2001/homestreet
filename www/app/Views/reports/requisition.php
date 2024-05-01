@@ -10,16 +10,7 @@
 					<div class="row">
 						<div class="col-md-8 mt-2">
 							<h3 class="card-title">Requisition Report</h3>
-						</div>
-						<!-- <div class="col-md-4 text-right">
-							<div class="btn-group right">
-								<button type="button" class="btn btn-success" id="approvedbutton"
-									title="Approved">Approved</button>
-								<button type="button" class="btn btn-warning" id="pendingbutton"
-									title="Pending">Pending</button>
-								<button type="button" class="btn btn-info" id="allbutton" title="All">All</button>
-							</div>
-						</div> -->
+						</div>						
 					</div>
 				</div>
 
@@ -52,9 +43,9 @@
 								<th>Project Name</th>
 								<th>Requested Amount</th>
 								<th>Submit Date Time</th>
-								<th>Recieved Amount</th>
+								<!-- <th>Recieved Amount</th>
 								<th>Recieved Date Time</th>
-								<th>Status</th>
+								<th>Status</th> -->
 								<th>Description</th>
 							</tr>
 						</thead>
